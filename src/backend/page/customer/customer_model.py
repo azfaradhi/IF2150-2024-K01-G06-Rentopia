@@ -82,6 +82,30 @@ class Customer:
             print(f"Error saving customer: {e}")
         finally:
             cur.close()
+            
+    def deleteCustomer(self):
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+        try:
+            cur.execute("""
+                        SELECT id_cust
+                        FROM customers
+                        WHERE id_cust = %s
+                    """, (self.id_cust, ))
+            existingCustomer = cur.fetchone()
+            if existingCustomer:
+                cur.execute("""
+                        DELETE FROM customers
+                        WHERE id_cust = %s
+                        """, (self.id_cust, ))
+                conn.commit()
+        except Exception as e:
+            conn.rollback()  # Rollback in case of an error
+            print(f"Error saving customer: {e}")
+        finally:
+            cur.close()
+        
 
     def getIDCustomer(self):
         return self.id_cust
@@ -120,7 +144,8 @@ class Customer:
         self.__status_cust = status_cust
         
 
-# customer = Customer(id_cust=10)
+# customer = Customer(id_cust=20)
+# customer.deleteCustomer()
 # customer.setNameCustomer("jonas")
 # customer.setPhoneCustomer("0857")
 # customer.setAddressCustomer("iceskating")
