@@ -7,3 +7,5 @@ __pycache__/
 
 # ignore configurations
 .vscode/
+
+node_modules/
