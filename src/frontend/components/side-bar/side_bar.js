@@ -2,6 +2,7 @@ function loadSidebar() {
     fetch('./components/side-bar/side_bar.html')
         .then((response) => response.text())
         .then((html) => {
+            console.log('Sidebar loaded:', html);
             const container = document.createElement('div');
             container.innerHTML = html;
             document.body.appendChild(container);
@@ -17,4 +18,10 @@ function loadSidebar() {
         });
 }
 
-export default loadSidebar;
+window.onload = () => {
+    loadSidebar();
+};
+
+// export default loadSidebar;
+// window.addEventListener('hashchange', router);
+// window.addEventListener('load', router);
