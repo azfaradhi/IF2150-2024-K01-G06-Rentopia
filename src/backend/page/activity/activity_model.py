@@ -76,8 +76,8 @@ class Activity:
                         ))
             else:
                 cur.execute("""
-                            INSERT INTO cars (id_activity, id_cust, id_car, date_range, total_price, status_car, status_cust, status_activity, additional_info_activity)
-                            VALUES (%s, %s, %s, %s, %s, %s, %s)
+                            INSERT INTO activities (id_activity, id_cust, id_car, date_range, total_price, status_car, status_cust, status_activity, additional_info_activity)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                         """, (
                             self.id_activity,
                             self.__id_cust,
