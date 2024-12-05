@@ -2,7 +2,7 @@
 # import cust
 # import car
 # import psycopg2
-from src._utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS
+from src.backend._utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS
 
 class Activity:
     def __init__(self, id_activity):
