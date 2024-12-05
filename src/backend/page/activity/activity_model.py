@@ -96,6 +96,29 @@ class Activity:
         finally:
             cur.close()
             conn.close()
+    
+    def deleteActivity(self):
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+        try:
+            cur.execute("""
+                        SELECT activities.id_activity
+                        FROM activities
+                        WHERE id_activity = %s
+                    """, (self.id_activity, ))
+            existingActivity = cur.fetchone()
+            if existingActivity:
+                cur.execute("""
+                        DELETE FROM activities
+                        WHERE id_activity = %s
+                        """, (self.id_activity, ))
+                conn.commit()
+        except Exception as e:
+            conn.rollback()  # Rollback in case of an error
+            print(f"Error deleting activity: {e}")
+        finally:
+            cur.close()
 
     def getIDActivity(self):
         return self.id_activity
@@ -116,3 +139,6 @@ class Activity:
         return self.__date_range
     
     
+# act = Activity(id_activity=10)
+# act.deleteActivity()
+# print("berhasil")
