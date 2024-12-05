@@ -7,14 +7,16 @@ DB_USER = 'rpl'
 DB_PASS = 'rpl'
 DB_HOST = 'localhost'
 DB_NAME = 'rentopia'
+DB_PORT = "5432"
 
 class DatabaseSetup:
     # Inisialisasi kelas
-    def __init__(self, DB_HOST, DB_NAME, DB_USER, DB_PASS):
+    def __init__(self, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT):
         self.host = DB_HOST
         self.database = DB_NAME
         self.user = DB_USER
         self.password = DB_PASS
+        self.port = DB_PORT
         self.connection = self.get_connection()
 
     # Buat koneksi ke database PostgreSQL
@@ -23,7 +25,8 @@ class DatabaseSetup:
             host=self.host,
             database=self.database,
             user=self.user,
-            password=self.password
+            password=self.password,
+            port = self.port
         )
         return conn
 
@@ -86,7 +89,8 @@ def setup_database():
         DB_HOST,
         DB_NAME,
         DB_USER,
-        DB_PASS
+        DB_PASS,
+        DB_PORT
     )
     setup.create_tables()
     # print("Database dan tabel telah dibuat.")
