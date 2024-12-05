@@ -102,7 +102,7 @@ class Customer:
                 conn.commit()
         except Exception as e:
             conn.rollback()  # Rollback in case of an error
-            print(f"Error saving customer: {e}")
+            print(f"Error deleting customer: {e}")
         finally:
             cur.close()
         
