@@ -6,106 +6,105 @@ conn = database.get_connection()
 
 cur = conn.cursor()
 
-def SetPelangganID(idPelanggan: int, id_reference: int):
+def SetCustomerID(id_customer: int, id_reference: int):
     cur.execute("""
         UPDATE customers
         SET id_cust = %s
         WHERE id_cust = %s;
-    """, (idPelanggan,id_reference))
+    """, (id_customer,id_reference))
 
 
-def SetPelangganNama(namaPelanggan: str, idPelanggan:int):
+def SetCustomerName(name_customer: str, id_customer:int):
     cur.execute(""" 
         UPDATE customers
         SET name_cust = %s
         WHERE id_cust = %s;
-    """, (namaPelanggan,idPelanggan))
+    """, (name_customer,id_customer))
     conn.commit()
-SetPelangganNama('jokowi',10)
     
-def SetPelangganTelp(telpPelanggan: str, idPelanggan: int):
+def SetCustomerPhone(phone_customer: str, id_customer: int):
     cur.execute(""" 
         UPDATE customers
         SET phone_cust = %s
         WHERE id_cust = %s;
-    """, (telpPelanggan,idPelanggan))
+    """, (phone_customer,id_customer))
     conn.commit()
     
-def SetPelangganAlamat(alamatPelanggan: str, idPelanggan: int):
+def SetCustomerAddress(address_customer: str, id_customer: int):
     cur.execute(""" 
         UPDATE customers
         SET address_cust = %s
         WHERE id_cust = %s;
-    """, (alamatPelanggan,idPelanggan))
+    """, (address_customer,id_customer))
     conn.commit()
 
-def SetPelangganKeterangan(keteranganPelanggan: str, idPelanggan: int):
+def SetCustomerAdditionalInfo(info_customer: str, id_customer: int):
     cur.execute(""" 
         UPDATE customers
         SET additional_info_cust = %s
         WHERE id_cust = %s;
-    """, (keteranganPelanggan,idPelanggan))
+    """, (info_customer,id_customer))
     conn.commit()
 
-def SetPelangganStatus(statusPelanggan: str, idPelanggan: int):
+def SetCustomerStatus(status_customer: str, id_customer: int):
     cur.execute(""" 
         UPDATE customers
         SET status_cust = %s
         WHERE id_cust = %s;
-    """, (statusPelanggan,idPelanggan))
+    """, (status_customer,id_customer))
     conn.commit()
 
-
-def GetPelangganID(namaPelanggan: str) -> int:
+SetCustomerStatus("gabeli",12)
+def GetCustomerID(name_customer: str) -> int:
     cur.execute("""
         SELECT id_cust
         FROM customers
         WHERE name_cust = %s
-    """, (namaPelanggan,))
+    """, (name_customer,))
     result = cur.fetchone()
     return result[0] if result else None
 
-def GetPelangganNama(idPelanggan: int) -> str:
+def GetCustomername(id_customer: int) -> str:
     cur.execute("""
         SELECT name_cust
         FROM customers
         WHERE id_cust = %s
-    """, (idPelanggan,))
+    """, (id_customer,))
     result = cur.fetchone()
     return result[0] if result else None
 
-def GetPelangganTelp(idPelanggan: int) -> str:
+def GetCustomerPhone(id_customer: int) -> str:
     cur.execute("""
         SELECT phone_cust
         FROM customers
         WHERE id_cust = %s
-    """, (idPelanggan,))
+    """, (id_customer,))
     result = cur.fetchone()
     return result[0] if result else None
 
-def GetPelangganAlamat(idPelanggan: int) -> str:
+def GetCustomerAddress(id_customer: int) -> str:
     cur.execute("""
         SELECT phone_cust
         FROM customers
         WHERE id_cust = %s
-    """, (idPelanggan,))
+    """, (id_customer,))
     result = cur.fetchone()
     return result[0] if result else None
 
-def GetPelangganKeterangan(idPelanggan: int) -> str:
+def GetCustomerAdditionalInfo(id_customer: int) -> str:
     cur.execute("""
         SELECT additional_info_cust
         FROM customers
         WHERE id_cust = %s
-    """, (idPelanggan,))
+    """, (id_customer,))
     result = cur.fetchone()
     return result[0] if result else None
 
-def GetPelangganStatus(idPelanggan: int) -> str:
+def GetCustomerStatus(id_customer: int) -> str:
     cur.execute("""
         SELECT status_cust
         FROM customers
         WHERE id_cust = %s
-    """, (idPelanggan,))
+    """, (id_customer,))
     result = cur.fetchone()
     return result[0] if result else None
