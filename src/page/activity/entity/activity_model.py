@@ -1,121 +1,62 @@
-import datetime
-import typing
-import psycopg2
+# import all needed modules
+# import cust
+# import car
+# import psycopg2
+from src._utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS
 
-DB_USER = 'rpl'
-DB_PASS = 'rpl'
-DB_HOST = 'localhost'
-DB_NAME = 'rentopia'
+class Activity:
+    def __init__(self, id_activity):
+        self.id_activity = id_activity
+        self.__id_cust = None
+        self.__id_car = None
+        self.__date_range = None
+        self.__total_price = None
+        self.__status_car = None
+        self.__status_cust = None
+        self.__status_activity = None
+        self.__additional_info_activity = None
+        self.loadActivity()
 
-Aktivitas = {
-    'id_activity': '',
-    'id_cust': '',
-    'id_mobil': '',
-    'date_range': '',
-    'total_price': '',
-    'status_car': '',
-    'status_cust': '',
-    'status_activity': '',
-    'additional_info_activity': ''
-}
+    def loadActivity(self):
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+        cur.execute("""
+                    SELECT * 
+                    FROM activities 
+                    WHERE id_activity = %s
+                """, (self.id_activity,))
+        dataActivity = cur.fetchone()
+        if dataActivity:
+            self.__id_cust = dataActivity[1]
+            self.__id_car = dataActivity[2]
+            self.__date_range = dataActivity[3]
+            self.__total_price = dataActivity[4]
+            self.__status_car = dataActivity[5]
+            self.__status_cust = dataActivity[6]
+            self.__status_activity = dataActivity[7]
+            self.__additional_info_activity = dataActivity[8]
+        # cur.close()
+        # conn.close()
 
-Customer = {
+    # TODO: save activity
 
-}
-
-conn = psycopg2.connect(
-    host=DB_HOST,
-    database=DB_NAME,
-    user=DB_USER,
-    password=DB_PASS
-)
-
-cur = conn.cursor()
-
-def GetIDAktivitas(dataAktivitas: typing.Dict[str, str]) -> int:
-    cur.execute("""
-        SELECT id_activity 
-        FROM activities 
-        WHERE id_activity == %s,
-        """, (dataAktivitas['id_activity'],)
-    )
-    conn.commit()
-    return cur.fetchone()
-
-
-# def SetIDAktivitas():
-#
-#     return
-
-def GetIDPelanggan(dataPelanggan: typing.Dict[str, str]) -> int:
-    cur.execute("""
-        SELECT id_cust 
-        FROM activities 
-        WHERE id_cust == %s;
-        """, (dataPelanggan['id_cust'],)
-    )
-    conn.commit()
-    return cur.fetchone()[0]
-
-
-def SetIDPelangganInAktivitas(idPelanggan: int, idAktivitas: int):
-    cur.execute("""
-        UPDATE activities
-        SET id_cust = %s
-        WHERE id_activity = %s;
-        """, (idAktivitas, idPelanggan,)
-    )
-    conn.commit()
-    return
-
-
-def GetIDMobil(idAktivitas: int) -> str:
-    cur.execute("""
-        SELECT id_cust 
-        FROM activities 
-        WHERE id_car == %s;
-        """, (idAktivitas,)
-    )
-    conn.commit()
-    return cur.fetchone()[0]
-
-
-def SetIDMobilInAktivitas(idMobil : str, idAktivitas: int):
-    cur.execute("""
-        INSERT INTO activities (id_car)
-        WHERE id_activity == %s
-        VALUES (%s);
-        """, (idAktivitas, idMobil,)
-    )
-    conn.commit()
-    return cur.fetchone()
-
-
-def GetTanggalAwal(idAktivitas: int) -> datetime.date:
-    cur.execute("""
-        SELECT date_range 
-        FROM activities 
-        WHERE id_activity == %s;
-        """, (idAktivitas,)
-    )
-    date = cur.fetchone()[2][0]
-    return datetime.strptime(date, "%Y-%m-%d").date() 
-
-
-
-# def SetTanggalAwal(rentangTanggal: List<date>): void
-
-def GetTanggalAkhir(idAktivitas: int) -> datetime.date:
-    cur.execute("""
-        SELECT date_range 
-        FROM activities 
-        WHERE id_activity == %s;
-        """, (idAktivitas,)
-    )
-    date = cur.fetchone()[2][1]
-    return datetime.strptime(date, "%Y-%m-%d").date() 
-
-
-# def SetTanggalAkhir(rentangTanggal: List<date>): void
-
-SetIDPelangganInAktivitas(4, 4)
+    def getIDActivity(self):
+        return self.id_activity
+    
+    def getIDCustomer(self):
+        return self.__id_cust
+    
+    def setIDCustomer(self, id_cust):
+        self.__id_cust = id_cust
+    
+    def getIDCar(self):
+        return self.__id_car
+    
+    def setIDCar(self, id_car):
+        self.__id_car = id_car
+    
+    def getDateRange(self):
+        return self.__date_range
+    
+    

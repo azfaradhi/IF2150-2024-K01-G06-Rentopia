@@ -1,0 +1,9 @@
+
+# ENVIRONMENT
+.venv
+
+# CACHE
+__pycache__/
+
+# ignore configurations
+.vscode/
