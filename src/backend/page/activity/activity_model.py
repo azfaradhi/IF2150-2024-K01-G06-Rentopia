@@ -2,7 +2,7 @@
 # import cust
 # import car
 # import psycopg2
-from src.backend._utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS
+from src.backend._utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT
 
 class Activity:
     def __init__(self, id_activity):
@@ -15,10 +15,9 @@ class Activity:
         self.__status_cust = None
         self.__status_activity = None
         self.__additional_info_activity = None
-        self.loadActivity()
 
     def loadActivity(self):
-        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS)
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
         cur = conn.cursor()
         cur.execute("""
@@ -39,7 +38,64 @@ class Activity:
         # cur.close()
         # conn.close()
 
-    # TODO: save activity
+    def saveActivity(self):
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+
+        try:
+            cur.execute("""
+                        SELECT id_activity
+                        FROM activities
+                        WHERE id_activity = %s
+                    """, (self.id_activity, ))
+            existingActivity = cur.fetchone()
+
+            if existingActivity:
+                cur.execute("""
+                            UPDATE activities
+                            SET id_cust = %s, 
+                                id_car = %s, 
+                                date_range = %s, 
+                                total_price = %s, 
+                                status_car = %s, 
+                                status_cust = %s
+                                status_activity = %s
+                                additional_info_activity = %s
+                            WHERE id_activity = %s
+                        """, (
+                                self.__id_cust,
+                                self.__id_car,
+                                self.__date_range,
+                                self.__total_price,
+                                self.__status_car,
+                                self.__status_cust,
+                                self.__status_activity,
+                                self.__additional_info_activity,
+                                self.id_activity
+                        ))
+            else:
+                cur.execute("""
+                            INSERT INTO cars (id_activity, id_cust, id_car, date_range, total_price, status_car, status_cust, status_activity, additional_info_activity)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s)
+                        """, (
+                            self.id_activity,
+                            self.__id_cust,
+                            self.__id_car,
+                            self.__date_range,
+                            self.__total_price,
+                            self.__status_car,
+                            self.__status_cust,
+                            self.__status_activity,
+                            self.__additional_info_activity
+                        ))
+            conn.commit()
+        except Exception as e:
+            conn.rollback()  # Rollback in case of an error
+            print(f"Error saving car: {e}")
+        finally:
+            cur.close()
+            conn.close()
 
     def getIDActivity(self):
         return self.id_activity
