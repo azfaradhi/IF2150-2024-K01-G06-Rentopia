@@ -1,4 +1,4 @@
-# transit car model
+# import all needed modules
 # import psycopg2
 import sys
 import os
@@ -93,6 +93,28 @@ class Car:
             cur.close()
             conn.close()
 
+    def deleteCar(self):
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+        try:
+            cur.execute("""
+                        SELECT id_car
+                        FROM cars
+                        WHERE id_car = %s
+                    """, (self.id_car, ))
+            existingCar = cur.fetchone()
+            if existingCar:
+                cur.execute("""
+                        DELETE FROM cars
+                        WHERE id_car = %s
+                        """, (self.id_car, ))
+                conn.commit()
+        except Exception as e:
+            conn.rollback()  # Rollback in case of an error
+            print(f"Error deleting activity: {e}")
+        finally:
+            cur.close()
 
     def filterByStatus(self, status_car):
         return self.__status_car == status_car
@@ -139,7 +161,6 @@ class Car:
     
     def setStatusCar(self, status_car):
         self.__status_car = status_car
-
 # test
 # car = Car("CAR01")
 # car.setPhotoCar("CeritanyaFoto")
