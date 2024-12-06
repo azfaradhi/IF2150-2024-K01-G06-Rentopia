@@ -18,7 +18,7 @@ function loadSidebar() {
         });
 }
 
-window.onload = () => {
+window.onload = () => { 
     loadSidebar();
 };
 

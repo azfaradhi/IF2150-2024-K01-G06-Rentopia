@@ -4,13 +4,22 @@ function loadPage(page) {
     fetch(page)
         .then(response => response.text())
         .then(html => {
-            document.getElementById('content').innerHTML = html;
+            const container = document.createElement('div');
+            // document.getElementById('content').innerHTML = html;
             console.log('page loaded: ', page);
+            document.body.appendChild(container);
+            const link = document.createElement('link');
+
+            // add css
+            link.rel = 'stylesheet';
+            link.href = componentPath.replace('.html', '.css');
+            document.head.appendChild(link);
         })
         .catch(error => {
             console.error('error: ', error);
         })
 }
+// export default loadPage;
 
 
 // ini untuk routing si pagenya, kalau ada tambahan, tambahin aja :)

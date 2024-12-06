@@ -1,5 +1,6 @@
 const components = [
     { path: './page/car/-components/status-button/status_button.html', elementId: 'status-button-container' },
+    { path: './components/side-bar/side_bar.html', elementId: 'side-bar-container' },
 ];
 
 function loadComponent(componentPath, elementId) {
@@ -7,15 +8,20 @@ function loadComponent(componentPath, elementId) {
         .then(response => response.text())
         .then(html => {
             const element = document.getElementById(elementId);
+            console.log(`Component loaded: ${componentPath}`);
             if (element) {
                 element.innerHTML = html;
                 console.log(`Component loaded: ${componentPath}`);
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = componentPath.replace('.html', '.css');
+                document.head.appendChild(link);
+                console.log(`CSS loaded: ${link.href}`);
             } else {
                 console.error(`Element with id ${elementId} not found`);
             }
         })
         .catch(error => {
-            console.log(`Component: ${componentPath}`);
             console.error('Error loading component:', error);
         });
 }
@@ -26,5 +32,5 @@ function loadAllComponents() {
     });
 }
 
-
-loadAllComponents();
+window.loadComponent = loadComponent;
+window.loadAllComponents = loadAllComponents;
