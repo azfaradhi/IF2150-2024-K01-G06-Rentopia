@@ -18,3 +18,16 @@
     border-radius: 10px;
     box-sizing: border-box;
 }
+
+.on-going {
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.available {
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}

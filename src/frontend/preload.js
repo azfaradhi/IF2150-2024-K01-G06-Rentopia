@@ -17,4 +17,8 @@ contextBridge.exposeInMainWorld('api', {
         const response = await fetch(`http://127.0.0.1:5000/api/activity/show/${id_activity}`);
         return response.json();
     },
+    fetchAllCustomers: async () => {
+        const response = await fetch(`http://127.0.0.1:5000/api/customers`);
+        return response.json();
+    },
 });
