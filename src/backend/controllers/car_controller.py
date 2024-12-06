@@ -9,12 +9,12 @@ def get_car(id_car):
     car = Car(id_car)
     return jsonify({
         'id_car': car.id_car,
-        'photo_car': car.photo_car,
-        'model_car': car.model_car,
-        'type_car': car.type_car,
-        'seat_car': car.seat_car,
-        'price_car': car.price_car,
-        'status_car': car.status_car
+        'photo_car': car.getPhotoCar(),
+        'model_car': car.getModelCar(),
+        'type_car': car.getTypeCar(),
+        'seat_car': car.getSeatCar(),
+        'price_car': car.getPriceCar(),
+        'status_car': car.getStatusCar()
     })
 
 @car_bp.route('/api/car', methods=['POST'])
@@ -37,10 +37,10 @@ def show_car(id_car):
     car = Car(id_car)
     return jsonify({
         'id_car': car.id_car,
-        'photo_car': car.photo_car,
-        'model_car': car.model_car,
-        'type_car': car.type_car,
-        'seat_car': car.seat_car,
-        'price_car': car.price_car,
-        'status_car': car.status_car
+        'photo_car': car.getPhotoCar(),
+        'model_car': car.getModelCar(),
+        'type_car': car.getTypeCar(),
+        'seat_car': car.getSeatCar(),
+        'price_car': car.getPriceCar(),
+        'status_car': car.getStatusCar()
     })
