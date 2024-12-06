@@ -1,4 +1,4 @@
-from src.backend.page.car.car_model import Car
+from page.car.car_model import Car
 from flask import Blueprint, jsonify, request
 
 car_bp = Blueprint('car', __name__)

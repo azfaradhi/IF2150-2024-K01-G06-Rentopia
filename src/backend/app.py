@@ -4,6 +4,7 @@
 from flask import Flask, jsonify
 # from .page import Activity
 from controllers.activity_controller import activity_bp
+from controllers.customer_controller import customer_bp
 # from controllers.activity_controller import activity_bp
 # from page.activity.activity_model import Activity
 # from controllers.activity_controller import *
@@ -12,6 +13,7 @@ app = Flask(__name__)
 
 # Register blueprints
 app.register_blueprint(activity_bp)
+app.register_blueprint(customer_bp)
 
 @app.route('/')
 def home():

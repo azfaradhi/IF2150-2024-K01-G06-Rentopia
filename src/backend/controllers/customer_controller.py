@@ -1,4 +1,4 @@
-from src.backend.page.customer.customer_model import Customer
+from page.customer.customer_model import Customer
 from flask import Blueprint, jsonify, request
 
 customer_bp = Blueprint('customer', __name__)
@@ -7,6 +7,7 @@ customer_bp = Blueprint('customer', __name__)
 @customer_bp.route('/api/customer/<int:id_cust>', methods=['GET'])
 def get_customer(id_cust):
     customer = Customer(id_cust)
+    customer.loadCustomer()
     return jsonify({
         'id_cust': customer.getIDCustomer(),
         'name_cust': customer.getNameCustomer(),

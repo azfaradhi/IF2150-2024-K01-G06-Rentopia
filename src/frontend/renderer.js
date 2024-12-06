@@ -16,7 +16,6 @@ function loadPage(page, callback) {
             link.href = page.replace('.html', '.css');
             document.head.appendChild(link);
             // console.log(`CSS loaded: ${link.href}`);
-
             if (callback) {
                 callback();
             }

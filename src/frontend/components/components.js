@@ -28,9 +28,14 @@ function loadComponent(componentPath, elementId) {
         });
 }
 
-function loadAllComponents() {
-    components.forEach(component => {
-        loadComponent(component.path, component.elementId);
+function loadAllComponents(callback) {
+    const promises = components.map(component => {
+        return loadComponent(component.path, component.elementId);
+    });
+    Promise.all(promises).then(() => {
+        if (callback) {
+            callback();
+        }
     });
 }
 
