@@ -8,12 +8,12 @@ customer_bp = Blueprint('customer', __name__)
 def get_customer(id_cust):
     customer = Customer(id_cust)
     return jsonify({
-        'id_cust': customer.id_cust,
-        'name_cust': customer.name_cust,
-        'phone_cust': customer.phone_cust,
-        'address_cust': customer.address_cust,
-        'additional_info_cust': customer.additional_info_cust,
-        'status_cust': customer.status_cust
+        'id_cust': customer.getIDCustomer(),
+        'name_cust': customer.getNameCustomer(),
+        'phone_cust': customer.getPhoneCustomer(),
+        'address_cust': customer.getAddressCustomer(),
+        'additional_info_cust': customer.getAdditionalInfoCustomer(),
+        'status_cust': customer.getStatusCustomer()
     })
 
 @customer_bp.route('/api/customer', methods=['POST'])

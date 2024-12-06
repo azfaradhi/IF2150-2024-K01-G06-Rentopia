@@ -1,0 +1,48 @@
+<!-- info_customer.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Info</title>
+    <style>
+        .on-going {
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .available {
+            background-color: green;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-customers">
+        <div class="info-left">
+            <div>
+                <p><strong>ID</strong> <span id="customer-id"></span></p>
+                <h1><strong>Nama Pelanggan</strong> <span id="customer-name"></span></h1>
+            </div>
+            <div class="contact">
+                <a><img src="public/telephone.svg" alt="" width="30" height="30" style="vertical-align: middle;">08123456789</a>
+                <a><img src="public/loc.svg" alt="" width="30" height="30" style="vertical-align: middle;">08123456789</a>
+            </div>
+        </div>
+        <div class="info-right">
+            <div class="status">
+                <!-- Status will be dynamically updated here -->
+            </div>
+            <div class="actions">
+                <button id="btn-delete"><img src="public/trash.svg" alt="" width="20" height="20" style="vertical-align: middle;"></button>
+                <button id="btn-update"><img src="public/edit.svg" alt="" width="20" height="20" style="vertical-align: middle;"></button>
+            </div>
+        </div>
+    </div>
+    <script src="customer.js"></script>
+</body>
+</html>

@@ -46,7 +46,9 @@ function router() {
             });
             break;
         case '/customer':
-            loadPage('./page/customer/customer_page.html');
+            loadPage('./page/customer/customer_page.html', () => {
+                loadComponent('./page/customer/-components/info-customer/info_customer.html', 'cust-card-container');
+            });
             break;
         case '/report':
             loadPage('./page/report/report_page.html');
