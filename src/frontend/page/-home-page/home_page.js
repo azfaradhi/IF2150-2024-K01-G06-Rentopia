@@ -1,3 +1,4 @@
+
 const baseUrl = `http://localhost:5000/api/activity/show/`;
 
 async function fetchActivity(activityId) {
@@ -28,6 +29,11 @@ function displayActivity(activity) {
 
 }
 
-for (let i =5; i>0;i--){
-    fetchActivity(i);
+function makeHomePage(){
+    for (let i =5; i>0;i--){
+        fetchActivity(i);
+    }
 }
+
+makeHomePage();
+

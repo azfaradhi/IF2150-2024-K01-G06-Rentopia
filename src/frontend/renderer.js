@@ -36,6 +36,7 @@ function router() {
     switch (route) {
         case '/':
             loadPage('./page/-home-page/home_page.html');
+            makeHomePage();
             break;
         case '/activity':
             loadPage('./page/activity/activity_page.html');
