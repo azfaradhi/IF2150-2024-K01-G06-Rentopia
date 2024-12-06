@@ -1,0 +1,27 @@
+#sidebar {
+    width: auto;
+    height: 87%;
+    background-color: #ffec99;
+    color: white;
+    padding: 20px;
+    position: absolute; 
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    /* margin: 20px; */
+}
+
+#sidebar nav a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 20px 10px;
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+#sidebar nav a:active,
+#sidebar nav a:focus {
+    background-color: #ffdc8c;
+    border-radius: 10px;
+}

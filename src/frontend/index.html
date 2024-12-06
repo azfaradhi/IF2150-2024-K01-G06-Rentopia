@@ -1,1 +1,34 @@
 <!-- ini cuman untuk panggil fungsi utama, seperti home-page -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Rentopia</title>
+</head>
+<body>
+    <nav>
+        <a href="#/activity">next</a>
+    </nav>
+    <div id="main-screen">
+        <div id="side-bar-container"></div>
+        <div id="content"></div>
+    </div>
+    <!-- <div id="car-card-container"></div> -->
+    
+    <!-- Page renderer -->
+    <script src="renderer.js"></script>
+
+    <!-- Nge-render semua component -->
+    <script src="./components/components.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            loadAllComponents();
+        });
+    </script>
+    
+
+</body>
+</html>
