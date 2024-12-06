@@ -12,12 +12,19 @@
     width: 100%;
     box-sizing: border-box;
     align-items: center;
+    line-height: 10px;
+    align-content: space-between;
 }
 
 .notif-box:hover {
     border: none;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.notif-box:hidden {
+    opacity: 0;
+    transform: translateY(-100px);
 }
 
 .actions button {
@@ -31,7 +38,7 @@
     cursor: pointer;
     width: 40px; /* Lebar tombol */
     height: 40px; /* Tinggi tombol */
-    transition: background-color 0.3s ease; /* Efek hover */
+    transition: background-color 0.3s opacity 0.5s ease, transform 1s ease;
 }
 
 .actions button:hover {
