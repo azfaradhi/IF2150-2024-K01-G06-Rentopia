@@ -14,6 +14,7 @@
     align-items: center;
     line-height: 10px;
     align-content: space-between;
+    transition: background-color 0.3s opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
 .notif-box:hover {
@@ -24,7 +25,7 @@
 
 .notif-box:hidden {
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(-100%);
 }
 
 .actions button {
@@ -38,7 +39,6 @@
     cursor: pointer;
     width: 40px; /* Lebar tombol */
     height: 40px; /* Tinggi tombol */
-    transition: background-color 0.3s opacity 0.5s ease, transform 1s ease;
 }
 
 .actions button:hover {
