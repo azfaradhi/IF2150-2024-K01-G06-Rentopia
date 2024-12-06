@@ -2,7 +2,7 @@
 # import cust
 # import car
 # import psycopg2
-from src.backend._utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT
+from _utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT
 
 class Activity:
     def __init__(self, id_activity):
@@ -125,6 +125,21 @@ class Activity:
     
     def getIDCustomer(self):
         return self.__id_cust
+    
+    def getPrice(self):
+        return self.__total_price
+    
+    def getStatusCar(self):
+        return self.__status_car
+
+    def getStatusCust(self):
+        return self.__status_cust
+
+    def getStatusActivity(self):
+        return self.__status_activity
+    
+    def getAdditionalInfo(self):
+        return self.__additional_info_activity
     
     def setIDCustomer(self, id_cust):
         self.__id_cust = id_cust

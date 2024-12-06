@@ -5,7 +5,7 @@ import psycopg2
 # TODO: dan masukkan konfigurasi ini ke dalam file .env
 DB_USER = 'rpl'
 DB_PASS = 'rpl'
-DB_HOST = 'localhost'
+DB_HOST = '127.0.0.1'
 DB_NAME = 'rentopia'
 DB_PORT = "5432"
 
