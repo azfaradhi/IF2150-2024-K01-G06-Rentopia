@@ -15,23 +15,20 @@
     <div id="main-screen">
         <div id="side-bar-container"></div>
         <div id="content"></div>
-        <div id="status-button-container"></div>
     </div>
+    <!-- <div id="car-card-container"></div> -->
     
-    <!-- TODO: make a js that load all component -->
+    <!-- Page renderer -->
+    <script src="renderer.js"></script>
+
+    <!-- Nge-render semua component -->
     <script src="./components/components.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", () => {
             loadAllComponents();
         });
     </script>
-    <!-- <script>
-        // Load all components
-        loadAllComponents();
-    </script> -->
-
-    <script src="renderer.js"></script>
-    <!-- <script src="./components/side-bar/side_bar.js"></script> -->
+    
 
 </body>
 </html>

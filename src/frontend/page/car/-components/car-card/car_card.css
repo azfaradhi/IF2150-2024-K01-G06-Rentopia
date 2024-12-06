@@ -1,0 +1,54 @@
+.car-card {
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    background-color: #FFC131;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.status-card {
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: red;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.action-button {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+.action-button button {
+    align-items: center;
+    justify-content: center;
+    background-color: #ffec99; /* Warna tombol */
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 60px; /* Lebar tombol */
+    height: 40px; /* Tinggi tombol */
+    transition: background-color 0.3s ease; /* Efek hover */
+}
