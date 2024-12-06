@@ -43,7 +43,8 @@ function router() {
             break;
         case '/car':
             loadPage('./page/car/car_page.html', () => {
-                loadComponent('./page/car/-components/car-card/car_card.html', 'car-card-container');
+                loadPage('./page/car/add-car/add_car.html');
+                // loadComponent('./page/car/-components/car-card/car_card.html', 'car-card-container');
             });
             break;
         case '/customer':

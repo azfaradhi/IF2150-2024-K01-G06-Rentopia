@@ -1,6 +1,4 @@
-
 const baseUrl = `http://localhost:5000/api/activity/show/`;
-
 async function fetchActivity(activityId) {
     try {
         const apiUrl = `${baseUrl}${activityId}`;
