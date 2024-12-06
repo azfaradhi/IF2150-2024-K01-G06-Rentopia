@@ -20,16 +20,17 @@ def calculatePrice(data):
 @activity_bp.route('/api/activity/<int:id_activity>', methods=['GET'])
 def get_activity(id_activity):
     activity = Activity(id_activity)
+    activity.loadActivity()
     return jsonify({
-        'id_activity': activity.id_activity,
+        'id_activity': activity.getIDActivity(),
         'id_cust': activity.getIDCustomer(),
         'id_car': activity.getIDCar(),
         'date_range': activity.getDateRange(),
-        'total_price': activity.getPrice(),
-        'status_car': activity.getStatusCar(),
-        'status_cust': activity.getStatusCust(),
-        'status_activity': activity.getStatusActivity(),
-        'additional_info_activity': activity.getAdditionalInfo()
+        'total_price': activity.getIDCustomer(),
+        'status_car': activity.getIDCustomer(),
+        'status_cust': activity.getIDCustomer(),
+        'status_activity': activity.getIDCustomer(),
+        'additional_info_activity': activity.getIDCustomer()
     })
 
 @activity_bp.route('/api/activity', methods=['POST'])

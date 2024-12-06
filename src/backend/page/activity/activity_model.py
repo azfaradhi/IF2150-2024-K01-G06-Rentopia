@@ -17,8 +17,10 @@ class Activity:
         self.__additional_info_activity = None
 
     def loadActivity(self):
+        print(f"Running loadActivity for id_activity: {self.id_activity}")
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
+        print("Database connection established")
         cur = conn.cursor()
         cur.execute("""
                     SELECT * 

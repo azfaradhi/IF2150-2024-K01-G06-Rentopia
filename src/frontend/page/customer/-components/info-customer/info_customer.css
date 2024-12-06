@@ -17,7 +17,8 @@
 
 .contact{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    align-items: center;
 }
 
 .info-left h1 {
@@ -33,8 +34,8 @@
 }
 
 .status p {
-    background-color: #4ac4ac;
-    color: white;
+    /* background-color: #4ac4ac;
+    color: white; */
     padding: 10px;
     border-radius: 30px;
 }

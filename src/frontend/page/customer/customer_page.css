@@ -1,0 +1,33 @@
+.customer-page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-list-container {
+    background-color: #FFEC99;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.cust-card-container {
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.on-going {
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.available {
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
