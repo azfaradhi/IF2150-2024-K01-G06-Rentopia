@@ -21,7 +21,7 @@ def get_car(id_car):
 def create_car():
     data = request.json
 
-    car = car(data['id_car'])
+    car = Car(data['id_car'])
     car.id_car = data['id_car']
     car.photo_car = data['photo_car']
     car.model_car = data['model_car']
