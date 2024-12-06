@@ -1,16 +1,15 @@
 #sidebar {
-    width:230px;
+    width: auto;
     height: 87%;
     background-color: #ffec99;
     color: white;
     padding: 20px;
-    position: fixed;
+    position: absolute; 
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    margin: 20px;
+    /* margin: 20px; */
 }
-
 
 #sidebar nav a {
     display: block;

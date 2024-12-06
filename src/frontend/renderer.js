@@ -1,15 +1,31 @@
+
 // ini untuk load pagenya
-function loadPage(page) {
+function loadPage(page, callback) {
     fetch(page)
         .then(response => response.text())
         .then(html => {
-            document.getElementById('content').innerHTML = html;
+            const container = document.createElement('div');
+            content.innerHTML = '';
+            container.innerHTML = html;
+            document.getElementById('content').appendChild(container);
             console.log('page loaded: ', page);
+    
+            // Add CSS
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = page.replace('.html', '.css');
+            document.head.appendChild(link);
+            // console.log(`CSS loaded: ${link.href}`);
+
+            if (callback) {
+                callback();
+            }
         })
         .catch(error => {
             console.error('error: ', error);
         })
 }
+// export default loadPage;
 
 
 // ini untuk routing si pagenya, kalau ada tambahan, tambahin aja :)
@@ -25,7 +41,9 @@ function router() {
             loadPage('./page/activity/activity_page.html');
             break;
         case '/car':
-            loadPage('./page/car/car_page.html');
+            loadPage('./page/car/car_page.html', () => {
+                loadComponent('./page/car/-components/car-card/car_card.html', 'car-card-container');
+            });
             break;
         case '/customer':
             loadPage('./page/customer/customer_page.html');
