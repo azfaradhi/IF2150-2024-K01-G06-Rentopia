@@ -16,7 +16,6 @@ function loadPage(page, callback) {
             link.href = page.replace('.html', '.css');
             document.head.appendChild(link);
             // console.log(`CSS loaded: ${link.href}`);
-
             if (callback) {
                 callback();
             }
@@ -36,17 +35,22 @@ function router() {
     switch (route) {
         case '/':
             loadPage('./page/-home-page/home_page.html');
+            makeHomePage();
             break;
         case '/activity':
             loadPage('./page/activity/activity_page.html');
             break;
         case '/car':
             loadPage('./page/car/car_page.html', () => {
-                loadComponent('./page/car/-components/car-card/car_card.html', 'car-card-container');
+                // loadPage('./page/car/add-car/add_car.html');
+                // loadComponent('./page/car/-components/car-card/car_card.html', 'car-card-container');
             });
             break;
         case '/customer':
             loadPage('./page/customer/customer_page.html');
+            // loadPage('./page/customer/customer_page.html', () => {
+            //     loadComponent('./page/customer/-components/info-customer/info_customer.html', 'cust-card-container');
+            // });
             break;
         case '/report':
             loadPage('./page/report/report_page.html');

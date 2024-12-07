@@ -1,4 +1,4 @@
-import loadSidebar from './components/side-bar/side_bar.js';
+// import loadSidebar from './components/side-bar/side_bar.js';
 // TODO: 
 
 const { app, BrowserWindow } = require('electron');

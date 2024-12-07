@@ -28,13 +28,20 @@
     cursor: pointer;
   }
   .margin-top-big{
-    margin-top: 108px;
+    width: 90%;
+    margin-top: 48px;
+    display: flex;
   }
   .home-table {
     width: 100%;
     max-width: 1000px;
     margin: 20px auto;
     border-collapse: collapse;
+  }
+  
+  .body-table {
+    font-size: 16px;
+    font-family:'Courier New', Courier, monospace;
   }
   
   .home-table th, .home-table td {
@@ -48,6 +55,9 @@
     color: #333;
     font-weight: bold;
     text-align: center;
+    font-size: 16px;
+    white-space: nowrap;
+    font-family:'Courier New', Courier, monospace;
   }
   
   .home-table tr:nth-child(even) {

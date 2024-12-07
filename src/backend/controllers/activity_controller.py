@@ -1,6 +1,6 @@
 # controllers/activity_controller.py
-from src.backend.page.activity.activity_model import Activity
-from src.backend.page.car.car_model import Car
+from page.activity.activity_model import Activity
+from page.car.car_model import Car
 from flask import Blueprint, jsonify, request
 from datetime import datetime
 
@@ -20,16 +20,17 @@ def calculatePrice(data):
 @activity_bp.route('/api/activity/<int:id_activity>', methods=['GET'])
 def get_activity(id_activity):
     activity = Activity(id_activity)
+    activity.loadActivity()
     return jsonify({
-        'id_activity': activity.id_activity,
-        'id_cust': activity.id_cust,
-        'id_car': activity.id_car,
-        'date_range': activity.date_range,
-        'total_price': activity.total_price,
-        'status_car': activity.status_car,
-        'status_cust': activity.status_cust,
-        'status_activity': activity.status_activity,
-        'additional_info_activity': activity.additional_info_activity
+        'id_activity': activity.getIDActivity(),
+        'id_cust': activity.getIDCustomer(),
+        'id_car': activity.getIDCar(),
+        'date_range': activity.getDateRange(),
+        'total_price': activity.getIDCustomer(),
+        'status_car': activity.getIDCustomer(),
+        'status_cust': activity.getIDCustomer(),
+        'status_activity': activity.getIDCustomer(),
+        'additional_info_activity': activity.getIDCustomer()
     })
 
 @activity_bp.route('/api/activity', methods=['POST'])
@@ -53,14 +54,15 @@ def create_activity():
 @activity_bp.route('/api/activity/show/<int:id_activity>', methods=['GET'])
 def show_activity(id_activity):
     activity = Activity(id_activity)
+    activity.loadActivity()
     return jsonify({
         'id_activity': activity.id_activity,
-        'id_cust': activity.id_cust,
-        'id_car': activity.id_car,
-        'date_range': activity.date_range,
-        'total_price': activity.total_price,
-        'status_car': activity.status_car,
-        'status_cust': activity.status_cust,
-        'status_activity': activity.status_activity,
-        'additional_info_activity': activity.additional_info_activity
+        'id_cust': activity.getIDCustomer(),
+        'id_car': activity.getIDCar(),
+        'date_range': activity.getDateRange(),
+        'total_price': activity.getPrice(),
+        'status_car': activity.getStatusCar(),
+        'status_cust': activity.getStatusCust(),
+        'status_activity': activity.getStatusActivity(),
+        'additional_info_activity': activity.getAdditionalInfo()
     })

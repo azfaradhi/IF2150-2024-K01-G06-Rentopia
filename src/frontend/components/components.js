@@ -1,6 +1,7 @@
 const components = [
     { path: './page/car/-components/car-card/car_card.html', elementId: 'car-card-container' },
     { path: './components/side-bar/side_bar.html', elementId: 'side-bar-container' },
+    { path: './page/customer/-components/info-customer/info_customer.html', elementId: 'cust-card-container' },
 ];
 
 function loadComponent(componentPath, elementId) {
@@ -17,6 +18,7 @@ function loadComponent(componentPath, elementId) {
                 link.href = componentPath.replace('.html', '.css');
                 document.head.appendChild(link);
                 console.log(`CSS loaded: ${link.href}`);
+                
             } else {
                 console.error(`Element with id ${elementId} not found`);
             }
@@ -26,9 +28,14 @@ function loadComponent(componentPath, elementId) {
         });
 }
 
-function loadAllComponents() {
-    components.forEach(component => {
-        loadComponent(component.path, component.elementId);
+function loadAllComponents(callback) {
+    const promises = components.map(component => {
+        return loadComponent(component.path, component.elementId);
+    });
+    Promise.all(promises).then(() => {
+        if (callback) {
+            callback();
+        }
     });
 }
 

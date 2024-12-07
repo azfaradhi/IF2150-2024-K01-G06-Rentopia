@@ -9,9 +9,6 @@
     <title>Rentopia</title>
 </head>
 <body>
-    <nav>
-        <a href="#/activity">next</a>
-    </nav>
     <div id="main-screen">
         <div id="side-bar-container"></div>
         <div id="content"></div>
@@ -22,9 +19,17 @@
     <script src="renderer.js"></script>
 
     <!-- Nge-render semua component -->
+     <!-- TODO: BIKIN SKRIP SUPAYA OTOMATIS KERENDER SEMUA -->
     <script src="./components/components.js"></script>
+    <script src="./page/customer/-components/info-customer/info_customer.js"></script>
+    <script src="./page/-home-page/home_page.js"></script>
+    <script src="./page/car/add-car/add_car.js"></script>
+    <script src="./page/car/car_page.js"></script>
+    <script src="./page/customer/customer_page.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            router();
             loadAllComponents();
         });
     </script>
