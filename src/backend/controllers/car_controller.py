@@ -32,9 +32,10 @@ def create_car():
     car.saveCar()
     return jsonify({'message': 'Car created successfully'})
 
-@car_bp.route('/api/car/show/<int:id_activity>', methods=['GET'])
+@car_bp.route('/api/car/show/<string:id_car>', methods=['GET'])
 def show_car(id_car):
     car = Car(id_car)
+    car.loadCar()
     return jsonify({
         'id_car': car.id_car,
         'photo_car': car.getPhotoCar(),
