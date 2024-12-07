@@ -42,14 +42,15 @@ function router() {
             break;
         case '/car':
             loadPage('./page/car/car_page.html', () => {
-                loadPage('./page/car/add-car/add_car.html');
+                // loadPage('./page/car/add-car/add_car.html');
                 // loadComponent('./page/car/-components/car-card/car_card.html', 'car-card-container');
             });
             break;
         case '/customer':
-            loadPage('./page/customer/customer_page.html', () => {
-                loadComponent('./page/customer/-components/info-customer/info_customer.html', 'cust-card-container');
-            });
+            loadPage('./page/customer/customer_page.html');
+            // loadPage('./page/customer/customer_page.html', () => {
+            //     loadComponent('./page/customer/-components/info-customer/info_customer.html', 'cust-card-container');
+            // });
             break;
         case '/report':
             loadPage('./page/report/report_page.html');
