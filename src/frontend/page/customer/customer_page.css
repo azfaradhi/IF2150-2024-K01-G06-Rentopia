@@ -1,33 +1,120 @@
-.customer-page-container {
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.background-yellow {
+    margin-top: 20px;
+    background-color: #FFEC99;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+}
+.info-customers {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    background-color: #ffc131;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.info-left {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.info-right {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.contact{
+    display: flex;
+    /* flex-direction: column; */
+    margin-top: 5px;
+    align-items: center;
+}
+
+.info-left h1 {
+    font-size: 32px;
+    margin-top: -10px;
+    margin-bottom: 0px;
+}
+
+
+
+.status p {
+    /* background-color: #4ac4ac;
+    color: white; */
+    padding: 10px;
+    border-radius: 30px;
+}
+.status-card {
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    margin-bottom:20px;
+    font-weight: bold;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.status-active {
+    background-color: #FF7A7A;
+}
+
+.status-inactive {
+    background-color: #4AC4AC;
+}
+.actions button {
+    align-items: center;
+    justify-content: center;
+    background-color: #ffec99; /* Warna tombol */
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 60px; /* Lebar tombol */
+    height: 40px; /* Tinggi tombol */
+    transition: background-color 0.3s ease; /* Efek hover */
+}
+
+.actions button:hover {
+    background-color: #4ac4ac; /* Warna tombol saat hover */
+}
+
+.actions button img {
+    vertical-align: middle;
+    pointer-events: none; /* Agar klik hanya pada tombol, bukan pada ikon */
+}
+
+.text-header{
+    font-size: 36px;
+    font-weight: bold;
+}
+.customer-page {
     display: flex;
     flex-direction: column;
     height: 100%;
+    background-color: #FFE987;
+    border-radius: 20px;
 }
-
-.card-list-container {
-    background-color: #FFEC99;
-    display: flex;
-    flex-wrap: wrap;
+.add-customer-button button {
+    align-items: center;
     justify-content: center;
-    width: 100%;
-}
-
-.cust-card-container {
-    display: flex;
-    width: 100%;
-    border-radius: 10px;
-    box-sizing: border-box;
-}
-
-.on-going {
-    background-color: red;
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
-}
-.available {
-    background-color: green;
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
+    background-color: #463B96; /* Warna tombol */
+    border: none;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 50px; /* Lebar tombol */
+    height: 50px; /* Tinggi tombol */
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
