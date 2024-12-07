@@ -4,8 +4,8 @@ import sys
 import os
 
 # Add the project root to the sys.path
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
-sys.path.append(project_root)
+# project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
+# sys.path.append(project_root)
 
 from _utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT
 
