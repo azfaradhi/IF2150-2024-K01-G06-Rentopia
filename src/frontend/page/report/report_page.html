@@ -1,3 +1,109 @@
-<div>
-    <h1>Report Page</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan</title>
+    <link rel="stylesheet" href="report_page.css">
+</head>
+<body>
+    <div class="report-page">
+        <header>
+            <div class="date-filters">
+                <!-- Start Date -->
+                <div class="date-container" id="start-date-container">
+                    <h1>Start Date</h1>
+                    <label for="start-date" class="date-label">
+                        <input type="date" id="start-date" value="2024-11-22">
+                    </label>
+                </div>
+        
+                <!-- End Date -->
+                <div class="date-container" id="end-date-container">
+                    <h1>End Date</h1>
+                    <label for="end-date" class="date-label">
+                        <input type="date" id="end-date" value="2024-12-12">
+                    </label>
+                </div>
+        
+                <!-- Submit Button -->
+                <button id="btn-submit">Submit</button>
+            </div>
+        </header>
+        <div class="report-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Car ID</th>
+                        <th>Car Model</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Income</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12345</td>
+                        <td>Barru Adi Utomo</td>
+                        <td>54321</td>
+                        <td>Nganu</td>
+                        <td>16-04-2024</td>
+                        <td>29-10-2024</td>
+                        <td>100000</td>
+                    </tr>
+                    <tr>
+                        <td>12345</td>
+                        <td>Barru Adi Utomo</td>
+                        <td>54321</td>
+                        <td>Nganu</td>
+                        <td>16-04-2024</td>
+                        <td>29-10-2024</td>
+                        <td>100000</td>
+                    </tr>
+                    <tr>
+                        <td>12345</td>
+                        <td>Barru Adi Utomo</td>
+                        <td>54321</td>
+                        <td>Nganu</td>
+                        <td>16-04-2024</td>
+                        <td>29-10-2024</td>
+                        <td>100000</td>
+                    </tr>
+                    <tr>
+                        <td>12345</td>
+                        <td>Barru Adi Utomo</td>
+                        <td>54321</td>
+                        <td>Nganu</td>
+                        <td>16-04-2024</td>
+                        <td>29-10-2024</td>
+                        <td>100000</td>
+                    </tr>
+                    <tr>
+                        <td>12345</td>
+                        <td>Barru Adi Utomo</td>
+                        <td>54321</td>
+                        <td>Nganu</td>
+                        <td>16-04-2024</td>
+                        <td>29-10-2024</td>
+                        <td>100000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Trigger calendar when clicking the start date container
+        document.getElementById("start-date-container").addEventListener("click", function () {
+            document.getElementById("start-date").focus(); // Focus input to open calendar
+        });
+
+        // Trigger calendar when clicking the end date container
+        document.getElementById("end-date-container").addEventListener("click", function () {
+            document.getElementById("end-date").focus(); // Focus input to open calendar
+        });
+    </script>
+</body>
+</html>
