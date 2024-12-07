@@ -1,0 +1,86 @@
+.car-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #FFE987;
+    border-radius: 20px;
+}
+
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    border-radius: 7px;
+    background-color: #FFC131;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 20x;
+    margin: 20px;
+}
+
+.select-box {
+    width: 150px;
+    padding: 3px;
+    border-radius: 7px;
+    border: 1px solid rgb(206, 202, 202);
+    margin: 7px;
+}
+
+.left-item {
+    display: flex;
+    gap: 20px;
+}
+
+.search-button {
+    display: flex;
+    gap: 2px;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.search-button button {
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* Warna tombol */
+    border: none;
+    padding: 5px;
+    width: 150px;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efek hover */
+}
+
+.search-button:hover button{
+    background-color:#463B96;
+    color: white;
+}
+
+.car-components {
+    padding: 20x;
+    margin: 20px;
+}
+
+.add-car-button button {
+    align-items: center;
+    justify-content: center;
+    background-color: #463B96; /* Warna tombol */
+    border: none;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 50px; /* Lebar tombol */
+    height: 50px; /* Tinggi tombol */
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.add-car-button button:hover {
+    background-color: #FFC131; /* Warna tombol saat hover */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

@@ -1,12 +1,8 @@
-console.log("radhi");
-
-function checkbutton(){
-    const element = document.getElementById("btnadd");
-    element.addEventListener("click", yaya);
-    console.log("radhi");
+function showpreview (event){
+    if (event. target.files.length > 0){
+    var src = URL.createobjectURL(event.target.files[®]);
+    var preview = document.getElementById("file-ip-1-preview");
+    preview. src = src;
+    preview. style.display = "block";
+    }
 }
-
-function yaya(){
-    console.log("makan");
-}
-checkbutton();

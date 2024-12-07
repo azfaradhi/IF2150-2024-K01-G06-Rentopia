@@ -66,16 +66,16 @@ input[type="file"]::-webkit-file-upload-button {
     visibility: hidden;
 }
 
-/* #btn-add {
+#btn-add {
     width: 55%;
     flex: 1; /* Setengah dari lebar kontainer */
-    /* padding: 10px;
+    padding: 10px;
     font-size: 16px;
     border-radius: 20px;
     border: none;
     background-color: #12b800; /* Warna kuning */
-    /* cursor: pointer; */
-} */ */
+    cursor: pointer;
+}
 
 /* Style untuk input placeholder */
 input::placeholder, input[type="file"]::placeholder {
