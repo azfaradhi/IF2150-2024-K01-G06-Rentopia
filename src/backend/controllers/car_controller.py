@@ -17,18 +17,21 @@ def get_car(id_car):
         'status_car': car.getStatusCar()
     })
 
-@car_bp.route('/api/car', methods=['POST'])
+@car_bp.route('/api/car/create', methods=['POST'])
 def create_car():
     data = request.json
-
+    print("Recevied data: ", data)
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
     car = Car(data['id_car'])
     car.id_car = data['id_car']
-    car.photo_car = data['photo_car']
-    car.model_car = data['model_car']
-    car.type_car = data['type_car']
-    car.seat_car = data['seat_car']
-    car.price_car = data['price_car']
-    car.status_car = data['status_car']
+    car.setPhotoCar("photo_car.jpg")
+    # car.photo_car = "photo_car.jpg"
+    car.setModelCar(data['model_car'])
+    car.setTypeCar(data['type_car'])
+    car.setSeatCar(int(data['seat_car']))
+    car.setPriceCar(int(data['price_car']))
+    car.setStatusCar("available")
     car.saveCar()
     return jsonify({'message': 'Car created successfully'})
 
@@ -44,4 +47,19 @@ def show_car(id_car):
         'seat_car': car.getSeatCar(),
         'price_car': car.getPriceCar(),
         'status_car': car.getStatusCar()
+    })
+
+@car_bp.route('/api/car/alldata', methods=['GET'])
+def get_cars_pagination():
+    page = int(request.args.get('page', 1))
+    items_per_page = int(request.args.get('items_per_page', 10))
+    
+    cars_list, total_cars, total_pages = Car.get_paginated_cars(page, items_per_page)
+    
+    return jsonify({
+        'page': page,
+        'items_per_page': items_per_page,
+        'total_pages': total_pages,
+        'total_cars': total_cars,
+        'cars': cars_list
     })

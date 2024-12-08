@@ -17,17 +17,19 @@ def get_customer(id_cust):
         'status_cust': customer.getStatusCustomer()
     })
 
-@customer_bp.route('/api/customer', methods=['POST'])
+@customer_bp.route('/api/customer/create', methods=['POST'])
 def create_customer():
     data = request.json
-
+    print("Recevied data: ", data)
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
     customer = Customer(data['id_cust'])
-    customer.id_cust = data['id_cust']
-    customer.name_cust = data['name_cust']
-    customer.phone_cust = data['phone_cust']
-    customer.address_cust = data['address_cust']
-    customer.additional_info_cust = data['additional_info_cust']
-    customer.status_cust = data['status_cust']
+    customer.setIDCustomer(int(data['id_cust']))
+    customer.setNameCustomer(data['name_cust'])
+    customer.setPhoneCustomer(data['phone_cust'])
+    customer.setAddressCustomer(data['address_cust'])
+    customer.setAdditionalInfoCustomer("")
+    customer.setStatusCustomer("inactive")
     customer.saveCustomer()
     return jsonify({'message': 'Customer created successfully'})
 
@@ -41,4 +43,19 @@ def show_customer(id_cust):
         'address_cust': customer.address_cust,
         'additional_info_cust': customer.additional_info_cust,
         'status_cust': customer.status_cust
+    })
+
+@customer_bp.route('/api/customer/alldata', methods=['GET'])
+def get_customer_pagination():
+    page = int(request.args.get('page', 1))
+    items_per_page = int(request.args.get('items_per_page', 10))
+    
+    customers_list, total_customers, total_pages = Customer.get_paginated_customers(page, items_per_page)
+    
+    return jsonify({
+        'page': page,
+        'items_per_page': items_per_page,
+        'total_pages': total_pages,
+        'total_customers': total_customers,
+        'customers': customers_list
     })
