@@ -63,3 +63,25 @@ def get_cars_pagination():
         'total_cars': total_cars,
         'cars': cars_list
     })
+
+@car_bp.route('/api/car/update', methods=['POST'])
+def update_car():
+    data = request.json
+    print("Recevied data: ", data)
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    fields = ['id_car', 'photo_car', 'model_car', 'type_car', 'seat_car', 'price_car']
+    for field in fields: 
+        if field not in data or data[field] is None or data[field] == '':
+            return jsonify({'error': f'Missing required field: {field}'}), 400
+
+    car = Car(data['id_car'])
+    car.id_car = data['id_car']
+    car.setPhotoCar("photo_car.jpg")
+    car.setModelCar(data['model_car'])
+    car.setTypeCar(data['type_car'])
+    car.setSeatCar(int(data['seat_car']))
+    car.setPriceCar(int(data['price_car']))
+    car.saveCar()
+    return jsonify({'message': 'Car updated successfully'})
