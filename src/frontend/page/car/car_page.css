@@ -227,3 +227,62 @@
 .car-image:hover img {
     transform: scale(1.15);
 }
+
+.car-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Adjust spacing between rows */
+}
+
+.car-card {
+    flex: 0 0 calc(50% - 10px); /* 2 cards per row with spacing */
+    margin: 0 5px; /* Adjust spacing between cards */
+    box-sizing: border-box;
+    background: #FFC131;
+    border: 1px solid #ddd; /* Optional: Add border for better visuals */
+    border-radius: 20px;
+    overflow: hidden; /* Ensure images don't overflow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow */
+    
+}
+
+button {
+    padding: 10px 20px; /* Adjust padding for size */
+    background-color: #FFC131; /* Primary blue color */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Adjust font size */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+  }
+  
+  /* Hover effect for buttons */
+  button:hover {
+    background-color: #FFC131; /* Darker blue */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  /* Disabled button styles */
+  button:disabled {
+    background-color: #CCCCCC; /* Gray for disabled */
+    cursor: not-allowed; /* Change cursor for disabled */
+  }
+  
+  /* Style for the page number span */
+  #page-number {
+    font-size: 18px; /* Larger font size */
+    font-weight: bold; /* Make it bold */
+    margin: 0 10px; /* Add spacing around it */
+  }
+  
+  /* Additional container styling for buttons */
+  button + span, button + button {
+    margin-left: 10px; /* Add space between buttons or button and span */
+  }
+  .justify-center {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Optionally, centers the content vertically if needed */
+    gap: 10px; /* Optional: space between elements */
+}

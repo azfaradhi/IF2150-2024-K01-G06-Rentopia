@@ -1,0 +1,75 @@
+
+<div class="add-car-container">
+    <div class="add-car-left">
+        <div>
+            <input id="car-image-input" type="file" accept="image/*" onchange="showPreview(event);">
+            <div class="preview">
+                <img id="car-image-preview" src="" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="add-car-right">
+        <div>
+            <h1>Model</h1>
+            <input id="car-model" type="text" placeholder="Car Model">
+        </div>
+        <div>
+            <h1>Type</h1>
+            <input id="car-type" type="text" placeholder="Car Type">
+        </div>
+        <div>
+            <h1>Seat</h1>
+            <input id="car-seat" type="text" placeholder="Car Seat">
+        </div>
+        <div>
+            <h1>Price</h1>
+            <input id="car-price" type="text" placeholder="Car Price">
+        </div>
+        <div>
+            <div class="button-add-car">
+                <button id="btn-cancel">Cancel</button>
+                <button id="btn-add">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="add_car.js" defer></script>
+<!-- edit_car.html - Place this in your /page/car/edit-car/ directory -->
+<!-- <div class="edit-car-container">
+<h2 id="page-title">Add/Edit Car</h2>
+
+<form id="car-form">
+    <div class="form-group">
+        <label for="model-car">Car Model</label>
+        <input type="text" id="model-car" name="model-car" required>
+    </div>
+
+    <div class="form-group">
+        <label for="seat-car">Number of Seats</label>
+        <input type="number" id="seat-car" name="seat-car" required>
+    </div>
+
+    <div class="form-group">
+        <label for="price-car">Price</label>
+        <input type="number" id="price-car" name="price-car" required>
+    </div>
+
+    <div class="form-group">
+        <label for="status-car">Status</label>
+        <select id="status-car" name="status-car" required>
+            <option value="available">Available</option>
+            <option value="reserved">Reserved</option>
+            <option value="not_available">Not Available</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="photo-car">Car Photo</label>
+        <input type="file" id="photo-car" name="photo-car" accept="image/*">
+        <img id="image-preview" style="display: none; max-width: 200px; margin-top: 10px;">
+    </div>
+
+    <button type="submit" id="submit-button">Submit</button>
+</form>
+</div> -->

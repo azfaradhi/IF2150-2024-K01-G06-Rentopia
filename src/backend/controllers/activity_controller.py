@@ -66,3 +66,18 @@ def show_activity(id_activity):
         'status_activity': activity.getStatusActivity(),
         'additional_info_activity': activity.getAdditionalInfo()
     })
+
+@activity_bp.route('/api/activity/alldata', methods=['GET'])
+def get_activity_pagination():
+    page = int(request.args.get('page', 1))
+    items_per_page = int(request.args.get('items_per_page', 10))
+    
+    activities, total_activities, total_pages = Activity.get_paginated_activities(page, items_per_page)
+    
+    return jsonify({
+        'page': page,
+        'items_per_page': items_per_page,
+        'total_pages': total_pages,
+        'total_activities': total_activities,
+        'activities': activities
+    })

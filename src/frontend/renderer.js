@@ -4,6 +4,9 @@ function loadPage(page, callback) {
     fetch(page)
         .then(response => response.text())
         .then(html => {
+            // const content = document.getElementById('content');
+            // content.innerHTML = ''; // Clear only the content area, not the sidebar
+            // content.innerHTML = html;
             const container = document.createElement('div');
             content.innerHTML = '';
             container.innerHTML = html;
@@ -24,35 +27,68 @@ function loadPage(page, callback) {
             console.error('error: ', error);
         })
 }
-// export default loadPage;
-
+function getQueryParams() {
+    const params = {};
+    const queryString = window.location.hash.split('?')[1];
+    console.log(queryString);
+    if (queryString) {
+        queryString.split('&').forEach(param => {
+            const [key, value] = param.split('=');
+            params[key] = decodeURIComponent(value);
+        });
+    }
+    return params;
+}
 
 // ini untuk routing si pagenya, kalau ada tambahan, tambahin aja :)
 function router() {
     const hash = window.location.hash || '#/';
     const route = hash.substring(1);
-
-    switch (route) {
-        case '/':
-            loadPage('./page/-home-page/home_page.html');
-            makeHomePage();
+    console.log(route);
+    switch (true) {
+        case route === '/':
+            loadPage('./page/-home-page/home_page.html', () =>{
+                homePageCommandChoice();
+                makeHomePage();
+            });
+            
             break;
-        case '/activity':
+        case route === '/activity':
             loadPage('./page/activity/activity_page.html');
             break;
-        case '/car':
+        case route ==='/car':
             loadPage('./page/car/car_page.html', () => {
-                // loadPage('./page/car/add-car/add_car.html');
-                // loadComponent('./page/car/-components/car-card/car_card.html', 'car-card-container');
+                makeCarPage();
+                carPageCommandChoice();
             });
             break;
-        case '/customer':
-            loadPage('./page/customer/customer_page.html');
-            // loadPage('./page/customer/customer_page.html', () => {
-            //     loadComponent('./page/customer/-components/info-customer/info_customer.html', 'cust-card-container');
-            // });
+        case route === '/car/add':
+            loadPage('./page/car/add-car/add_car.html', () =>{
+                initAddCar();
+
+            });
             break;
-        case '/report':
+        case route.startsWith('/car/edit'):
+            console.log("apalahweh");
+            const param = getQueryParams();
+            loadPage('./page/car/edit-car/edit_car.html', () =>{
+                console.log("param = ",param["id"]);
+                fetchCarById(param["id"]);
+            })
+            break;
+
+        case route === '/customer':
+            loadPage('./page/customer/customer_page.html', () =>{
+                makeCustomerPage();
+                customerPageCommandChoice();
+            });
+            break;
+        case route === '/customer/add':
+            loadPage('./page/customer/add-customer/add_customer.html', () =>{
+                initAddCustomer();
+            })
+            break;
+        case route === '/report':
             loadPage('./page/report/report_page.html');
             break;
         default:
