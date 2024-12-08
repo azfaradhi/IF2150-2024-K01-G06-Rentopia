@@ -20,9 +20,6 @@ def get_customer(id_cust):
 @customer_bp.route('/api/customer/create', methods=['POST'])
 def create_customer():
     data = request.json
-<<<<<<< Updated upstream
-
-=======
     print("Recevied data: ", data)
     
     fields = ['id_cust', 'name_cust', 'phone_cust', 'address_cust']
@@ -32,7 +29,6 @@ def create_customer():
         if not data or field not in data or data[field] is None or data[field] == '':
             return jsonify({'error': f'Missing required field: {field}'}), 400
     
->>>>>>> Stashed changes
     customer = Customer(data['id_cust'])
     customer.setIDCustomer(int(data['id_cust']))
     customer.setNameCustomer(data['name_cust'])
@@ -53,9 +49,6 @@ def show_customer(id_cust):
         'address_cust': customer.address_cust,
         'additional_info_cust': customer.additional_info_cust,
         'status_cust': customer.status_cust
-<<<<<<< Updated upstream
-    })
-=======
     })
 
 @customer_bp.route('/api/customer/alldata', methods=['GET'])
@@ -95,4 +88,3 @@ def update_customer():
     customer.setStatusCustomer("inactive")
     customer.saveCustomer()
     return jsonify({'message': 'Customer updated successfully'})
->>>>>>> Stashed changes

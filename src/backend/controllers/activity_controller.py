@@ -81,3 +81,41 @@ def get_activity_pagination():
         'total_activities': total_activities,
         'activities': activities
     })
+
+@activity_bp.route('/api/report/', methods=['GET'])
+def get_report():
+    date_range = request.args.get('date_range')
+    if date_range:
+        date_range = date_range.strip('{}').split(',')
+        start_date = datetime.strptime(date_range[0], '%Y-%m-%d')
+        end_date = datetime.strptime(date_range[1], '%Y-%m-%d')
+        print("Date range: ", date_range)
+        print("Start date: ", start_date)
+        print("End date: ", end_date)
+    else:
+        return jsonify({'error': 'no data'}), 400
+
+    report_list = Activity.get_paginated_activity_daterange(date_range)
+
+    return jsonify({
+        'date_awal': date_range[0],
+        'date_akhir': date_range[1],
+        'date_range': date_range,
+        'report_list': report_list
+    })
+
+# def get_report(date_range):
+#     # date_range = request.args.get('date_range')
+#     # start_date = datetime.strptime(date_range[0], '%Y-%m-%d')
+#     # end_date = datetime.strptime(date_range[1], '%Y-%m-%d')
+#     print("Date range: ", date_range)
+#     # print("Start date: ", start_date)
+#     # print("End date: ", end_date)
+#     report_list = Activity.get_paginated_activity_daterange(date_range)
+
+#     return jsonify({
+#         'date_awal': date_range[0],
+#         'date_akhir': date_range[1],
+#         'date_range': date_range,
+#         'report_list': report_list
+#     })
