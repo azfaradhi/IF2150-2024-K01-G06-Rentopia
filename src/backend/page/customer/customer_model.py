@@ -106,6 +106,41 @@ class Customer:
         finally:
             cur.close()
         
+    def get_paginated_customers(page, items_per_page):
+        offset = (page - 1) * items_per_page
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+
+        try:
+            cur.execute("""
+                SELECT id_cust, name_cust, phone_cust, address_cust, status_cust
+                FROM customers
+                ORDER BY id_cust  -- Adjust ordering if necessary
+                LIMIT %s OFFSET %s
+            """, (items_per_page, offset))
+
+            customers = cur.fetchall()
+
+            cur.execute("SELECT COUNT(*) FROM customers")
+            total_customers = cur.fetchone()[0]
+            total_pages = (total_customers + items_per_page - 1) // items_per_page  # Calculate total pages
+
+            customers_list = [{
+                'id_cust': customer[0],
+                'name_cust': customer[1],
+                'phone_cust': customer[2],
+                'address_cust': customer[3],
+                'status_cust': customer[4]
+            } for customer in customers]
+
+            return customers_list, total_customers, total_pages
+        except Exception as e:
+            print(f"Error fetching paginated customers: {e}")
+            return [], 0, 0
+        finally:
+            cur.close()
+            conn.close()
 
     def getIDCustomer(self):
         return self.id_cust
