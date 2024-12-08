@@ -1,0 +1,36 @@
+
+<div id="car-page" class="car-page">
+    <div class="top-bar">
+        <div class="left-item">
+            <select name="seat" id="car-seat" class="select-box">
+                <option value="" disabled selected>Select Seat</option>
+                <option value="seat4">4 Seat</option>
+                <option value="seat6">6 Seat</option>
+            </select>
+            <select name="availability" id="car-avail" class="select-box">
+                <option value="" disabled selected>Select Availablity</option>
+                <option value="available">Available</option>
+                <option value="ongoing">On Going</option>
+            </select>
+            </div>
+            <div style="text-align: center" class="search-button">
+            <button id="car-search"> Search </button>
+            </div>
+    </div>
+    <div class="car-components">
+        <div id="car-card-container"></div>
+        <div id="customer-pagination" class="justify-center">
+            <button id="prev-page" disabled>Previous</button>
+            <span id="page-number">Page: 1</span>
+            <button id="next-page">Next</button>
+        </div>
+    </div>
+    <div id="adding" class="add-car-button">
+        <button id="btn-add-car"><img src="public/add.svg" alt="" width="30" height="30" style="vertical-align: middle;"></button>
+    </div>
+</div>
+
+<div class="flex-row">
+    <div class="cars-container" id="cars-container"> </div>
+</div>
+</div>

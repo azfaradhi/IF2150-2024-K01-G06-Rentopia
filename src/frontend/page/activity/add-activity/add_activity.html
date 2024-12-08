@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="add_activity.css">
+</head>
+<body>
+    <h1>Add Activity</h1>
+    <div class="overall">
+        <div class="left-part">
+            <div class="customer">
+                <h2>Customer</h2>
+                <div class="cust-text-plus">
+                    <input type="text" placeholder="Customers's ID">
+                    <img src="../../../public/+.svg" alt="">
+                </div>
+            </div>
+            <div class="car">
+                <h2>Car</h2>
+                <div class="car-text-plus">
+                    <input type="text" placeholder="Car's ID">
+                    <img src="../../../public/+.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="right-part">
+            <div class="date-container" id="start-date-container">
+                <h2>Start Date</h2>
+                <label for="start-date" class="date-label">
+                    <input type="date" id="start-date" value="2024-11-22">
+                </label>
+            </div>
+    
+            <div class="date-container" id="end-date-container">
+                <h2>End Date</h2>
+                <label for="end-date" class="date-label">
+                    <input type="date" id="end-date" value="2024-12-12">
+                </label>
+            </div>
+
+            <div class="price">
+                <div>
+                    <button>Calculate Price</button>
+                </div>
+                <div id="price-container">
+                    <p id="price-value"></p>
+                </div>
+            </div>
+
+            <div button>
+                <div class="button-add-activity">
+                    <button id="btn-cancel">Cancel</button>
+                    <button id="btn-add">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

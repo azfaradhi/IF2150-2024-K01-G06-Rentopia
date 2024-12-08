@@ -1,5 +1,5 @@
 # class notification
-from src.backend._utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT
+from _utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT
 
 class Notification:
     def __init__(self, id_notif):
@@ -28,15 +28,22 @@ class Notification:
         conn = db_setup.get_connection()
         cur = conn.cursor()
         cur.execute("""
+                    DELETE FROM notifications;
+                    ALTER SEQUENCE notifications_id_notif_seq RESTART WITH 1;
+                    WITH relevant_activities AS (
+                        SELECT DISTINCT id_activity, unnest_col.date_element AS end_date
+                        FROM activities,
+                        LATERAL UNNEST(date_range) WITH ORDINALITY AS unnest_col(date_element, idx)
+                        WHERE unnest_col.idx = 2
+                            AND unnest_col.date_element <= current_date - INTERVAL '1 day'
+                            AND activities.status_activity = 'on going'
+                    )
                     INSERT INTO notifications
-                        (id_notif,
-                        date_end,
-                        id_activity)
-                    VALUES (%s, %s, %s)
+                        (date_end, id_activity)
+                    SELECT end_date, id_activity
+                    FROM relevant_activities
                     """,
-                    (self.id_notif,
-                     self.__date_end,
-                     self.__id_activity))
+                    )
         conn.commit()
         cur.close()
     
@@ -58,7 +65,8 @@ class Notification:
     def setIDActivity(self, id_activity):
         self.__id_activity = id_activity
 
-# notif = Notification(id_notif=1)
+notif = Notification(id_notif=2)
+notif.saveNotification()
 # notif.setDateEnd('1990-01-01')
 # notif.setIDActivity(10)
 # notif.saveNotification()
@@ -70,5 +78,5 @@ class Notification:
 # print(notif.getIDActivity())
 
 
-# print("berhasil")
+print("berhasil")
 

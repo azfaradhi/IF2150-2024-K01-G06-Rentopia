@@ -1,0 +1,32 @@
+<!-- activity.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Page</title>
+</head>
+<body>
+    <h1>Activity Page</h1>
+    <div id="activity-details"></div>
+    <script>
+        window.api.showActivity(1).then(activity => {
+            const detailsDiv = document.getElementById('activity-details');
+            detailsDiv.innerHTML = `
+                <p>ID Activity: ${activity.id_activity}</p>
+                <p>ID Customer: ${activity.id_cust}</p>
+                <p>ID Car: ${activity.id_car}</p>
+                <p>Date Range: ${activity.date_range}</p>
+                <p>Total Price: ${activity.total_price}</p>
+                <p>Status Car: ${activity.status_car}</p>
+                <p>Status Customer: ${activity.status_cust}</p>
+                <p>Status Activity: ${activity.status_activity}</p>
+                <p>Additional Info: ${activity.additional_info_activity}</p>
+            `;
+        }).catch(error => {
+            console.error('Error fetching activity:', error);
+        });
+    </script>
+</body>
+</html>

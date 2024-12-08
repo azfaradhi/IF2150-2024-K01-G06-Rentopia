@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="add_car.css">
+</head>
+<body>
+    <div class="add-car-container">
+        <div class="add-car-left">
+            <div>
+                <h1>ID</h1>
+                <input id="car-id" type="text" placeholder="ID">
+            </div>
+            <div>
+                <input id="car-image-input" type="file" accept="image/*" onchange="showPreview(event);">
+                <div class="preview">
+                    <img id="car-image-preview" src="" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="add-car-right">
+            <div>
+                <h1>Model</h1>
+                <input id="car-model" type="text" placeholder="Car Model">
+            </div>
+            <div>
+                <h1>Type</h1>
+                <input id="car-type" type="text" placeholder="Car Type">
+            </div>
+            <div>
+                <h1>Seat</h1>
+                <input id="car-seat" type="text" placeholder="Car Seat">
+            </div>
+            <div>
+                <h1>Price</h1>
+                <input id="car-price" type="text" placeholder="Car Price">
+            </div>
+            <div>
+                <div class="button-add-car">
+                    <button id="btn-cancel">Cancel</button>
+                    <button id="btn-add">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="add_car.js" defer></script>
+</body>
+</html>

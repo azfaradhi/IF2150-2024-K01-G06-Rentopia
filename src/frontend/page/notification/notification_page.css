@@ -1,0 +1,47 @@
+.notif-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 20px;
+    border: none;
+    padding: 20px;
+    margin: 10px 0;
+    background-color: #FFEC99;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all border 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    line-height: 10px;
+    align-content: space-between;
+    transition: background-color 0.3s opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.notif-box:hover {
+    border: none;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.notif-box:hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.actions button {
+    align-items: center;
+    justify-content: center;
+    background-color: #463B96; /* Warna tombol */
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px; /* Lebar tombol */
+    height: 40px; /* Tinggi tombol */
+}
+
+.actions button:hover {
+    background-color: #FFC131; /* Warna tombol saat hover */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

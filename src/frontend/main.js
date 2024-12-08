@@ -1,3 +1,4 @@
+// import loadSidebar from './components/side-bar/side_bar.js';
 // TODO: 
 
 const { app, BrowserWindow } = require('electron');
@@ -13,6 +14,10 @@ function createWindow() {
   });
 
   win.loadFile('index.html');
+  win.webContents.openDevTools();
+//   window.onload = () => {
+//     loadSidebar();
+// };
 }
 
 app.whenReady().then(() => {

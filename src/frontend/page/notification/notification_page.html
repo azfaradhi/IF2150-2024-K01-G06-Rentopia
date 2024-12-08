@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="notification">
+    <title> Notification </title>
+    <link rel="stylesheet" href="notification_page.css">
+</head>
+<div class="notif-box" id="notif-box">
+    <div>
+        <b style="font-size: 20px;">NOTIFICATION</b>
+        <p>This is isi notifikasi</p>
+    </div>
+    <div class="actions">
+        <button id="btn-close" onclick="closeNotifBox()"><img src="../../public/close.svg" alt="" width="15" height="15" style="vertical-align: middle;"></button>
+    </div>
+
+    <script> function closeNotifBox() {
+        const box = document.getElementById('notif-box');
+        box.classList.add('hidden');
+            setTimeout(() => {
+                box.style.display = 'none';
+            }, 800);}
+    </script>
+</div>

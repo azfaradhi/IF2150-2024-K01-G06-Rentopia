@@ -1,0 +1,44 @@
+<div class="flex-col">
+    <script src="home_page.js"></script>
+    <div class="flex-row-between">
+        <div class="text-bold-64">
+            Hi Salsabiila!
+        </div>
+        <div>
+            <button class="transparent-button">
+                <img id="add-new-cust" src="public\homepage\addcust.svg" class="notification-icon">
+            </button>
+            <button class="transparent-button">
+                <img src="public\homepage\addact.svg" class="notification-icon">
+            </button>
+            <button class="transparent-button">
+                <img src="public\homepage\notif.svg" class="notification-icon">
+            </button>
+        </div>
+
+
+    </div>
+    <div id="activity-list" class="margin-top-big">
+        <table class="home-table">
+            <thead>
+                <tr>
+                    <th >User ID</th>
+                    <th >User Name</th>
+                    <th >Car ID</th>
+                    <th >Car Model</th>
+                    <th >Start Date</th>
+                    <th >End Date</th>
+                    <th >Return Status</th>
+                </tr>
+            </thead>
+            <tbody id="activity-table-body" class="body-table">
+            </tbody>
+        </table>
+        <div id="pagination-controls" class="justify-center">
+            <button id="prev-page">Previous</button>
+            <span id="page-number">Page: 1</span>
+            <button id="next-page">Next</button>
+        </div>
+        
+    </div>
+</div>
