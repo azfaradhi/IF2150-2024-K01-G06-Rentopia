@@ -3,7 +3,7 @@ let items_per_page_car = 4;
 
 async function fetchCar(page) {
     try {
-        const apiUrlCar = `http://localhost:5000/api/car/alldata?page=${page}&items_per_page=${items_per_page_car}`;
+        const apiUrlCar = `http://127.0.0.1:5000/api/car/alldata?page=${page}&items_per_page=${items_per_page_car}`;
         const responseCar = await fetch(apiUrlCar);
         if (!responseCar.ok) {
             throw new Error(`Error fetching activity: ${response.statusText}`);
