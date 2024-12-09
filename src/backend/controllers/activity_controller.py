@@ -102,6 +102,8 @@ def get_activity_pagination():
 
 @activity_bp.route('/api/report/', methods=['GET'])
 def get_report():
+    page = int(request.args.get('page', 1))
+    items_per_page = int(request.args.get('items_per_page', 2))
     date_range = request.args.get('date_range')
     if date_range:
         date_range = date_range.strip('{}').split(',')
@@ -113,9 +115,13 @@ def get_report():
     else:
         return jsonify({'error': 'no data'}), 400
 
-    report_list = Activity.get_paginated_activity_daterange(date_range)
+    report_list, total_activities, total_pages = Activity.get_paginated_activity_daterange(page, items_per_page, date_range)
 
     return jsonify({
+        'page': page,
+        'items_per_page': items_per_page,
+        'total_pages': total_pages,
+        'total_activities': total_activities,
         'date_awal': date_range[0],
         'date_akhir': date_range[1],
         'date_range': date_range,
