@@ -18,6 +18,39 @@ async function fetchCarById(id) {
 }
 
 async function initEditCar(id){
+
+    let currentStatus = null
+    let resultAdd = null
+    try {
+        const apiGetStatus = `http://localhost:5000/api/car/show/${id}`;
+        const responseStatus = await fetch(apiGetStatus);
+
+        console.log("masuk dong");
+        if (!responseStatus.ok){
+            throw new Error(`Failed to create activity: ${responseStatus.statusText}`);
+        }
+        resultAdd = await responseStatus.json();
+        // currentStatus = resultAdd.status_car;
+        console.log(resultAdd);
+        currentStatus = resultAdd.status_car;
+        console.log("status: ", currentStatus);
+
+        document.getElementById("car-model").value = "";
+        document.getElementById("car-type").value = "";
+        document.getElementById("car-seat").value = "";
+        document.getElementById("car-price").value = "";   
+        // alert("Success update car!");
+        // window.location.hash = "/car";
+
+    }
+    catch (error){
+        console.error("Error: ", error);    
+    }
+    document.getElementById("car-id").value = id;
+    document.getElementById("car-model").value = resultAdd.model_car;
+    document.getElementById("car-type").value = resultAdd.type_car;
+    document.getElementById("car-seat").value = resultAdd.seat_car;
+    document.getElementById("car-price").value = resultAdd.price_car;
     const addButton = document.getElementById("btn-add");
     const cancelButton = document.getElementById("btn-cancel");
 
@@ -38,14 +71,45 @@ async function initEditCar(id){
                 document.getElementById("car-price").value = "";   
             
             }
+
             if (valid){
+                console.log("apa"); 
+
+
                 const carData = {
+                    id_car: id,
+                    photo_car: "phoho",
                     model_car : model,
                     type_car: type,
                     seat_car: seat,
                     price_car: price,
+                    status_car: currentStatus,
                 };
                 console.log("Collect data car: ", carData);
+                try {
+                    const responseEditAct = await fetch('http://localhost:5000/api/car/update', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(carData),
+                    });
+                    console.log("masuk dong");
+                    if (!responseEditAct.ok){
+                        throw new Error(`Failed to create activity: ${responseEditAct.statusText}`);
+                    }
+                    const resultAdd = await responseEditAct.json();
+                    document.getElementById("car-model").value = "";
+                    document.getElementById("car-type").value = "";
+                    document.getElementById("car-seat").value = "";
+                    document.getElementById("car-price").value = "";   
+                    alert("Success update car!");
+                    window.location.hash = "/car";
+
+                }
+                catch (error){
+                    console.error("Error: ", error);    
+                }
             }
 
         })
