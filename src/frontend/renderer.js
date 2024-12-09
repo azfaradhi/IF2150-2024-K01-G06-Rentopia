@@ -94,6 +94,13 @@ function router() {
                 initAddCustomer();
             })
             break;
+        case route.startsWith('/customer/update'):
+            const custUpdateParam = getQueryParams();
+            loadPage('./page/customer/update-customer/update_customer.html', () =>{
+                console.log('anu');
+                initUpdateCustomer(custUpdateParam["id"]);
+            })
+            break;
         case route === '/report':
             loadPage('./page/report/report_page.html', () => {
                 reportPageCommandChoice();
