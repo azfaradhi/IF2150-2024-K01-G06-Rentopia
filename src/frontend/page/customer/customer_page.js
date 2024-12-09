@@ -91,9 +91,20 @@ function displayCustomer(customers, page, totalPage) {
                         <img src="public/edit.svg" alt="" width="20" height="20" style="vertical-align: middle;">
                     </button>
                 </div>
-                <script src="./update-customer/update_customer.js"></script>
             </div>
         `;
+
+        const updateButton = custElement.querySelector('.btn-update');
+        updateButton.addEventListener('click', () => {
+            const custId = updateButton.getAttribute('data-cust-id');
+            console.log(`Edit customer with ID: ${custId}`);
+            try {
+                console.log("ini masuk");
+                window.location.hash = `/customer/update?id=${custId}`;
+            } catch (error) {
+                console.error("HUHUHAHA:", error);
+            }
+        });
 
         const deleteButtonCust = custElement.querySelector('.btn-delete');
         deleteButtonCust.addEventListener('click', async () => {
@@ -139,5 +150,6 @@ function makeCustomerPage(){
     fetchCustomer(currentPageCustomer);
 }
 document.addEventListener('DOMContentLoaded', () => {
+    // makeCustomerPage(); 
     customerPageCommandChoice();
 });

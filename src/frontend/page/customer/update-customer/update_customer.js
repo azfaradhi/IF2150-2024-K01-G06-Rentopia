@@ -2,8 +2,10 @@ console.log("apdet cust");
 
 async function initUpdateCustomer(id_cust) {
     console.log("apdet custttttt");
-    const placeholder = await fetch(`http://127.0.0.1:5000/api/customer/show/${id_cust}`);
+    const placeholder = await fetch(`http://127.0.0.1:5000/api/customer/${id_cust}`);
     const data = await placeholder.json();
+    console.log("datadsadsiadjsaiodjsaiojdoia");
+    console.log(data);
 
     const updateButton = document.getElementById("btn-update");
     const cancelButton = document.getElementById("btn-cancel");

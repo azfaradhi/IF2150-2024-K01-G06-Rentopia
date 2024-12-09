@@ -40,7 +40,7 @@ input{
     width: 20%;                /* Lebar tombol cancel */
 }
 
-#btn-add {
+#btn-update {
     background-color: #12b800; /* Warna hijau */
     width: 20%;                /* Lebar tombol add */
 }
