@@ -163,22 +163,46 @@ class Activity:
             cur.close()
             conn.close()
 
-    def get_activity_table_length():
+    def get_paginated_activity_daterange(date_range):
+        # offset = (page - 1) * items_per_page
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
         cur = conn.cursor()
         
         try:
-            cur.execute("SELECT COUNT(*) FROM activities")
-            table_length = cur.fetchone()[0]
-            return table_length
+            cur.execute("""
+                SELECT a.id_activity, a.id_cust, c.name_cust, a.id_car, ca.model_car, a.date_range, a.total_price
+                FROM activities a
+                JOIN customers c ON a.id_cust = c.id_cust
+                JOIN cars ca ON a.id_car = ca.id_car
+                WHERE a.date_range[1] BETWEEN %s AND %s
+            """, (date_range[0],date_range[1],))
+            
+            activities = cur.fetchall()
+            
+            # cur.execute("SELECT COUNT(*) FROM activities")
+            # total_activities = cur.fetchone()[0]
+            # total_pages = (total_activities + items_per_page - 1) // items_per_page  # Calculate total pages
+            
+            report_list = [{
+                'id_activity': activity[0],
+                'id_cust': activity[1],
+                'name_cust': activity[2],
+                'id_car': activity[3],
+                'model_car': activity[4],
+                'date_range': activity[5],
+                'total_price': activity[6]
+            } for activity in activities]
+            
+            return report_list
         except Exception as e:
-            print(f"Error fetching activity table length: {e}")
-            return 0
+            print(f"Error fetching report list: {e}")
+            return [], 0, 0
         finally:
             cur.close()
             conn.close()
-            
+
+
     def getIDActivity(self):
         return self.id_activity
     

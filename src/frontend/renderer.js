@@ -95,7 +95,10 @@ function router() {
             })
             break;
         case route === '/report':
-            loadPage('./page/report/report_page.html');
+            loadPage('./page/report/report_page.html', () => {
+                reportPageCommandChoice();
+                makeReportPage();
+            });
             break;
         default:
             // loadPage('404.html');

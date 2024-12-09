@@ -3,7 +3,7 @@ let itemsPerPageCustomer = 3;
 
 async function fetchCustomer(page) {
     try {
-        const apiUrlCust = `http://localhost:5000/api/customer/alldata?page=${page}&items_per_page=${itemsPerPageCustomer}`;
+        const apiUrlCust = `http://127.0.0.1:5000/api/customer/alldata?page=${page}&items_per_page=${itemsPerPageCustomer}`;
         const responseCust = await fetch(apiUrlCust);
         if (!responseCust.ok) {
             throw new Error(`Error fetching activity: ${response.statusText}`);

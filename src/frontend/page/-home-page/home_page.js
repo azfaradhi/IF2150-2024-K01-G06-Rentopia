@@ -4,7 +4,7 @@ let itemsPerPage = 5;
 async function fetchActivity(page) {
     console.log("fetchActivity called with page:", page); // Debug log
     try {
-        const apiUrl = `http://localhost:5000/api/activity/alldata?page=${page}&items_per_page=${itemsPerPage}`;
+        const apiUrl = `http://127.0.0.1:5000/api/activity/alldata?page=${page}&items_per_page=${itemsPerPage}`;
         const response = await fetch(apiUrl);
         if (!response.ok) {
             throw new Error(`Error fetching activity: ${response.statusText}`);

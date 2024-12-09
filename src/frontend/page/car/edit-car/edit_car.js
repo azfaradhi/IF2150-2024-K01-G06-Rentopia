@@ -4,7 +4,7 @@ let carData = null;
 
 async function fetchCarById(id) {
     try {
-        const responseEditCar = await fetch(`http://localhost:5000/api/car/show/${id}`);
+        const responseEditCar = await fetch(`http://127.0.0.1:5000/api/car/show/${id}`);
         if (!responseEditCar.ok) {
             throw new Error(`Error fetching car: ${response.statusText}`);
         }
