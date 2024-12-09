@@ -122,6 +122,32 @@ def get_report():
         'report_list': report_list
     })
 
+@activity_bp.route('/api/activity/update/<int:id_act>', methods=['POST'])
+def update_activity(id_act):
+    data = request.json
+    print("Recevied data: ", data)
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    fields = ['id_activity','status_activity','status_car','status_cust']
+    for field in fields: 
+        if field not in data or data[field] is None or data[field] == '':
+            return jsonify({'error': f'Missing required field: {field}'}), 400
+
+    activity = Activity(id_act)
+    activity.loadActivity()
+    print(activity.getPrice())
+    # activity.setIDCustomer(data['id_cust'])
+    # activity.setIDCar(data['id_car'])
+    # activity.setDateRange(data['data_range'])
+    # activity.setTotalPrice(data['total_price'])
+    activity.setStatusCar(data['status_car'])
+    activity.setStatusCust(data['status_cust'])
+    activity.setStatusActivity(data['status_activity'])
+    # activity.setAdditionalInfo(data['additional_info_activity'])
+    activity.saveActivity()
+    return jsonify({'message': 'Car updated successfully'})
+
 # def get_report(date_range):
 #     # date_range = request.args.get('date_range')
 #     # start_date = datetime.strptime(date_range[0], '%Y-%m-%d')

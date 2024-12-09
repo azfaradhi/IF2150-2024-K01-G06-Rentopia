@@ -77,8 +77,49 @@ function displayActivity(activities, page, totalPage) {
         <td>${activity.model_car}</td>
         <td>${activity.date_range ? activity.date_range[0] : 'N/A'}</td>
         <td>${activity.date_range ? activity.date_range[1] : 'N/A'}</td>
-        <td>${activity.status_car}</td>
+        <td>
+            <button 
+                class="status-btn ${activity.status_activity === 'in-progress' ? 'available' : 'reserved'}"
+                ${activity.status_activity === 'in-progress' ? '' : 'disabled'}
+            >
+                ${activity.status_activity}
+            </button>      
+        </td>
         `;
+
+        const markFinished = row.querySelector('.status-btn');
+        if (markFinished){
+            markFinished.addEventListener('click', async () =>{
+                console.log(`Mark finished activity with ID: ${activity.id_activity}`);
+                const carAct = {
+                    id_activity : activity.id_activity,
+                    status_activity : "completed",
+                    status_car : "available",
+                    status_cust : "inactive"
+                }
+                try {
+                    const responseEditAct = await fetch(`http://localhost:5000/api/activity/update/${activity.id_activity}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(carAct),
+                    });
+                    console.log("masuk dong");
+                    if (!responseEditAct.ok){
+                        throw new Error(`Failed to create activity: ${responseEditAct.statusText}`);
+                    }
+                    alert("Activity marked as completed!");
+                    fetchActivity(currentPage);
+
+                }
+                catch (error){
+                    console.log(error);
+                }
+            })
+        }
+
+
         tableBody.appendChild(row);
     });
     const pageNumberDisplay = document.getElementById("page-number")
