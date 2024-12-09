@@ -18,7 +18,7 @@ function loadPage(page, callback) {
             link.rel = 'stylesheet';
             link.href = page.replace('.html', '.css');
             document.head.appendChild(link);
-            // console.log(`CSS loaded: ${link.href}`);
+            console.log(`CSS loaded: ${link.href}`);
             if (callback) {
                 callback();
             }
@@ -56,6 +56,12 @@ function router() {
         case route === '/activity':
             loadPage('./page/activity/activity_page.html');
             break;
+        case route === '/activity/add-activity':
+            console.log("fwfed");
+            loadPage('./page/activity/add-activity/add_activity.html', () => {
+                initAddActivity();
+            });
+            break;
         case route ==='/car':
             loadPage('./page/car/car_page.html', () => {
                 makeCarPage();
@@ -89,7 +95,10 @@ function router() {
             })
             break;
         case route === '/report':
-            loadPage('./page/report/report_page.html');
+            loadPage('./page/report/report_page.html', () => {
+                reportPageCommandChoice();
+                makeReportPage();
+            });
             break;
         default:
             // loadPage('404.html');

@@ -113,3 +113,8 @@
     color: #000; /* Warna teks tetap hitam */
     border: solid #ffc131; /* Border tetap kuning */
 }
+
+#total-price {
+    display: flex;
+    justify-content: flex-end;
+}

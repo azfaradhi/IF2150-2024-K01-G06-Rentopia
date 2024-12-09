@@ -64,6 +64,7 @@ def get_cars_pagination():
         'cars': cars_list
     })
 
+
 @car_bp.route('/api/car/update', methods=['POST'])
 def update_car():
     data = request.json
@@ -85,3 +86,10 @@ def update_car():
     car.setPriceCar(int(data['price_car']))
     car.saveCar()
     return jsonify({'message': 'Car updated successfully'})
+
+@car_bp.route('/api/car/delete/<string:id_car>', methods =['POST'])
+def delete_cars(id_car):
+    car = Car(id_car)
+    car.deleteCar()
+    return jsonify({'message': 'Car deleted successfully'})
+

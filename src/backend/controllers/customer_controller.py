@@ -21,8 +21,14 @@ def get_customer(id_cust):
 def create_customer():
     data = request.json
     print("Recevied data: ", data)
-    if not data:
-        return jsonify({'error': 'No data provided'}), 400
+    
+    fields = ['id_cust', 'name_cust', 'phone_cust', 'address_cust']
+    
+    for field in fields: 
+        print("cek")
+        if not data or field not in data or data[field] is None or data[field] == '':
+            return jsonify({'error': f'Missing required field: {field}'}), 400
+    
     customer = Customer(data['id_cust'])
     customer.setIDCustomer(int(data['id_cust']))
     customer.setNameCustomer(data['name_cust'])
@@ -59,3 +65,32 @@ def get_customer_pagination():
         'total_customers': total_customers,
         'customers': customers_list
     })
+
+@customer_bp.route('/api/customer/delete/<int:id_cust>', methods=['POST'])
+def delete_customer(id_cust):
+    customer = Customer(id_cust)
+    customer.deleteCustomer()
+    return jsonify({'message': 'Car deleted successfully'})
+    
+@customer_bp.route('/api/customer/update', methods=['POST'])
+def update_customer():
+    data = request.json
+    print("Recevied data: ", data)
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    fields = ['id_cust', 'name_cust', 'phone_cust', 'address_cust']
+    
+    for field in fields: 
+        if field not in data or data[field] is None or data[field] == '':
+            return jsonify({'error': f'Missing required field: {field}'}), 400
+    
+    customer = Customer(data['id_cust'])
+    customer.setIDCustomer(int(data['id_cust']))
+    customer.setNameCustomer(data['name_cust'])
+    customer.setPhoneCustomer(data['phone_cust'])
+    customer.setAddressCustomer(data['address_cust'])
+    customer.setAdditionalInfoCustomer("")
+    customer.setStatusCustomer("inactive")
+    customer.saveCustomer()
+    return jsonify({'message': 'Customer updated successfully'})
