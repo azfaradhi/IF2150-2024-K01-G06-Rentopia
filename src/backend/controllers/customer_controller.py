@@ -65,6 +65,12 @@ def get_customer_pagination():
         'total_customers': total_customers,
         'customers': customers_list
     })
+
+@customer_bp.route('/api/customer/delete/<int:id_cust>', methods=['POST'])
+def delete_customer(id_cust):
+    customer = Customer(id_cust)
+    customer.deleteCustomer()
+    return jsonify({'message': 'Car deleted successfully'})
     
 @customer_bp.route('/api/customer/update', methods=['POST'])
 def update_customer():

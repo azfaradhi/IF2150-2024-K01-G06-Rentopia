@@ -63,3 +63,9 @@ def get_cars_pagination():
         'total_cars': total_cars,
         'cars': cars_list
     })
+
+@car_bp.route('/api/car/delete/<string:id_car>', methods =['POST'])
+def delete_cars(id_car):
+    car = Car(id_car)
+    car.deleteCar()
+    return jsonify({'message': 'Car deleted successfully'})
