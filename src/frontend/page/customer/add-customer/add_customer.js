@@ -1,9 +1,8 @@
 console.log("addcust is loaded");
 
-async function  initAddCustomer(params) {
+async function  initAddCustomer() {
     const addButton = document.getElementById("btn-add");
     const cancelButton = document.getElementById("btn-cancel");
-
     if (addButton){
         addButton.addEventListener('click', async () =>{
             const nik = document.getElementById("cust-nik").value;
@@ -53,6 +52,11 @@ async function  initAddCustomer(params) {
                     console.error("Detailed error: ", error);
                 }
             }
+        })
+    }
+    if (cancelButton){
+        cancelButton.addEventListener('click', async () =>{
+            window.location.hash = '/customer'; 
         })
     }
 }
