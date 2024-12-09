@@ -116,3 +116,20 @@ button:disabled {
 button + span, button + button {
   margin-left: 10px; /* Add space between buttons or button and span */
 }
+
+
+.status-btn.available {
+  background-color: #4CAF50;  /* Green */
+  color: white;
+}
+
+.status-btn.reserved {
+  background-color: #f44336;  /* Red */
+  color: white;
+}
+
+.status-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
