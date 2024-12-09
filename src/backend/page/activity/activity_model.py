@@ -131,7 +131,7 @@ class Activity:
         
         try:
             cur.execute("""
-                SELECT a.id_activity, a.id_cust, c.name_cust, a.id_car, ca.model_car, a.date_range, a.status_car
+                SELECT a.id_activity, a.id_cust, c.name_cust, a.id_car, ca.model_car, a.date_range, a.status_activity
                 FROM activities a
                 JOIN customers c ON a.id_cust = c.id_cust
                 JOIN cars ca ON a.id_car = ca.id_car
@@ -152,7 +152,7 @@ class Activity:
                 'id_car': activity[3],
                 'model_car': activity[4],
                 'date_range': activity[5],
-                'status_car': activity[6]
+                'status_activity': activity[6],
             } for activity in activities]
             
             return activities_list, total_activities, total_pages
