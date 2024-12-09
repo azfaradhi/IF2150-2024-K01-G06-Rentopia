@@ -1,0 +1,52 @@
+h2 {
+    font-size: 20px;
+}
+
+.input-cust{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 1px solid #ffec99;
+    background-color: #ffec99;
+    box-sizing: border-box;
+}
+
+.add-cust{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.button-add-cust {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    display: flex;                /* Menggunakan flexbox */
+    justify-content: flex-end;    /* Menempatkan tombol di sebelah kanan */
+    gap: 10px;                    /* Menambahkan jarak antar tombol */
+}
+
+#btn-cancel, #btn-add {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#btn-cancel {
+    background-color: #ff7a7a; /* Warna merah */
+    width: 20%;                /* Lebar tombol cancel */
+}
+
+#btn-add {
+    background-color: #12b800; /* Warna hijau */
+    width: 20%;                /* Lebar tombol add */
+}
+
+/* Mengubah warna placeholder di semua input text */
+input::placeholder {
+    color: #b37d00; /* Warna placeholder */
+    font-style: italic; /* Menambahkan gaya italic jika diperlukan */
+}

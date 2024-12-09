@@ -1,0 +1,52 @@
+<div class="act-page">
+    <h1>Add Activity</h1>
+    <div class="overall">
+        <div class="left-act">
+            <div class="customer">
+                <h2>Customer</h2>
+                <div class="cust-text-plus">
+                    <input class="input-act" id="input-cust-id" type="text" placeholder="Customers's ID">
+                    <img src="../../../public/+.svg" alt="" class="img-button-act">
+                </div>
+            </div>
+            <div class="car">
+                <h2>Car</h2>
+                <div class="car-text-plus">
+                    <input class="input-act" id="input-car-id" type="text" placeholder="Car's ID">
+                    <img src="../../../public/+.svg" alt="" class="img-button-act">
+                </div>
+            </div>
+        </div>
+        <div class="right-act">
+            <div class="date-container" id="start-date-container">
+                <h2>Start Date</h2>
+                <label for="start-date" class="date-label">
+                    <input class="input-act" type="date" id="start-date" value="2024-11-22">
+                </label>
+            </div>
+    
+            <div class="date-container" id="end-date-container">
+                <h2>End Date</h2>
+                <label for="end-date" class="date-label">
+                    <input class="input-act" type="date" id="end-date" value="2024-12-12">
+                </label>
+            </div>
+
+            <div class="price">
+                <div>
+                    <button id="btn-calculate">Calculate Price</button>
+                </div>
+                <div id="price-container" class="price-container">
+                    <p class="price-font" id="price-value"></p>
+                </div>
+            </div>
+
+            <div button>
+                <div class="button-add-activity">
+                    <button id="btn-cancel-act">Cancel</button>
+                    <button id="btn-add-act">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

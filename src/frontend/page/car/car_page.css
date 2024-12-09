@@ -1,0 +1,289 @@
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.flex-col {
+    display: flex;
+    flex-direction: col;
+}
+
+.cars-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.car-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #FFE987;
+    border-radius: 20px;
+}
+
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    border-radius: 7px;
+    background-color: #FFC131;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 20x;
+    margin: 20px;
+}
+
+.select-box {
+    width: 150px;
+    padding: 3px;
+    border-radius: 7px;
+    border: 1px solid rgb(206, 202, 202);
+    margin: 7px;
+}
+
+.left-item {
+    display: flex;
+    gap: 20px;
+}
+
+.search-button {
+    display: flex;
+    gap: 2px;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.search-button button {
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* Warna tombol */
+    border: none;
+    padding: 5px;
+    width: 150px;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efek hover */
+}
+
+.search-button:hover button{
+    background-color:#463B96;
+    color: white;
+}
+
+.car-components {
+    padding: 20x;
+    margin: 20px;
+}
+
+.add-car-button button {
+    align-items: center;
+    justify-content: center;
+    background-color: #463B96; /* Warna tombol */
+    border: none;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 50px; /* Lebar tombol */
+    height: 50px; /* Tinggi tombol */
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.add-car-button button:hover {
+    background-color: #FFC131; /* Warna tombol saat hover */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.nama-mobil {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.harga {
+    background-color: #ffec99;
+    width: 125px;
+    border-radius: 20px;
+    text-align: center;
+    padding: 4px;
+    margin-top: 5px;
+}
+
+.keterangan {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.status-card {
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.status-ongoing {
+    background-color: #FF7A7A;
+}
+
+.status-available {
+    background-color: #4AC4AC;
+}
+
+.button-space {
+    display: flex;
+    flex-direction: row;
+}
+
+.action-button {
+    display: flex;
+    gap: 2px;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.action-button button {
+    align-items: center;
+    justify-content: center;
+    background-color: #ffec99; /* Warna tombol */
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 80px; /* Lebar tombol */
+    height: 40px; /* Tinggi tombol */
+    transition: background-color 0.3s ease; /* Efek hover */
+}
+
+.action-button:hover button{
+    background-color: #4ac4ac;
+}
+
+.car-image {
+    display:flex;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    align-items: center;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    object-fit: cover;
+}
+
+
+.car-card {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 250px;
+    background-color: #FFC131;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.car-image:hover img {
+    transform: scale(1.15);
+}
+
+.car-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Adjust spacing between rows */
+}
+
+.car-card {
+    flex: 0 0 calc(50% - 10px); /* 2 cards per row with spacing */
+    margin: 0 5px; /* Adjust spacing between cards */
+    box-sizing: border-box;
+    background: #FFC131;
+    border: 1px solid #ddd; /* Optional: Add border for better visuals */
+    border-radius: 20px;
+    overflow: hidden; /* Ensure images don't overflow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow */
+    
+}
+
+button {
+    padding: 10px 20px; /* Adjust padding for size */
+    background-color: #FFC131; /* Primary blue color */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Adjust font size */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+  }
+  
+  /* Hover effect for buttons */
+  button:hover {
+    background-color: #FFC131; /* Darker blue */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  /* Disabled button styles */
+  button:disabled {
+    background-color: #CCCCCC; /* Gray for disabled */
+    cursor: not-allowed; /* Change cursor for disabled */
+  }
+  
+  /* Style for the page number span */
+  #page-number {
+    font-size: 18px; /* Larger font size */
+    font-weight: bold; /* Make it bold */
+    margin: 0 10px; /* Add spacing around it */
+  }
+  
+  /* Additional container styling for buttons */
+  button + span, button + button {
+    margin-left: 10px; /* Add space between buttons or button and span */
+  }
+  .justify-center {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Optionally, centers the content vertically if needed */
+    gap: 10px; /* Optional: space between elements */
+}

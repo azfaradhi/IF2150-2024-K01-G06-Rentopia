@@ -1,4 +1,5 @@
 #sidebar {
+<<<<<<< Updated upstream
     width:230px;
     height: 87%;
     background-color: #ffec99;
@@ -9,6 +10,15 @@
     flex-direction: column;
     border-radius: 20px;
     margin: 20px;
+=======
+    width: auto;
+    height: 90%;
+    background-color: #ffec99;
+    color: white;
+    padding:30px;
+    border-radius: 20px;
+    margin: 10px;
+>>>>>>> Stashed changes
 }
 
 
