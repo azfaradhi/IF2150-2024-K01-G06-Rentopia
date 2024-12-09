@@ -88,6 +88,11 @@ function router() {
                 initAddCustomer();
             })
             break;
+        case route === '/customer/updaet':
+            loadPage('./page/customer/update-customer/update_customer.html', () =>{
+                initUpdateCustomer();
+            })
+            break;
         case route === '/report':
             loadPage('./page/report/report_page.html', () => {
                 reportPageCommandChoice();

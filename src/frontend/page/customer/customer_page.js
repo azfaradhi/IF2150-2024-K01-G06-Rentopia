@@ -87,9 +87,10 @@ function displayCustomer(customers, page, totalPage){
                     </div>
                     <div class="actions info-right">
                         <button id="btn-delete"><img src="public/trash.svg" alt="" width="20" height="20" style="vertical-align: middle;"></button>
-                        <button id="btn-update"><img src="public/edit.svg" alt="" width="20" height="20" style="vertical-align: middle;"></button>
+                        <button id="btn-update" onclick="initUpdateCustomer(${customer.id_cust})"><img src="public/edit.svg" alt="" width="20" height="20" style="vertical-align: middle;"></button>
                     </div>
                 </div>
+                <script src="./update-customer/update_customer.js"></script>
             </div>
             `;
             containerList.appendChild(custElement); // <-- Append the element to the container
