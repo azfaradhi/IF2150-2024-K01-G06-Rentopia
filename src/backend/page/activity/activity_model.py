@@ -61,8 +61,8 @@ class Activity:
                                 date_range = %s, 
                                 total_price = %s, 
                                 status_car = %s, 
-                                status_cust = %s
-                                status_activity = %s
+                                status_cust = %s,
+                                status_activity = %s,
                                 additional_info_activity = %s
                             WHERE id_activity = %s
                         """, (
@@ -78,10 +78,10 @@ class Activity:
                         ))
             else:
                 cur.execute("""
-                            INSERT INTO activities (id_activity, id_cust, id_car, date_range, total_price, status_car, status_cust, status_activity, additional_info_activity)
-                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            INSERT INTO activities (id_cust, id_car, date_range, total_price, status_car, status_cust, status_activity, additional_info_activity)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                            RETURNING id_activity
                         """, (
-                            self.id_activity,
                             self.__id_cust,
                             self.__id_car,
                             self.__date_range,
@@ -91,6 +91,7 @@ class Activity:
                             self.__status_activity,
                             self.__additional_info_activity
                         ))
+                self.id_activity = cur.fetchone()[0]
             conn.commit()
         except Exception as e:
             conn.rollback()  # Rollback in case of an error
@@ -162,7 +163,22 @@ class Activity:
             cur.close()
             conn.close()
 
-
+    def get_activity_table_length():
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+        
+        try:
+            cur.execute("SELECT COUNT(*) FROM activities")
+            table_length = cur.fetchone()[0]
+            return table_length
+        except Exception as e:
+            print(f"Error fetching activity table length: {e}")
+            return 0
+        finally:
+            cur.close()
+            conn.close()
+            
     def getIDActivity(self):
         return self.id_activity
     
@@ -192,6 +208,24 @@ class Activity:
     
     def setIDCar(self, id_car):
         self.__id_car = id_car
+
+    def setDateRange(self, date):
+        self.__date_range = date
+    
+    def setTotalPrice(self, total_price):
+        self.__total_price = total_price
+    
+    def setStatusCar(self, status_car):
+        self.__status_car = status_car
+    
+    def setStatusCust(self, status_cust):
+        self.__status_cust = status_cust
+    
+    def setStatusActivity(self, status_activity):
+        self.__status_activity = status_activity
+
+    def setAdditionalInfo(self, additional_info):
+        self.__additional_info_activity = additional_info
     
     def getDateRange(self):
         return self.__date_range
