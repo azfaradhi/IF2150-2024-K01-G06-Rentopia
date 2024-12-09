@@ -18,7 +18,26 @@ async function fetchCar(page) {
     }
 }
 
+async function fetchCarBySeat(page) {
+    try {
+        const apiUrlCar = `http://localhost:5000/api/car/alldata?page=${page}&items_per_page=${items_per_page_car}`;
+        const responseCar = await fetch(apiUrlCar);
+        if (!responseCar.ok) {
+            throw new Error(`Error fetching activity: ${response.statusText}`);
+        }
+        console.log("masuk");
+        const dataCar = await responseCar.json();
+        const filterCar = dataCar.cars.filter(car => car.seat_car === number);
+
+        displayCars(filterCar,page,dataCar.total_pages);
+        console.log(dataCar);
+    } catch (error) {
+        console.error("Failed to fetch car:", error);
+    }
+}
+
 function carPageCommandChoice(){
+    const searchButton = document.getElementById("car-search");
     const addButton = document.getElementById("btn-add-car");
     const nextButton = document.getElementById("next-page");
     const prevButton = document.getElementById("prev-page");
@@ -49,9 +68,41 @@ function carPageCommandChoice(){
             window.location.hash = '/car/add';
         })
     }
-    else{
-        console.error("Add customer button not found");
-    }
+    // if (searchButton){
+    //     searchButton.addEventListener('click', async () =>{
+            
+    //     const seatSelect = document.getElementById("car-seat");
+    //     const availSelect = document.getElementById("car-avail");
+
+    //     const seatValue = seatSelect.value;
+    //     const availValue = availSelect.value;
+
+    //     if (!seatValue && !availValue){
+    //         alert("No filter selected!");
+    //     }
+    //     else if (!availValue){
+    //         let valueSeatPass = 0;
+    //         if (seatValue === "seat4"){
+    //             valueSeatPass = 7;
+    //         }
+    //         if (seatValue === "seat6"){
+    //             valueSeatPass = 6;
+    //         }
+    //         currentPageCars = 1;
+    //         fetchCarBySeat(currentPageCars,valueSeatPass);
+    //     }
+    //     else if (!availValue){
+
+    //     }
+    //     else{
+
+    //     }
+    //     })
+
+    // }
+    // else{
+    //     console.error("Add customer button not found");
+    // }
 }
 
 function displayCars(cars, page, totalPage) {
@@ -102,12 +153,10 @@ function displayCars(cars, page, totalPage) {
                     </div>
                 </div>
             `;
-            // Add event listeners after creating the element
             const updateButton = carElement.querySelector('.btn-update');
             updateButton.addEventListener('click', () => {
                 const carId = updateButton.getAttribute('data-car-id');
                 console.log(`Edit car with ID: ${carId}`);
-                // Use the router's query parameter format
                 try{
                     window.location.hash = `/car/edit?id=${carId}`;
                     console.log("bisa aja tuh");
@@ -118,10 +167,30 @@ function displayCars(cars, page, totalPage) {
             });
 
             const deleteButton = carElement.querySelector('.btn-delete');
-            deleteButton.addEventListener('click', () => {
+            deleteButton.addEventListener('click', async () => {
                 const carId = deleteButton.getAttribute('data-car-id');
                 console.log(`Delete car with ID: ${carId}`);
-                // Add delete functionality here
+                try{
+                    const response = await fetch(`http://localhost:5000/api/car/delete/${carId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(carId),
+                    });
+                    console.log("berhasil");
+                    if (!response.ok){
+                        throw new Error(`Failed to delete car: ${response.statusText}`);
+                    }
+                    await fetchCar(currentPageCars);
+                    alert("Success deleted car!");
+
+                    window.location.hash = '/car'
+
+                }
+                catch (error){
+                    console.log("error");
+                }
             });
 
             rowElement.appendChild(carElement);
@@ -147,5 +216,6 @@ function makeCarPage(){
     fetchCar(currentPageCars);
 }
 document.addEventListener('DOMContentLoaded', () => {
+    makeCarPage();
     carPageCommandChoice();
 });
