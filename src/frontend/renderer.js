@@ -18,7 +18,7 @@ function loadPage(page, callback) {
             link.rel = 'stylesheet';
             link.href = page.replace('.html', '.css');
             document.head.appendChild(link);
-            // console.log(`CSS loaded: ${link.href}`);
+            console.log(`CSS loaded: ${link.href}`);
             if (callback) {
                 callback();
             }
@@ -55,6 +55,12 @@ function router() {
             break;
         case route === '/activity':
             loadPage('./page/activity/activity_page.html');
+            break;
+        case route === '/activity/add-activity':
+            console.log("fwfed");
+            loadPage('./page/activity/add-activity/add_activity.html', () => {
+                initAddActivity();
+            });
             break;
         case route ==='/car':
             loadPage('./page/car/car_page.html', () => {

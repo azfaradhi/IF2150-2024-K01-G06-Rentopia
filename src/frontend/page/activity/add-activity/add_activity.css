@@ -16,6 +16,17 @@ h1 {
     flex-wrap: wrap;                
 }
 
+.price-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.price-font {
+    text-align: center;
+    margin-top: 30px;
+
+    font-size: x-large;
+}
 /* Styling untuk section (Customer, Car, Date) */
 div > div {
     flex: 1;

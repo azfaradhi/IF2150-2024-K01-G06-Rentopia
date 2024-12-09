@@ -50,4 +50,11 @@ async function initEditCar(id){
 
         })
     }
+
+    if(cancelButton){
+        cancelButton.addEventListener('click', () => {
+            console.log("Cancel");
+            window.location.hash = "/car"
+        })
+    }
 }

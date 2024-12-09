@@ -18,7 +18,8 @@ async function fetchActivity(page) {
 }
 
 function homePageCommandChoice(){
-    const addButton = document.getElementById("add-new-cust");
+    const addCustButton = document.getElementById("add-new-cust");
+    const addActButton = document.getElementById("add-new-activity");
     const nextButton = document.getElementById("next-page");
     const prevButton = document.getElementById("prev-page");
     if (nextButton){
@@ -43,11 +44,17 @@ function homePageCommandChoice(){
         })
     }
     
-    if (addButton){
-        addButton.addEventListener('click', () => {
+    if (addCustButton){
+        addCustButton.addEventListener('click', () => {
             console.log("Add customer button clicked");
             window.location.hash = '/customer/add';
         });
+    }
+    if (addActButton){
+        addActButton.addEventListener('click', () =>{
+            console.log("add activity gais");
+            window.location.hash = '/activity/add-activity';
+        })
     }
 
     else{
