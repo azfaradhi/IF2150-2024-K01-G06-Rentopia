@@ -50,6 +50,14 @@ function router() {
             loadPage('./page/-home-page/home_page.html', () =>{
                 homePageCommandChoice();
                 makeHomePage();
+                setTimeout(async () => {
+                    changeNotifButton();
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }, 1000);
+                if (!localStorage.getItem('hasRun')) {
+                    localStorage.removeItem('SHOWN_ACTIVITIES_KEY');
+                    localStorage.setItem('hasRun', 'true');
+                }
             });
             
             break;
@@ -99,6 +107,11 @@ function router() {
                 reportPageCommandChoice();
                 makeReportPage();
             });
+            break;
+        case route === '/notification':
+            loadPage('./page/notification/notification_page.html');
+            console.log('DIPANGGILLLLLLLLL');
+            fetchAllNotifications();
             break;
         default:
             // loadPage('404.html');

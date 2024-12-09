@@ -22,6 +22,7 @@ function homePageCommandChoice(){
     const addActButton = document.getElementById("add-new-activity");
     const nextButton = document.getElementById("next-page");
     const prevButton = document.getElementById("prev-page");
+    const notifButton = document.getElementById("notif-button");
     if (nextButton){
         nextButton.addEventListener('click', async () => {
             console.log("Next page clicked");
@@ -57,6 +58,13 @@ function homePageCommandChoice(){
         })
     }
 
+    if (notifButton){
+        notifButton.addEventListener('click', () =>{
+            console.log("notif button clicked");
+            window.location.hash = '/notification';
+        })
+    }
+
     else{
         console.error("Add customer button not found");
     }
@@ -77,8 +85,49 @@ function displayActivity(activities, page, totalPage) {
         <td>${activity.model_car}</td>
         <td>${activity.date_range ? activity.date_range[0] : 'N/A'}</td>
         <td>${activity.date_range ? activity.date_range[1] : 'N/A'}</td>
-        <td>${activity.status_car}</td>
+        <td>
+            <button 
+                class="status-btn ${activity.status_activity === 'in-progress' ? 'available' : 'reserved'}"
+                ${activity.status_activity === 'in-progress' ? '' : 'disabled'}
+            >
+                ${activity.status_activity}
+            </button>      
+        </td>
         `;
+
+        const markFinished = row.querySelector('.status-btn');
+        if (markFinished){
+            markFinished.addEventListener('click', async () =>{
+                console.log(`Mark finished activity with ID: ${activity.id_activity}`);
+                const carAct = {
+                    id_activity : activity.id_activity,
+                    status_activity : "completed",
+                    status_car : "available",
+                    status_cust : "inactive"
+                }
+                try {
+                    const responseEditAct = await fetch(`http://localhost:5000/api/activity/update/${activity.id_activity}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(carAct),
+                    });
+                    console.log("masuk dong");
+                    if (!responseEditAct.ok){
+                        throw new Error(`Failed to create activity: ${responseEditAct.statusText}`);
+                    }
+                    alert("Activity marked as completed!");
+                    fetchActivity(currentPage);
+
+                }
+                catch (error){
+                    console.log(error);
+                }
+            })
+        }
+
+
         tableBody.appendChild(row);
     });
     const pageNumberDisplay = document.getElementById("page-number")
@@ -97,7 +146,62 @@ function makeHomePage(){
     fetchActivity(currentPage);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    homePageCommandChoice();
-    makeHomePage();
-});
+
+async function fetchAllActivities() {
+    console.log("MASHOKK3");
+    const apiUrl = 'http://127.0.0.1:5000/api/activity/alldata'; // API yang akan dipanggil
+    
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        console.log('Received data:', data);
+        return data.activities;
+    } catch (error) {
+        console.error("Error fetching activity:", error);
+        return [];
+    }
+}
+
+async function hasNotifications() {
+    console.log("MASHOKK2");
+    const activities = await fetchAllActivities();
+    const today = new Date();
+    const shownActivities = JSON.parse(localStorage.getItem(SHOWN_ACTIVITIES_KEY)) || [];
+    let isTrue = false; // Ubah ke let agar bisa diubah
+
+    // Gunakan loop biasa agar bisa menggunakan break atau return langsung
+    for (let activity of activities) {
+        const returnDate = new Date(activity.date_range[1]);
+        const timeDiff = returnDate.getTime() - today.getTime();
+        const diffDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+        if (diffDays <= 1 && diffDays >= 0 && !shownActivities.includes(activity.id_activity)) {
+            isTrue = true; // Set isTrue jika ada notifikasi
+            break; // Berhenti loop setelah menemukan notifikasi pertama
+        }
+    }
+    console.log("Returning isTrue:", isTrue); // Log untuk debugging
+    return isTrue;
+}
+
+
+async function changeNotifButton(){
+    console.log("MASHOKK1");
+    const notifButton = document.getElementById("notif-button");
+    const isTrue = await hasNotifications();
+    if (isTrue){
+        notifButton.src = "public/homepage/notif_act.svg";
+    }
+    else{
+        notifButton.src = "public/homepage/notif.svg";
+    }
+}
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     homePageCommandChoice();
+//     makeHomePage();
+//     setTimeout(async () => {
+//         changeNotifButton();
+//         await new Promise(resolve => setTimeout(resolve, 100));
+//     }, 2000);
+// });
