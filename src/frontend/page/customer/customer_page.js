@@ -48,7 +48,6 @@ function customerPageCommandChoice(){
             window.location.hash = '/customer/add';
         })
     }
-
     else{
         console.error("Add customer button not found");
     }
