@@ -54,6 +54,10 @@ function router() {
                     changeNotifButton();
                     await new Promise(resolve => setTimeout(resolve, 100));
                 }, 1000);
+                setInterval(async () => {
+                    await changeNotifButton();
+                    console.log("Notification button status updateddddddd.");
+                }, 60000);
                 if (!localStorage.getItem('hasRun')) {
                     localStorage.removeItem('SHOWN_ACTIVITIES_KEY');
                     localStorage.setItem('hasRun', 'true');
