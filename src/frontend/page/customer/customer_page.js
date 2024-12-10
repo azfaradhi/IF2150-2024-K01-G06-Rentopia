@@ -93,6 +93,18 @@ function displayCustomer(customers, page, totalPage) {
             </div>
         `;
 
+        const updateButton = custElement.querySelector('.btn-update');
+        updateButton.addEventListener('click', () => {
+            const custId = updateButton.getAttribute('data-cust-id');
+            console.log(`Edit customer with ID: ${custId}`);
+            try {
+                console.log("ini masuk");
+                window.location.hash = `/customer/update?id=${custId}`;
+            } catch (error) {
+                console.error("HUHUHAHA:", error);
+            }
+        });
+
         const deleteButtonCust = custElement.querySelector('.btn-delete');
         deleteButtonCust.addEventListener('click', async () => {
             const custId = deleteButtonCust.getAttribute('data-cust-id');
@@ -137,5 +149,6 @@ function makeCustomerPage(){
     fetchCustomer(currentPageCustomer);
 }
 document.addEventListener('DOMContentLoaded', () => {
+    // makeCustomerPage(); 
     customerPageCommandChoice();
 });
