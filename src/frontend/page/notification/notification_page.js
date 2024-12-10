@@ -56,7 +56,7 @@ async function showNotification(activity) {
     notifBox.innerHTML = `
         <div>
             <b style="font-size: 20px;">NOTIFICATION</b>
-            <p>The ${activity.id_car} ${activity.model_car} rented by ${activity.name_cust} is due for return on ${activity.date_range[1]}</p>  <!-- Menggunakan nama customer dari aktivitas -->
+            <p>The ${activity.id_car} ${activity.model_car} rented by ${activity.name_cust} is due for return on ${activity.date_range[1]}</p>
         </div>
         <div class="actions">
             <button id="btn-close-${activity.id_activity}" onclick="closeNotifBox(${activity.id_activity})">
