@@ -94,21 +94,50 @@ class Car:
             cur.close()
             conn.close()
 
-    def get_paginated_cars(page, items_per_page):
+    def get_paginated_cars(page, items_per_page, filterseat, filteravailability):
         offset = (page - 1) * items_per_page
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
         cur = conn.cursor()
-
+        filterseat = int(filterseat)
+        filteravailability = int(filteravailability)
+        if(filteravailability == 0):
+            status = 'reserved'
+        else:
+            status = 'available'
         try:
             # Fetch paginated car data
-            cur.execute("""
-                SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
-                FROM cars
-                ORDER BY id_car  -- Adjust ordering if necessary
-                LIMIT %s OFFSET %s
-            """, (items_per_page, offset))
-
+            if ((filterseat < 0) and (filteravailability < 0)):
+                cur.execute("""
+                    SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
+                    FROM cars
+                    ORDER BY id_car  -- Adjust ordering if necessary
+                    LIMIT %s OFFSET %s
+                """, (items_per_page, offset))
+            elif(filterseat < 0):
+                cur.execute("""
+                    SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
+                    FROM cars
+                    WHERE status_car = %s
+                    ORDER BY id_car  -- Adjust ordering if necessary
+                    LIMIT %s OFFSET %s
+                """, (status, items_per_page, offset))
+            elif(filteravailability < 0):
+                cur.execute("""
+                    SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
+                    FROM cars
+                    WHERE seat_car = %s
+                    ORDER BY id_car  -- Adjust ordering if necessary
+                    LIMIT %s OFFSET %s
+                """, (status, items_per_page, offset))
+            else:
+                cur.execute("""
+                    SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
+                    FROM cars
+                    WHERE seat_car = %s AND status_car = %s
+                    ORDER BY id_car  -- Adjust ordering if necessary
+                    LIMIT %s OFFSET %s
+                """, (filterseat, status, items_per_page, offset))
             cars = cur.fetchall()
 
             # Fetch total number of cars

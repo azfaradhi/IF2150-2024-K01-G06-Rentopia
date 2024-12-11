@@ -53,12 +53,15 @@ def show_car(id_car):
 def get_cars_pagination():
     page = int(request.args.get('page', 1))
     items_per_page = int(request.args.get('items_per_page', 10))
-    
-    cars_list, total_cars, total_pages = Car.get_paginated_cars(page, items_per_page)
+    filterseat = int(request.args.get('seat',-1))
+    filteravailability = int(request.args.get('status',-1))
+    cars_list, total_cars, total_pages = Car.get_paginated_cars(page, items_per_page, filterseat, filteravailability)
     
     return jsonify({
         'page': page,
         'items_per_page': items_per_page,
+        'seat' : filterseat, 
+        'status' : filteravailability, 
         'total_pages': total_pages,
         'total_cars': total_cars,
         'cars': cars_list
