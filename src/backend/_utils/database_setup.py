@@ -93,7 +93,6 @@ def setup_database():
         DB_PORT
     )
     setup.create_tables()
-    # print("Database dan tabel telah dibuat.")
 
 if __name__ == '__main__':
     setup_database()

@@ -1,24 +1,27 @@
-# controllers/activity_controller.py
+# import library
+from flask import Blueprint, jsonify, request
+from datetime import datetime
+
+# import model modul
 from page.activity.activity_model import Activity
 from page.car.car_model import Car
 from page.customer.customer_model import Customer
-from flask import Blueprint, jsonify, request
-from datetime import datetime
 
 activity_bp = Blueprint('activity', __name__)
 
 def calculatePrice(data):
     car = Car(id_car=data['id_car'])
     price_car = car.getPriceCar()
-    print(price_car)
-    # if price_car is None:
-    #     raise ValueError(f"Could not get price for car ID: {data['id_car']}")
+
+    # validasi
+    if price_car is None:
+        raise ValueError(f"Could not get price for car ID: {data['id_car']}")
 
     start_date = datetime.strptime(data['date_range'][0], '%Y-%m-%d')
     end_date = datetime.strptime(data['date_range'][1], '%Y-%m-%d')
     num_days = (end_date - start_date).days + 1
-    
     price_total = num_days * int(price_car)
+
     return price_total
     
 
@@ -26,6 +29,7 @@ def calculatePrice(data):
 def get_activity(id_activity):
     activity = Activity(id_activity)
     activity.loadActivity()
+
     return jsonify({
         'id_activity': activity.getIDActivity(),
         'id_cust': activity.getIDCustomer(),
@@ -38,14 +42,16 @@ def get_activity(id_activity):
         'additional_info_activity': activity.getAdditionalInfo()
     })
 
+
 @activity_bp.route('/api/activity/create', methods=['POST'])
 def create_activity():
     data = request.json
+
+    # validasi
     if data is None:
         raise ValueError(f"Could not get price for car ID: {data['id_car']}")
     date_range = [datetime.strptime(date_str, '%Y-%m-%d').date() for date_str in data['date_range']]
 
-    # price_total = calculatePrice(data)
     activity = Activity(id_activity=None)
     activity.setIDCustomer(data['id_cust'])
     activity.setIDCar(data['id_car'])
@@ -69,10 +75,12 @@ def create_activity():
     
     return jsonify({'message': 'Activity created successfully'})
 
+
 @activity_bp.route('/api/activity/show/<int:id_activity>', methods=['GET'])
 def show_activity():
     activity = Activity()
     activity.loadActivity()
+
     return jsonify({
         'id_activity': activity.id_activity,
         'id_cust': activity.getIDCustomer(),
@@ -84,6 +92,7 @@ def show_activity():
         'status_activity': activity.getStatusActivity(),
         'additional_info_activity': activity.getAdditionalInfo()
     })
+
 
 @activity_bp.route('/api/activity/alldata', methods=['GET'])
 def get_activity_pagination():
@@ -100,18 +109,17 @@ def get_activity_pagination():
         'activities': activities
     })
 
+
 @activity_bp.route('/api/report/', methods=['GET'])
 def get_report():
     page = int(request.args.get('page', 1))
     items_per_page = int(request.args.get('items_per_page', 2))
+
     date_range = request.args.get('date_range')
+
+    # split date range
     if date_range:
         date_range = date_range.strip('{}').split(',')
-        start_date = datetime.strptime(date_range[0], '%Y-%m-%d')
-        end_date = datetime.strptime(date_range[1], '%Y-%m-%d')
-        print("Date range: ", date_range)
-        print("Start date: ", start_date)
-        print("End date: ", end_date)
     else:
         return jsonify({'error': 'no data'}), 400
 
@@ -128,6 +136,7 @@ def get_report():
         'report_list': report_list
     })
 
+
 @activity_bp.route('/api/report/price', methods=['GET'])
 def get_total_report():
     date_range = request.args.get('date_range')
@@ -137,17 +146,20 @@ def get_total_report():
         return jsonify({'error': 'no data'}), 400
     
     total_price = Activity.get_total_price(date_range)
+
     return jsonify({
         'date_awal': date_range[0],
         'date_akhir': date_range[1],
         'date_range': date_range,
         'total_price': total_price
     })
+
     
 @activity_bp.route('/api/activity/update/<int:id_act>', methods=['POST'])
 def update_activity(id_act):
     data = request.json
-    print("Recevied data: ", data)
+
+    # validasi
     if not data:
         return jsonify({'error': 'No data provided'}), 400
     
@@ -158,30 +170,9 @@ def update_activity(id_act):
 
     activity = Activity(id_act)
     activity.loadActivity()
-    print(activity.getPrice())
-    # activity.setIDCustomer(data['id_cust'])
-    # activity.setIDCar(data['id_car'])
-    # activity.setDateRange(data['data_range'])
-    # activity.setTotalPrice(data['total_price'])
     activity.setStatusCar(data['status_car'])
     activity.setStatusCust(data['status_cust'])
     activity.setStatusActivity(data['status_activity'])
-    # activity.setAdditionalInfo(data['additional_info_activity'])
     activity.saveActivity()
+
     return jsonify({'message': 'Car updated successfully'})
-
-# def get_report(date_range):
-#     # date_range = request.args.get('date_range')
-#     # start_date = datetime.strptime(date_range[0], '%Y-%m-%d')
-#     # end_date = datetime.strptime(date_range[1], '%Y-%m-%d')
-#     print("Date range: ", date_range)
-#     # print("Start date: ", start_date)
-#     # print("End date: ", end_date)
-#     report_list = Activity.get_paginated_activity_daterange(date_range)
-
-#     return jsonify({
-#         'date_awal': date_range[0],
-#         'date_akhir': date_range[1],
-#         'date_range': date_range,
-#         'report_list': report_list
-#     })
