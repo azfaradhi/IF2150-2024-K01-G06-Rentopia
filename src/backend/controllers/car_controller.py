@@ -46,16 +46,18 @@ def create_car():
         return jsonify({'error': 'Missing data fields'}), 400
 
     car = Car(id_car)
-    car.id_car = id_car
-    car.setPhotoCar(file.filename)  
-    car.setModelCar(model_car)
-    car.setTypeCar(type_car)
-    car.setSeatCar(int(seat_car))
-    car.setPriceCar(int(price_car))
-    car.setStatusCar("available")
-    car.saveCar()
-
-    return jsonify({'message': 'Car created successfully'})
+    if(id_car not in car.existCar()):
+        car.id_car = id_car
+        car.setPhotoCar(file.filename)  
+        car.setModelCar(model_car)
+        car.setTypeCar(type_car)
+        car.setSeatCar(int(seat_car))
+        car.setPriceCar(int(price_car))
+        car.setStatusCar("available")
+        car.saveCar()
+        return jsonify({'message': 'Car created successfully'})
+    else:
+        return jsonify({'message': 'A car with the same ID already exist'})
 
 @car_bp.route('/api/car/show/<string:id_car>', methods=['GET'])
 def show_car(id_car):
