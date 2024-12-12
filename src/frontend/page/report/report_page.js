@@ -62,8 +62,15 @@ function reportPageCommandChoice() {
         submitButton.addEventListener('click', async () => {
             const date_awal = document.getElementById("start-date").value;
             const date_akhir = document.getElementById("end-date").value;
-            const date_range = `{${date_awal},${date_akhir}}`;
-            await fetchReport(reportCurrentPage, date_range);
+            if (date_awal > date_akhir) {
+                alert("The start date must be earlier than the end date.");
+                console.log("start date is later than end date");
+                return;
+            }
+            else{
+                const date_range = `{${date_awal},${date_akhir}}`;
+                await fetchReport(date_range);
+            }
         })
     }
 }
