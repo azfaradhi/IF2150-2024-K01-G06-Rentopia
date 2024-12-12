@@ -1,6 +1,6 @@
 console.log("report page");
 let reportCurrentPage = 1;
-let reportItemsPerPage = 2;
+let reportItemsPerPage = 4;
 
 async function fetchReport(page, date_range) {
     try {
@@ -69,7 +69,7 @@ function reportPageCommandChoice() {
             }
             else{
                 const date_range = `{${date_awal},${date_akhir}}`;
-                await fetchReport(date_range);
+                await fetchReport(reportCurrentPage, date_range);
             }
         })
     }

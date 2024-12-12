@@ -5,11 +5,17 @@ from dotenv import load_dotenv
 ENV_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
 load_dotenv(ENV_PATH)
 
-DB_USER = os.getenv('DB_USER')
-DB_PASS = os.getenv('DB_PASS')
-DB_HOST = os.getenv('DB_HOST')
-DB_NAME = os.getenv('DB_NAME')
-DB_PORT = os.getenv('DB_PORT')
+# DB_USER = os.getenv('DB_USER')
+# DB_PASS = os.getenv('DB_PASS')
+# DB_HOST = os.getenv('DB_HOST')
+# DB_NAME = os.getenv('DB_NAME')
+# DB_PORT = os.getenv('DB_PORT')
+
+DB_USER = 'rpl'
+DB_PASS = 'rpl'
+DB_HOST = '127.0.0.1'
+DB_NAME = 'rentopia'
+DB_PORT = "5432"
 
 class DatabaseSetup:
     # Inisialisasi kelas
