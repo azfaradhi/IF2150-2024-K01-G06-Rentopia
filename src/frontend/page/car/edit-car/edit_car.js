@@ -39,8 +39,6 @@ async function initEditCar(id){
         document.getElementById("car-type").value = "";
         document.getElementById("car-seat").value = "";
         document.getElementById("car-price").value = "";   
-        // alert("Success update car!");
-        // window.location.hash = "/car";
 
     }
     catch (error){

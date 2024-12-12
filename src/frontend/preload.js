@@ -1,7 +1,3 @@
-
-// ini untuk routing tiap pagenya, kek /api/activity/blablabla
-// dan berlaku untuk semua page
-
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {

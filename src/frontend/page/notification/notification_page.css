@@ -31,18 +31,18 @@
 .actions button {
     align-items: center;
     justify-content: center;
-    background-color: #463B96; /* Warna tombol */
+    background-color: #463B96; 
     border: none;
     padding: 10px;
     margin: 5px;
     border-radius: 50%;
     cursor: pointer;
-    width: 40px; /* Lebar tombol */
-    height: 40px; /* Tinggi tombol */
+    width: 40px;
+    height: 40px;
 }
 
 .actions button:hover {
-    background-color: #FFC131; /* Warna tombol saat hover */
+    background-color: #FFC131;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 

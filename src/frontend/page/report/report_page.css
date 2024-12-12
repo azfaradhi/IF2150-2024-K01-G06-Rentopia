@@ -1,4 +1,3 @@
-/* Style utama untuk kontainer halaman */
 .report-page {
     width: 100%;
     padding: 20px;
@@ -19,40 +18,39 @@
     background-color: #0056b3;
 }
 
-/* Tabel utama */
 .report-table {
-    overflow-x: auto; /* Untuk scroll horizontal jika diperlukan */
+    overflow-x: auto;
     margin-top: 20px;
 }
 
 .report-table table {
-    width: 100%; /* Membuat tabel memenuhi lebar halaman */
-    border-collapse: collapse; /* Menghapus jarak antar sel */
-    text-align: center; /* Menjadikan semua konten tabel berada di tengah */
+    width: 100%;
+    border-collapse: collapse; 
+    text-align: center;
 }
 
 .report-table th, .report-table td {
-    border: 1px solid #ddd; /* Garis batas tabel */
+    border: 1px solid #ddd; 
     padding: 10px;
     font-size: 14px;
-    text-align: center; /* Rata tengah konten */
+    text-align: center;
 }
 
 .report-table th {
-    background-color: #ffc131; /* Warna latar header */
+    background-color: #ffc131;
     font-weight: bold;
-    color: #000; /* Warna teks header */
+    color: #000; 
 }
 
 .report-table tr:nth-child(even) {
-    background-color: #f9f9f9; /* Warna latar untuk baris genap */
+    background-color: #f9f9f9; 
 }
 
 .report-table tr:hover {
-    background-color: #f1f1f1; /* Warna latar ketika di-hover */
+    background-color: #f1f1f1; 
 }
 
-/* Style untuk kontainer date-filters */
+
 .date-filters {
     display: flex; 
     justify-content: center; 
@@ -60,46 +58,40 @@
     margin-bottom: 20px;
 }
 
-
-/* Style untuk setiap div dalam date-filters */
 .date-filters div {
     display: flex;
-    flex-direction: column; /* Kolom vertikal untuk teks dan input */
+    flex-direction: column;
     align-items: flex-start;
 }
 
-/* Style untuk label dan input */
 .date-filters h1 {
     font-size: 16px;
     margin-bottom: 8px;
-    color: #333; /* Warna teks */
+    color: #333; 
 }
 
-/* Input tanggal */
 .date-filters input[type="date"] {
     padding: 12px 50px;
     border-radius: 5px;
-    border: 1px solid #ffc131; /* Warna kuning */
-    background-color: #fff9e6; /* Latar belakang kuning muda */
+    border: 1px solid #ffc131; 
+    background-color: #fff9e6; 
     font-size: 14px;
-    color: #333; /* Warna teks */
+    color: #333; 
     cursor: pointer;
 }
 
-/* Hover dan focus pada input */
 .date-filters input[type="date"]:hover,
 .date-filters input[type="date"]:focus {
     outline: none;
-    border-color: #ffb400; /* Warna kuning yang lebih tegas */
-    box-shadow: 0 0 5px #ffb400; /* Efek glow */
+    border-color: #ffb400; 
+    box-shadow: 0 0 5px #ffb400; 
 }
 
-/* Style untuk tombol submit */
 #btn-submit {
     margin-top: 35px;
     padding: 9px 40px;
-    background-color: #ffc131; /* Warna kuning */
-    color: #000; /* Warna teks hitam */
+    background-color: #ffc131; 
+    color: #000; 
     border: none;
     border-radius: 5px;
     font-size: 14px;
@@ -107,14 +99,24 @@
     transition: background-color 0.3s ease;
 }
 
-/* Hover untuk tombol submit */
 #btn-submit:hover {
-    background-color: #fff9e6; /* Warna kuning muda seperti input tanggal */
-    color: #000; /* Warna teks tetap hitam */
-    border: solid #ffc131; /* Border tetap kuning */
+    background-color: #fff9e6; 
+    color: #000; 
+    border: solid #ffc131;
 }
 
 #total-price {
     display: flex;
     justify-content: flex-end;
 }
+
+button {
+    padding: 10px 20px; 
+    background-color: #FFC131;
+    color: white;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }

@@ -17,7 +17,6 @@
 
 .contact{
     display: flex;
-    /* flex-direction: column; */
     align-items: center;
 }
 
@@ -34,8 +33,6 @@
 }
 
 .status p {
-    /* background-color: #4ac4ac;
-    color: white; */
     padding: 10px;
     border-radius: 30px;
 }
@@ -43,22 +40,22 @@
 .actions button {
     align-items: center;
     justify-content: center;
-    background-color: #ffec99; /* Warna tombol */
+    background-color: #ffec99; 
     border: none;
     padding: 10px;
     margin: 5px;
     border-radius: 20px;
     cursor: pointer;
-    width: 60px; /* Lebar tombol */
-    height: 40px; /* Tinggi tombol */
-    transition: background-color 0.3s ease; /* Efek hover */
+    width: 60px;
+    height: 40px; 
+    transition: background-color 0.3s ease; 
 }
 
 .actions button:hover {
-    background-color: #4ac4ac; /* Warna tombol saat hover */
+    background-color: #4ac4ac;
 }
 
 .actions button img {
     vertical-align: middle;
-    pointer-events: none; /* Agar klik hanya pada tombol, bukan pada ikon */
+    pointer-events: none; 
 }

@@ -1,42 +1,85 @@
 console.log("report page");
+let reportCurrentPage = 1;
+let reportItemsPerPage = 2;
 
-async function fetchReport(date_range) {
-    console.log("fetching report");
-    // const apiUrl2 = `http://127.0.0.1:5000/api/report?date_range=${date_range}`;
-    // console.log(apiUrl2);
-    // console.log(`http://127.0.0.1:5000/api/report?date_range=${date_range}`);
+async function fetchReport(page, date_range) {
     try {
-        const apiUrl = `http://127.0.0.1:5000/api/report?date_range=${date_range}`;
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            throw new Error(`Error fetching report: ${response.statusText}`);
+        // fetching report
+        const report_response = await fetch(`http://127.0.0.1:5000/api/report?date_range=${date_range}&page=${page}&items_per_page=${reportItemsPerPage}`);
+        if (!report_response.ok) {
+            throw new Error(`Error fetching report: ${report_response.statusText}`);
         }
-        const data = await response.json();
-        displayReport(data.report_list);
+        const report_data = await report_response.json();
+
+        // fetching total harga
+        const price_response = await fetch(`http://127.0.0.1:5000/api/report/price?date_range=${date_range}`);
+        if (!price_response.ok) {
+            throw new Error(`Error fetching report price: ${price_response.statusText}`);
+        }
+        const price_data = await price_response.json();
+
+        displayReport(report_data.report_list, report_data.page, report_data.total_pages, price_data.total_price);
     } catch (error) {
         console.error("Failed to fetch report:", error);
     }
 }
 
 function reportPageCommandChoice() {
+    // TODO: totaling harganya supaya ga per page hhhhhh
     console.log("report page command choice");
     const submitButton = document.getElementById("btn-submit");
-    if (submitButton) {
-        submitButton.addEventListener('click', async () => {
+    const nextButton = document.getElementById("next-page");
+    const prevButton = document.getElementById("prev-page");
+
+    if (nextButton) {
+        nextButton.addEventListener('click', async () => {
             const date_awal = document.getElementById("start-date").value;
             const date_akhir = document.getElementById("end-date").value;
             const date_range = `{${date_awal},${date_akhir}}`;
-            await fetchReport(date_range);
+            console.log(reportCurrentPage);
+            reportCurrentPage++;
+            await fetchReport(reportCurrentPage, date_range);
+            console.log("current: ", reportCurrentPage); 
+        })
+    }
+
+    if (prevButton) {
+        prevButton.addEventListener('click', async () => {
+            console.log(currentPage);
+            const date_awal = document.getElementById("start-date").value;
+            const date_akhir = document.getElementById("end-date").value;
+            const date_range = `{${date_awal},${date_akhir}}`;
+            if (reportCurrentPage > 1){
+                reportCurrentPage --;
+                await fetchReport(reportCurrentPage, date_range);
+                console.log("current: ",reportCurrentPage);
+            }
+        })
+    }
+
+    if (submitButton) {
+        console.log("submit button");
+        submitButton.addEventListener('click', async () => {
+            const date_awal = document.getElementById("start-date").value;
+            const date_akhir = document.getElementById("end-date").value;
+            if (date_awal > date_akhir) {
+                alert("The start date must be earlier than the end date.");
+                console.log("start date is later than end date");
+                return;
+            }
+            else{
+                const date_range = `{${date_awal},${date_akhir}}`;
+                await fetchReport(date_range);
+            }
         })
     }
 }
 
-function displayReport(activities) {
+function displayReport(activities, page, totalPage, total_price) {
     console.log("displaying report");
     const tableBody = document.getElementById("report-table-body");
     
     tableBody.innerHTML = "";
-    let total = 0;
     activities.forEach(activity => {
         const row = document.createElement("tr");
         row.innerHTML = `
@@ -49,11 +92,23 @@ function displayReport(activities) {
         <td>${activity.total_price}</td>
         `;
         tableBody.appendChild(row);
-        total += activity.total_price;
-        console.log("Total:", total);
     });
-    const totalDisplay = document.getElementById("total-price");
-    totalDisplay.textContent = "Total: " + total;
+    if (page === totalPage) {
+        const totalDisplay = document.getElementById("total-price");
+        totalDisplay.textContent = "Total: " + total_price;
+    } else {
+        const totalDisplay = document.getElementById("total-price");
+        totalDisplay.textContent = "";
+    }
+
+    const pageNumberDisplay = document.getElementById("page-number");
+    pageNumberDisplay.textContent = `Page: ${page}`;
+
+    const prevButton = document.getElementById("prev-page");
+    const nextButton = document.getElementById("next-page");
+
+    prevButton.disabled = page <= 1;
+    nextButton.disabled = page >= totalPage;
 }
 
 function makeReportPage() {

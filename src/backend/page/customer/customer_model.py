@@ -1,4 +1,4 @@
-# class customer
+# import db config
 from _utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT
 
 class Customer:
@@ -15,25 +15,26 @@ class Customer:
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
         cur = conn.cursor()
+
         cur.execute("""
                     SELECT *
                     FROM customers
                     WHERE id_cust = %s
                     """, (self.id_cust, ))
         dataCustomer = cur.fetchone()
+
         if dataCustomer:
             self.__name_cust = dataCustomer[1]
             self.__phone_cust = dataCustomer[2]
             self.__address_cust = dataCustomer[3]
             self.__additional_info_cust = dataCustomer[4]
             self.__status_cust = dataCustomer[5]
-        # cur.close()
-        # conn.close()
         
     def saveCustomer(self):
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
         cur = conn.cursor()
+
         try:
             cur.execute("""
                         SELECT id_cust
@@ -78,8 +79,8 @@ class Customer:
                         self.__status_cust))
                 conn.commit()
         except Exception as e:
-            conn.rollback()  # Rollback in case of an error
-            print(f"Error saving customer: {e}")
+            conn.rollback()
+            print(f"Error: {e}")
         finally:
             cur.close()
             
@@ -87,6 +88,7 @@ class Customer:
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
         cur = conn.cursor()
+
         try:
             cur.execute("""
                         SELECT id_cust
@@ -94,6 +96,7 @@ class Customer:
                         WHERE id_cust = %s
                     """, (self.id_cust, ))
             existingCustomer = cur.fetchone()
+            
             if existingCustomer:
                 cur.execute("""
                         DELETE FROM customers
@@ -101,8 +104,8 @@ class Customer:
                         """, (self.id_cust, ))
                 conn.commit()
         except Exception as e:
-            conn.rollback()  # Rollback in case of an error
-            print(f"Error deleting customer: {e}")
+            conn.rollback()  
+            print(f"Error: {e}")
         finally:
             cur.close()
         
@@ -136,7 +139,7 @@ class Customer:
 
             return customers_list, total_customers, total_pages
         except Exception as e:
-            print(f"Error fetching paginated customers: {e}")
+            print(f"Error: {e}")
             return [], 0, 0
         finally:
             cur.close()
@@ -178,7 +181,7 @@ class Customer:
     def setStatusCustomer(self, status_cust):
         self.__status_cust = status_cust
         
-
+# driver
 # customer = Customer(id_cust=20)
 # customer.deleteCustomer()
 # customer.setNameCustomer("jonas")

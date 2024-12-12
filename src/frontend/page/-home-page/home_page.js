@@ -148,8 +148,7 @@ function makeHomePage(){
 
 
 async function fetchAllActivities() {
-    console.log("MASHOKK3");
-    const apiUrl = 'http://127.0.0.1:5000/api/activity/alldata'; // API yang akan dipanggil
+    const apiUrl = 'http://127.0.0.1:5000/api/activity/alldata'; 
     
     try {
         const response = await fetch(apiUrl);
@@ -163,30 +162,27 @@ async function fetchAllActivities() {
 }
 
 async function hasNotifications() {
-    console.log("MASHOKK2");
     const activities = await fetchAllActivities();
     const today = new Date();
     const shownActivities = JSON.parse(localStorage.getItem(SHOWN_ACTIVITIES_KEY)) || [];
-    let isTrue = false; // Ubah ke let agar bisa diubah
+    let isTrue = false; 
 
-    // Gunakan loop biasa agar bisa menggunakan break atau return langsung
     for (let activity of activities) {
         const returnDate = new Date(activity.date_range[1]);
         const timeDiff = returnDate.getTime() - today.getTime();
         const diffDays = Math.floor(timeDiff / (1000 * 3600 * 24));
 
         if (diffDays <= 1 && diffDays >= 0 && !shownActivities.includes(activity.id_activity)) {
-            isTrue = true; // Set isTrue jika ada notifikasi
-            break; // Berhenti loop setelah menemukan notifikasi pertama
+            isTrue = true; 
+            break;
         }
     }
-    console.log("Returning isTrue:", isTrue); // Log untuk debugging
+    console.log("Returning isTrue:", isTrue); 
     return isTrue;
 }
 
 
 async function changeNotifButton(){
-    console.log("MASHOKK1");
     const notifButton = document.getElementById("notif-button");
     const isTrue = await hasNotifications();
     if (isTrue){
@@ -196,12 +192,3 @@ async function changeNotifButton(){
         notifButton.src = "public/homepage/notif.svg";
     }
 }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     homePageCommandChoice();
-//     makeHomePage();
-//     setTimeout(async () => {
-//         changeNotifButton();
-//         await new Promise(resolve => setTimeout(resolve, 100));
-//     }, 2000);
-// });

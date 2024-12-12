@@ -1,13 +1,15 @@
 import psycopg2
+import os
+from dotenv import load_dotenv
 
-# Konfigurasi koneksi PostgreSQL
-# TODO: ganti konfigurasi sesuai dengan keinginan user dan database yang digunakan
-# TODO: dan masukkan konfigurasi ini ke dalam file .env
-DB_USER = 'rpl'
-DB_PASS = 'rpl'
-DB_HOST = '127.0.0.1'
-DB_NAME = 'rentopia'
-DB_PORT = "5432"
+ENV_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+load_dotenv(ENV_PATH)
+
+DB_USER = os.getenv('DB_USER')
+DB_PASS = os.getenv('DB_PASS')
+DB_HOST = os.getenv('DB_HOST')
+DB_NAME = os.getenv('DB_NAME')
+DB_PORT = os.getenv('DB_PORT')
 
 class DatabaseSetup:
     # Inisialisasi kelas
@@ -93,7 +95,6 @@ def setup_database():
         DB_PORT
     )
     setup.create_tables()
-    # print("Database dan tabel telah dibuat.")
 
 if __name__ == '__main__':
     setup_database()

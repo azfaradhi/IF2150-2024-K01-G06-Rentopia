@@ -1,14 +1,10 @@
-# ini untuk komunikasi backend dan frontend pake flask
-# TODO: routing tiap page yang ada dan dan konek ke dbnya
-
+# import library
 from flask import Flask, jsonify
-# from .page import Activity
+
+# import controller modul
 from controllers.activity_controller import activity_bp
 from controllers.car_controller import car_bp
 from controllers.customer_controller import customer_bp
-# from controllers.activity_controller import activity_bp
-# from page.activity.activity_model import Activity
-# from controllers.activity_controller import *
 
 app = Flask(__name__)
 

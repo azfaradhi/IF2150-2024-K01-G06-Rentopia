@@ -1,27 +1,24 @@
 /* Kontainer utama */
 .add-car-container {
-    display: flex; /* Menjadikan .add-car-container sebagai flex container */
-    justify-content: space-between; /* Agar ada jarak antara kiri dan kanan */
+    display: flex; 
+    justify-content: space-between; 
     width: 100%;
 }
 
-/* Bagian kiri (2/5) */
 .add-car-left {
-    flex: 2; /* Lebih besar dari bagian kanan */
+    flex: 2;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Membuat konten di dalamnya ditata vertikal */
+    flex-direction: column;
 }
 
-/* Bagian kanan (3/5) */
 .add-car-right {
-    flex: 3; /* Lebih besar dari bagian kiri */
+    flex: 3; 
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Membuat konten di dalamnya ditata vertikal */
+    flex-direction: column; 
 }
 
-/* Bagian input di kiri dan kanan */
 .add-car-left div, .add-car-right div {
     margin-bottom: 15px;
 }
@@ -31,7 +28,6 @@ h1 {
     margin-bottom: 8px;
 }
 
-/* Style untuk input */
 input[type="text"], input[type="file"]{
     width: 100%;
     padding: 10px;
@@ -43,7 +39,7 @@ input[type="text"], input[type="file"]{
 }
 
 #no-file-text {
-    display: hidden; /* Menyembunyikan teks "No file selected" */
+    display: hidden;
 }
 
 .button-add-car {
@@ -52,13 +48,13 @@ input[type="text"], input[type="file"]{
 
 #btn-cancel{
     width:40%;
-    flex: 8; /* Setengah dari lebar kontainer */
+    flex: 8; 
     padding: 10px;
     margin-right: 4%;
     font-size: 16px;
     border-radius: 20px;
     border: none;
-    background-color: #ff7a7a; /* Warna kuning */
+    background-color: #ff7a7a; 
     cursor: pointer;
 }
 
@@ -68,22 +64,20 @@ input[type="file"]::-webkit-file-upload-button {
 
 #btn-add {
     width: 55%;
-    flex: 1; /* Setengah dari lebar kontainer */
+    flex: 1;
     padding: 10px;
     font-size: 16px;
     border-radius: 20px;
     border: none;
-    background-color: #12b800; /* Warna kuning */
+    background-color: #12b800;
     cursor: pointer;
 }
 
-/* Style untuk input placeholder */
 input::placeholder, input[type="file"]::placeholder {
-    color: #b37d00; /* Warna placeholder */
+    color: #b37d00; 
     font-style: italic;
 }
 
-/* Gaya untuk input file */
 input[type="file"] {
     height: 22rem;
     position: relative;
@@ -92,12 +86,10 @@ input[type="file"] {
     display: inline-block;
 }
 
-/* Menghilangkan tulisan "No file selected" */
 input[type="file"]::-webkit-file-upload-button {
-    visibility: hidden; /* Menyembunyikan tombol default file upload */
+    visibility: hidden; 
 }
 
-/* Menampilkan teks "Choose a file" */
 input[type="file"]::before {
     content: "Choose a file for the Car Image";
     color: #b37d00;
@@ -113,8 +105,6 @@ input[type="file"]::before {
     box-sizing: border-box;
 }
 
-
-/* Style preview gambar */
 .image-preview {
     width: 100%;
     height: 100%;

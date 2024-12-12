@@ -77,54 +77,49 @@
   
   .justify-center {
     display: flex;
-    justify-content: center; /* Centers the content horizontally */
-    align-items: center; /* Optionally, centers the content vertically if needed */
-    gap: 10px; /* Optional: space between elements */
-}
-  /* Style for buttons */
+    justify-content: center; 
+    align-items: center;
+    gap: 10px;
+  }
+  
 button {
-  padding: 10px 20px; /* Adjust padding for size */
-  background-color: #FFC131; /* Primary blue color */
-  color: white; /* White text */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Adjust font size */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+  padding: 10px 20px; 
+  background-color: #FFC131;
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  transition: background-color 0.3s ease, transform 0.2s ease; 
 }
 
-/* Hover effect for buttons */
 button:hover {
-  background-color: #FFC131; /* Darker blue */
-  transform: scale(1.05); /* Slightly enlarge on hover */
+  background-color: #FFC131; 
+  transform: scale(1.05); 
 }
 
-/* Disabled button styles */
 button:disabled {
-  background-color: #CCCCCC; /* Gray for disabled */
-  cursor: not-allowed; /* Change cursor for disabled */
+  background-color: #CCCCCC; 
+  cursor: not-allowed; 
 }
 
-/* Style for the page number span */
 #page-number {
-  font-size: 18px; /* Larger font size */
-  font-weight: bold; /* Make it bold */
-  margin: 0 10px; /* Add spacing around it */
+  font-size: 18px; 
+  font-weight: bold;
+  margin: 0 10px; 
 }
 
-/* Additional container styling for buttons */
 button + span, button + button {
-  margin-left: 10px; /* Add space between buttons or button and span */
+  margin-left: 10px; 
 }
-
 
 .status-btn.available {
-  background-color: #4CAF50;  /* Green */
+  background-color: #4CAF50; 
   color: white;
 }
 
 .status-btn.reserved {
-  background-color: #f44336;  /* Red */
+  background-color: #f44336; 
   color: white;
 }
 

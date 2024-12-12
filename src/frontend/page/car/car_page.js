@@ -1,9 +1,11 @@
 let currentPageCars = 1;
 let items_per_page_car = 4;
+let seatValue = -1;
+let availValue = -1;
 
-async function fetchCar(page) {
+async function fetchCar(page, seatValue, availValue) {
     try {
-        const apiUrlCar = `http://127.0.0.1:5000/api/car/alldata?page=${page}&items_per_page=${items_per_page_car}`;
+        const apiUrlCar = `http://127.0.0.1:5000/api/car/alldata?page=${page}&items_per_page=${items_per_page_car}&seat=${seatValue}&status=${availValue}`;
         const responseCar = await fetch(apiUrlCar);
         if (!responseCar.ok) {
             throw new Error(`Error fetching activity: ${response.statusText}`);
@@ -12,24 +14,6 @@ async function fetchCar(page) {
         const dataCar = await responseCar.json();
 
         displayCars(dataCar.cars,page,dataCar.total_pages);
-        console.log(dataCar);
-    } catch (error) {
-        console.error("Failed to fetch car:", error);
-    }
-}
-
-async function fetchCarBySeat(page) {
-    try {
-        const apiUrlCar = `http://localhost:5000/api/car/alldata?page=${page}&items_per_page=${items_per_page_car}`;
-        const responseCar = await fetch(apiUrlCar);
-        if (!responseCar.ok) {
-            throw new Error(`Error fetching activity: ${response.statusText}`);
-        }
-        console.log("masuk");
-        const dataCar = await responseCar.json();
-        const filterCar = dataCar.cars.filter(car => car.seat_car === number);
-
-        displayCars(filterCar,page,dataCar.total_pages);
         console.log(dataCar);
     } catch (error) {
         console.error("Failed to fetch car:", error);
@@ -46,7 +30,7 @@ function carPageCommandChoice(){
             console.log("Next page clicked");
             console.log(currentPageCars);
             currentPageCars++;
-            await fetchCar(currentPageCars);
+            await fetchCar(currentPageCars, seatValue, availValue);
             console.log("current: ", currentPageCars);
             
         })
@@ -57,7 +41,7 @@ function carPageCommandChoice(){
             console.log(currentPageCars);
             if (currentPageCars > 1){
                 currentPageCars --;
-                await fetchCar(currentPageCars);
+                await fetchCar(currentPageCars, seatValue, availValue);
                 console.log("current: ",currentPageCars);
             }
         })
@@ -68,53 +52,32 @@ function carPageCommandChoice(){
             window.location.hash = '/car/add';
         })
     }
-    // if (searchButton){
-    //     searchButton.addEventListener('click', async () =>{
+    if (searchButton){
+        searchButton.addEventListener('click', async () =>{
             
-    //     const seatSelect = document.getElementById("car-seat");
-    //     const availSelect = document.getElementById("car-avail");
+        const seatValue = document.getElementById("car-seat").value;
+        const availValue = document.getElementById("car-avail").value;
 
-    //     const seatValue = seatSelect.value;
-    //     const availValue = availSelect.value;
-
-    //     if (!seatValue && !availValue){
-    //         alert("No filter selected!");
-    //     }
-    //     else if (!availValue){
-    //         let valueSeatPass = 0;
-    //         if (seatValue === "seat4"){
-    //             valueSeatPass = 7;
-    //         }
-    //         if (seatValue === "seat6"){
-    //             valueSeatPass = 6;
-    //         }
-    //         currentPageCars = 1;
-    //         fetchCarBySeat(currentPageCars,valueSeatPass);
-    //     }
-    //     else if (!availValue){
-
-    //     }
-    //     else{
-
-    //     }
-    //     })
-
-    // }
-    // else{
-    //     console.error("Add customer button not found");
-    // }
+        if (!seatValue || !availValue){
+            alert("Please select both seat and availability options!");
+        }
+        else{
+            await fetchCar(currentPageCars, seatValue, availValue);
+            console.log('Selected Seat:', seatValue, 'Type:', typeof seatValue);
+            console.log('Selected Availability:', availValue, 'Type:', typeof availabilityValue);            
+        }
+        })
+    }
 }
 
 function displayCars(cars, page, totalPage) {
     const containerListCars = document.getElementById('car-card-container');
     containerListCars.innerHTML = "";
 
-    // Create rows for the 2x2 layout
     for (let i = 0; i < cars.length; i += 2) {
         const rowElement = document.createElement('div');
-        rowElement.className = 'car-row'; // Add a row class for styling
+        rowElement.className = 'car-row'; 
 
-        // Add up to 2 cars per row
         for (let j = 0; j < 2 && i + j < cars.length; j++) {
             const car = cars[i + j];
             const carElement = document.createElement('div');
@@ -182,7 +145,7 @@ function displayCars(cars, page, totalPage) {
                     if (!response.ok){
                         throw new Error(`Failed to delete car: ${response.statusText}`);
                     }
-                    await fetchCar(currentPageCars);
+                    await fetchCar(currentPageCars, seatValue, availValue);
                     alert("Success deleted car!");
 
                     window.location.hash = '/car'
@@ -197,10 +160,9 @@ function displayCars(cars, page, totalPage) {
             rowElement.appendChild(carElement);
         }
 
-        containerListCars.appendChild(rowElement); // Add each row to the container
+        containerListCars.appendChild(rowElement); 
     }
 
-    // Update pagination details
     const pageNumberDisplay = document.getElementById("page-number");
     pageNumberDisplay.textContent = `Page: ${page}`;
 
@@ -213,7 +175,7 @@ function displayCars(cars, page, totalPage) {
 
 
 function makeCarPage(){
-    fetchCar(currentPageCars);
+    fetchCar(currentPageCars, seatValue, availValue);
 }
 document.addEventListener('DOMContentLoaded', () => {
     makeCarPage();

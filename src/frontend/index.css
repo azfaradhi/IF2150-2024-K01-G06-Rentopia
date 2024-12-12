@@ -7,14 +7,6 @@ body {
     height: 100vh;
 }
 
-/* nav {
-    background-color: #333;
-    color: white;
-    padding: 1em;
-    display: flex;
-    justify-content: space-around;
-} */
-
 nav a {
     color: white;
     text-decoration: none;
@@ -33,6 +25,7 @@ nav a {
 }
 
 #content {
+    width: 80%;
     flex: 1;
     padding: 1em;
 }

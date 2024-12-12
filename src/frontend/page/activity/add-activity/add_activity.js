@@ -1,12 +1,10 @@
 async function initAddActivity() {
-    console.log("B");
     const addButtonAct = document.getElementById("btn-add-act");
     const cancelButtonAct = document.getElementById("btn-cancel-act");
     const calculatePrice = document.getElementById("btn-calculate");
-    console.log("B");
+
 
     if (calculatePrice){
-        console.log("ABC");
         calculatePrice.addEventListener('click', async () => {
             const idUser = document.getElementById("input-cust-id").value;
             const idCar = document.getElementById("input-car-id").value;

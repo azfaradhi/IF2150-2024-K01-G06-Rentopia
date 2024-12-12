@@ -1,3 +1,4 @@
+# import model modul
 from page.car.car_model import Car
 from flask import Blueprint, jsonify, request
 import os
@@ -14,6 +15,7 @@ def allowed_file(filename):
 @car_bp.route('/api/car/<int:id_car>', methods=['GET'])
 def get_car(id_car):
     car = Car(id_car)
+
     return jsonify({
         'id_car': car.id_car,
         'photo_car': car.getPhotoCar(),
@@ -23,6 +25,7 @@ def get_car(id_car):
         'price_car': car.getPriceCar(),
         'status_car': car.getStatusCar()
     })
+
 
 @car_bp.route('/api/car/create', methods=['POST'])
 def create_car():
@@ -53,26 +56,12 @@ def create_car():
     car.saveCar()
 
     return jsonify({'message': 'Car created successfully'})
-    # data = request.json
-    # print("Recevied data: ", data)
-    # if not data:
-    #     return jsonify({'error': 'No data provided'}), 400
-    # car = Car(data['id_car'])
-    # car.id_car = data['id_car']
-    # car.setPhotoCar("photo_car.jpg")
-    # # car.photo_car = "photo_car.jpg"
-    # car.setModelCar(data['model_car'])
-    # car.setTypeCar(data['type_car'])
-    # car.setSeatCar(int(data['seat_car']))
-    # car.setPriceCar(int(data['price_car']))
-    # car.setStatusCar("available")
-    # car.saveCar()
-    # return jsonify({'message': 'Car created successfully'})
 
 @car_bp.route('/api/car/show/<string:id_car>', methods=['GET'])
 def show_car(id_car):
     car = Car(id_car)
     car.loadCar()
+
     return jsonify({
         'id_car': car.id_car,
         'photo_car': car.getPhotoCar(),
@@ -83,16 +72,21 @@ def show_car(id_car):
         'status_car': car.getStatusCar()
     })
 
+
 @car_bp.route('/api/car/alldata', methods=['GET'])
 def get_cars_pagination():
     page = int(request.args.get('page', 1))
     items_per_page = int(request.args.get('items_per_page', 10))
-    
-    cars_list, total_cars, total_pages = Car.get_paginated_cars(page, items_per_page)
+    filterseat = int(request.args.get('seat',-1))
+    filteravailability = int(request.args.get('status',-1))
+
+    cars_list, total_cars, total_pages = Car.get_paginated_cars(page, items_per_page, filterseat, filteravailability)
     
     return jsonify({
         'page': page,
         'items_per_page': items_per_page,
+        'seat' : filterseat, 
+        'status' : filteravailability, 
         'total_pages': total_pages,
         'total_cars': total_cars,
         'cars': cars_list
@@ -131,11 +125,13 @@ def update_car():
         car.setPhotoCar(file.filename) 
 
     car.saveCar()
+
     return jsonify({'message': 'Car updated successfully'})
+
 
 @car_bp.route('/api/car/delete/<string:id_car>', methods =['POST'])
 def delete_cars(id_car):
     car = Car(id_car)
     car.deleteCar()
-    return jsonify({'message': 'Car deleted successfully'})
 
+    return jsonify({'message': 'Car deleted successfully'})

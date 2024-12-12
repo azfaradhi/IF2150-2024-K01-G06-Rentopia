@@ -1,27 +1,23 @@
-/* Kontainer utama */
 .add-car-container {
-    display: flex; /* Menjadikan .add-car-container sebagai flex container */
-    justify-content: space-between; /* Agar ada jarak antara kiri dan kanan */
+    display: flex; 
+    justify-content: space-between;
     width: 100%;
 }
 
-/* Bagian kiri (2/5) */
 .add-car-left {
-    flex: 2; /* Lebih besar dari bagian kanan */
+    flex: 2;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Membuat konten di dalamnya ditata vertikal */
+    flex-direction: column; 
 }
 
-/* Bagian kanan (3/5) */
 .add-car-right {
-    flex: 3; /* Lebih besar dari bagian kiri */
+    flex: 3; 
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Membuat konten di dalamnya ditata vertikal */
+    flex-direction: column; 
 }
 
-/* Bagian input di kiri dan kanan */
 .add-car-left div, .add-car-right div {
     margin-bottom: 15px;
 }
@@ -31,8 +27,7 @@ h1 {
     margin-bottom: 8px;
 }
 
-/* Style untuk input */
-input[type="text"], input[type="file"]{
+input[type="text"]{
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -43,7 +38,7 @@ input[type="text"], input[type="file"]{
 }
 
 #no-file-text {
-    display: hidden; /* Menyembunyikan teks "No file selected" */
+    display: hidden;
 }
 
 .button-add-car {
@@ -52,28 +47,24 @@ input[type="text"], input[type="file"]{
 
 #btn-cancel{
     width:40%;
-    flex: 8; /* Setengah dari lebar kontainer */
+    flex: 8; 
     padding: 10px;
     margin-right: 4%;
     font-size: 16px;
     border-radius: 20px;
     border: none;
-    background-color: #ff7a7a; /* Warna kuning */
+    background-color: #ff7a7a; 
     cursor: pointer;
-}
-
-input[type="file"]::-webkit-file-upload-button {
-    visibility: hidden;
 }
 
 #btn-add {
     width: 55%;
-    flex: 1; /* Setengah dari lebar kontainer */
+    flex: 1; 
     padding: 10px;
     font-size: 16px;
     border-radius: 20px;
     border: none;
-    background-color: #12b800; /* Warna kuning */
+    background-color: #12b800; 
     cursor: pointer;
 }
 
