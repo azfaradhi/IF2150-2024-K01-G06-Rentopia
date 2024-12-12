@@ -163,11 +163,32 @@ class Activity:
             cur.close()
             conn.close()
 
-    def get_paginated_activity_daterange(date_range):
-        # offset = (page - 1) * items_per_page
+    def get_total_price(date_range):
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
         cur = conn.cursor()
+        
+        try:
+            cur.execute("""
+                SELECT SUM(total_price)
+                FROM activities
+                WHERE date_range[1] BETWEEN %s AND %s
+            """, (date_range[0], date_range[1]))
+            total_price = cur.fetchone()[0]
+            return total_price
+        except Exception as e:
+            print(f"Error fetching total price: {e}")
+            return 0
+        finally:
+            cur.close()
+            conn.close
+
+    def get_paginated_activity_daterange(page, items_per_page, date_range):
+        offset = (page - 1) * items_per_page
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+        total = 0
         
         try:
             cur.execute("""
@@ -176,13 +197,15 @@ class Activity:
                 JOIN customers c ON a.id_cust = c.id_cust
                 JOIN cars ca ON a.id_car = ca.id_car
                 WHERE a.date_range[1] BETWEEN %s AND %s
-            """, (date_range[0],date_range[1],))
+                ORDER BY a.date_range[1]
+                LIMIT %s OFFSET %s
+            """, (date_range[0],date_range[1],items_per_page, offset))
             
             activities = cur.fetchall()
             
-            # cur.execute("SELECT COUNT(*) FROM activities")
-            # total_activities = cur.fetchone()[0]
-            # total_pages = (total_activities + items_per_page - 1) // items_per_page  # Calculate total pages
+            cur.execute("SELECT COUNT(*) FROM activities")
+            total_activities = cur.fetchone()[0]
+            total_pages = (total_activities + items_per_page - 1) // items_per_page  # Calculate total pages
             
             report_list = [{
                 'id_activity': activity[0],
@@ -194,7 +217,7 @@ class Activity:
                 'total_price': activity[6]
             } for activity in activities]
             
-            return report_list
+            return report_list, total_activities, total_pages
         except Exception as e:
             print(f"Error fetching report list: {e}")
             return [], 0, 0

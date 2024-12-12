@@ -118,3 +118,14 @@
     display: flex;
     justify-content: flex-end;
 }
+
+button {
+    padding: 10px 20px; 
+    background-color: #FFC131;
+    color: white;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
