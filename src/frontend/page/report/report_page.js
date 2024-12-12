@@ -1,20 +1,24 @@
 console.log("report page");
 let reportCurrentPage = 1;
-let reportItemsPerPage = 5;
+let reportItemsPerPage = 2;
 
 async function fetchReport(page, date_range) {
-    // console.log("fetching report");
-    // const apiUrl2 = `http://127.0.0.1:5000/api/report?date_range=${date_range}`;
-    // console.log(apiUrl2);
-    // console.log(`http://127.0.0.1:5000/api/report?date_range=${date_range}`);
     try {
-        const apiUrl = `http://127.0.0.1:5000/api/report?date_range=${date_range}&page=${page}&items_per_page=${reportItemsPerPage}`;
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            throw new Error(`Error fetching report: ${response.statusText}`);
+        // fetching report
+        const report_response = await fetch(`http://127.0.0.1:5000/api/report?date_range=${date_range}&page=${page}&items_per_page=${reportItemsPerPage}`);
+        if (!report_response.ok) {
+            throw new Error(`Error fetching report: ${report_response.statusText}`);
         }
-        const data = await response.json();
-        displayReport(data.report_list, data.page, data.total_pages);
+        const report_data = await report_response.json();
+
+        // fetching total harga
+        const price_response = await fetch(`http://127.0.0.1:5000/api/report/price?date_range=${date_range}`);
+        if (!price_response.ok) {
+            throw new Error(`Error fetching report price: ${price_response.statusText}`);
+        }
+        const price_data = await price_response.json();
+
+        displayReport(report_data.report_list, report_data.page, report_data.total_pages, price_data.total_price);
     } catch (error) {
         console.error("Failed to fetch report:", error);
     }
@@ -64,12 +68,11 @@ function reportPageCommandChoice() {
     }
 }
 
-function displayReport(activities, page, totalPage) {
+function displayReport(activities, page, totalPage, total_price) {
     console.log("displaying report");
     const tableBody = document.getElementById("report-table-body");
     
     tableBody.innerHTML = "";
-    let total = 0;
     activities.forEach(activity => {
         const row = document.createElement("tr");
         row.innerHTML = `
@@ -82,11 +85,14 @@ function displayReport(activities, page, totalPage) {
         <td>${activity.total_price}</td>
         `;
         tableBody.appendChild(row);
-        total += activity.total_price;
-        console.log("Total:", total);
     });
-    const totalDisplay = document.getElementById("total-price");
-    totalDisplay.textContent = "Total: " + total;
+    if (page === totalPage) {
+        const totalDisplay = document.getElementById("total-price");
+        totalDisplay.textContent = "Total: " + total_price;
+    } else {
+        const totalDisplay = document.getElementById("total-price");
+        totalDisplay.textContent = "";
+    }
 
     const pageNumberDisplay = document.getElementById("page-number");
     pageNumberDisplay.textContent = `Page: ${page}`;
