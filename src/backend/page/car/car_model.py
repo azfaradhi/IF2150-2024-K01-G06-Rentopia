@@ -218,6 +218,25 @@ class Car:
 
     def getStatusCar(self):
         return self.__status_car
+        
+    def existCar(self):
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+        try:
+            cur.execute("""
+                        SELECT id_car
+                        FROM cars
+                        WHERE id_car = %s
+                    """, (self.id_car, ))
+            existingCar = cur.fetchone()
+            return existingCar
+        except Exception as e:
+            conn.rollback()
+            print(f"Error: {e}")
+        finally:
+            cur.close()
+            conn.close()
     
     def setStatusCar(self, status_car):
         self.__status_car = status_car
