@@ -1,4 +1,4 @@
-# class notification
+# import db config
 from _utils.database_setup import DatabaseSetup, DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT
 
 class Notification:
@@ -11,22 +11,23 @@ class Notification:
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
         cur = conn.cursor()
+
         cur.execute("""
                     SELECT *
                     FROM notifications
                     WHERE id_notif = %s
                     """, (self.id_notif, ))
         dataNotification = cur.fetchone()
+
         if dataNotification:
             self.__date_end = dataNotification[1]
             self.__id_activity = dataNotification[2]
-        # cur.close()
-        # conn.close()
         
     def saveNotification(self):
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
         conn = db_setup.get_connection()
         cur = conn.cursor()
+
         cur.execute("""
                     DELETE FROM notifications;
                     ALTER SEQUENCE notifications_id_notif_seq RESTART WITH 1;
@@ -67,16 +68,4 @@ class Notification:
 
 notif = Notification(id_notif=2)
 notif.saveNotification()
-# notif.setDateEnd('1990-01-01')
-# notif.setIDActivity(10)
-# notif.saveNotification()
-
-# notif = Notification(id_notif=1)
-# notif.loadNotification()
-# print(notif.getIDNotification())
-# print(notif.getDateEnd())
-# print(notif.getIDActivity())
-
-
-print("berhasil")
 
