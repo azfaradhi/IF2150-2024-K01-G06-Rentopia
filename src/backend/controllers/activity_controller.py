@@ -137,10 +137,7 @@ def update_activity(id_act):
     activity = Activity(id_act)
     activity.loadActivity()
     print(activity.getPrice())
-    # activity.setIDCustomer(data['id_cust'])
-    # activity.setIDCar(data['id_car'])
-    # activity.setDateRange(data['data_range'])
-    # activity.setTotalPrice(data['total_price'])
+
     activity.setStatusCar(data['status_car'])
     activity.setStatusCust(data['status_cust'])
     activity.setStatusActivity(data['status_activity'])
