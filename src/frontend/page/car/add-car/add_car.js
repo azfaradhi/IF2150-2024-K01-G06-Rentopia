@@ -14,7 +14,7 @@ async function initAddCar(){
             const type = document.getElementById("car-type").value;
             const seat = document.getElementById("car-seat").value;
             const price = document.getElementById("car-price").value;
-            const imageFile = document.getElementById("car-image-input").files[0];
+            const imageFile = document.getElementById("car-image-input-add").files[0];
 
             if (!id || !model || !type || !seat || !price || !imageFile) {
                 alert("Please fill in all fields and upload an image!");
