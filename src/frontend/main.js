@@ -15,9 +15,6 @@ function createWindow() {
 
   win.loadFile('index.html');
   win.webContents.openDevTools();
-//   window.onload = () => {
-//     loadSidebar();
-// };
 }
 
 app.whenReady().then(() => {

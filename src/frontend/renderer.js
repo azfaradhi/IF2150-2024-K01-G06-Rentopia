@@ -1,12 +1,7 @@
-
-// ini untuk load pagenya
 function loadPage(page, callback) {
     fetch(page)
         .then(response => response.text())
         .then(html => {
-            // const content = document.getElementById('content');
-            // content.innerHTML = ''; // Clear only the content area, not the sidebar
-            // content.innerHTML = html;
             const container = document.createElement('div');
             content.innerHTML = '';
             container.innerHTML = html;
@@ -40,7 +35,6 @@ function getQueryParams() {
     return params;
 }
 
-// ini untuk routing si pagenya, kalau ada tambahan, tambahin aja :)
 function router() {
     const hash = window.location.hash || '#/';
     const route = hash.substring(1);
@@ -125,7 +119,6 @@ function router() {
             fetchAllNotifications();
             break;
         default:
-            // loadPage('404.html');
     }
 }
 

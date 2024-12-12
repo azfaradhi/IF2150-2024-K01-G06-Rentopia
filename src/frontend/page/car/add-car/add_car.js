@@ -60,11 +60,6 @@ async function initAddCar(){
                 catch (error){
                     console.error("Detailed error: ", error);
                 }
-
-
-
-                // document.querySelector("#car-image").value = "";
-                // document.querySelector(".preview img").src = "";
             }
         });
     }

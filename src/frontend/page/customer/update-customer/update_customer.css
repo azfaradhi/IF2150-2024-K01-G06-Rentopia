@@ -22,9 +22,9 @@ input{
     margin-top: 20px;
     margin-right: 20px;
     margin-left: 20px;
-    display: flex;                /* Menggunakan flexbox */
-    justify-content: flex-end;    /* Menempatkan tombol di sebelah kanan */
-    gap: 10px;                    /* Menambahkan jarak antar tombol */
+    display: flex;               
+    justify-content: flex-end;   
+    gap: 10px;                
 }
 
 #btn-cancel, #btn-add {
@@ -36,17 +36,16 @@ input{
 }
 
 #btn-cancel {
-    background-color: #ff7a7a; /* Warna merah */
-    width: 20%;                /* Lebar tombol cancel */
+    background-color: #ff7a7a;
+    width: 20%;
 }
 
 #btn-update {
-    background-color: #12b800; /* Warna hijau */
-    width: 20%;                /* Lebar tombol add */
+    background-color: #12b800;
+    width: 20%;
 }
 
-/* Mengubah warna placeholder di semua input text */
 input::placeholder {
-    color: #b37d00; /* Warna placeholder */
-    font-style: italic; /* Menambahkan gaya italic jika diperlukan */
+    color: #b37d00;
+    font-style: italic;
 }

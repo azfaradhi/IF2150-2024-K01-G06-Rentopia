@@ -12,7 +12,6 @@ function loadComponent(componentPath, elementId) {
             console.log(`Component loaded: ${componentPath}`);
             if (element) {
                 element.innerHTML = html;
-                // console.log(`Component loaded: ${componentPath}`);
                 const link = document.createElement('link');
                 link.rel = 'stylesheet';
                 link.href = componentPath.replace('.html', '.css');

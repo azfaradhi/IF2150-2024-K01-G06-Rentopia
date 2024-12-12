@@ -1,6 +1,6 @@
 async function fetchAllActivities() {
     console.log('RAFIF OK');
-    const apiUrl = 'http://127.0.0.1:5000/api/activity/alldata'; // API yang akan dipanggil
+    const apiUrl = 'http://127.0.0.1:5000/api/activity/alldata';
     
     try {
         const response = await fetch(apiUrl);
@@ -22,9 +22,9 @@ async function fetchAllNotifications() {
     const shownActivities = JSON.parse(localStorage.getItem(SHOWN_ACTIVITIES_KEY)) || [];
 
     activities.forEach(activity => {
-        const returnDate = new Date(activity.date_range[1]); // Menggunakan tanggal akhir dari date_range
+        const returnDate = new Date(activity.date_range[1]);
         const timeDiff = returnDate.getTime() - today.getTime();
-        const diffDays = Math.floor(timeDiff / (1000 * 3600 * 24)); // Menggunakan Math.floor
+        const diffDays = Math.floor(timeDiff / (1000 * 3600 * 24));
         
         if (diffDays <= 1 && diffDays >= 0 && !shownActivities.includes(activity.id_activity)) {
             showNotification(activity);
@@ -32,27 +32,22 @@ async function fetchAllNotifications() {
         }
     });
 
-    // Simpan ID aktivitas yang sudah ditampilkan ke localStorage
     localStorage.setItem(SHOWN_ACTIVITIES_KEY, JSON.stringify(shownActivities));
-    // localStorage.removeItem(SHOWN_ACTIVITIES_KEY);
 }
 
 async function showNotification(activity) {
     console.log('LOVE');
     const notifContainer = document.getElementById('notif-container');
     
-    // Pastikan bahwa data yang diperlukan ada sebelum menampilkan notifikasi
     if (!activity.name_cust || !activity.date_range || !activity.id_activity) {
         console.warn("Activity data is incomplete", activity);
-        return;  // Jika data tidak lengkap, tidak akan menampilkan notifikasi
+        return; 
     }
     
-    // Membuat elemen notif-box baru
     const notifBox = document.createElement('div');
-    notifBox.classList.add('notif-box');  // Menambahkan kelas untuk styling
-    notifBox.id = `notif-box-${activity.id_activity}`; // Unikkan ID untuk setiap notifikasi
+    notifBox.classList.add('notif-box');
+    notifBox.id = `notif-box-${activity.id_activity}`;
 
-    // Menambahkan isi HTML untuk notifikasi
     notifBox.innerHTML = `
         <div>
             <b style="font-size: 20px;">NOTIFICATION</b>
@@ -65,9 +60,8 @@ async function showNotification(activity) {
         </div>
     `;
 
-    // Menambahkan notifBox ke dalam notifContainer hanya jika template valid
     if (notifBox.innerHTML.trim() !== "") {
-        notifContainer.appendChild(notifBox); // Ini akan menambahkan elemen baru tanpa menimpa yang sudah ada
+        notifContainer.appendChild(notifBox);
     } else {
         console.warn("Empty notification template detected, not adding it.");
     }
@@ -76,6 +70,6 @@ async function showNotification(activity) {
 function closeNotifBox(id) {
     const notifBox = document.getElementById(`notif-box-${id}`);
     if (notifBox) {
-        notifBox.style.display = 'none'; // Menyembunyikan kotak notifikasi
+        notifBox.style.display = 'none';
     }
 }

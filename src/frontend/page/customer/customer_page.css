@@ -50,13 +50,11 @@
 
 .justify-center {
     display: flex;
-    justify-content: center; /* Centers the content horizontally */
-    align-items: center; /* Optionally, centers the content vertically if needed */
-    gap: 10px; /* Optional: space between elements */
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 .status p {
-    /* background-color: #4ac4ac;
-    color: white; */
     padding: 10px;
     border-radius: 30px;
 }
@@ -81,24 +79,24 @@
 .actions button {
     align-items: center;
     justify-content: center;
-    background-color: #ffec99; /* Warna tombol */
+    background-color: #ffec99;
     border: none;
     padding: 10px;
     margin: 5px;
     border-radius: 20px;
     cursor: pointer;
-    width: 60px; /* Lebar tombol */
-    height: 40px; /* Tinggi tombol */
-    transition: background-color 0.3s ease; /* Efek hover */
+    width: 60px; 
+    height: 40px; 
+    transition: background-color 0.3s ease;
 }
 
 .actions button:hover {
-    background-color: #4ac4ac; /* Warna tombol saat hover */
+    background-color: #4ac4ac;
 }
 
 .actions button img {
     vertical-align: middle;
-    pointer-events: none; /* Agar klik hanya pada tombol, bukan pada ikon */
+    pointer-events: none;
 }
 
 .text-header{
@@ -115,52 +113,48 @@
 .add-customer-button button {
     align-items: center;
     justify-content: center;
-    background-color: #463B96; /* Warna tombol */
+    background-color: #463B96;
     border: none;
     padding: 10px;
     margin: 15px;
     border-radius: 50%;
     cursor: pointer;
-    width: 50px; /* Lebar tombol */
-    height: 50px; /* Tinggi tombol */
+    width: 50px; 
+    height: 50px;
     position: fixed;
     bottom: 0;
     right: 0;
 }
 
-  /* Style for buttons */
   button {
-    padding: 10px 20px; /* Adjust padding for size */
-    background-color: #FFC131; /* Primary blue color */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 16px; /* Adjust font size */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+    padding: 10px 20px;
+    background-color: #FFC131; 
+    color: white;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
-  /* Hover effect for buttons */
   button:hover {
-    background-color: #FFC131; /* Darker blue */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    background-color: #FFC131; 
+    transform: scale(1.05);
   }
   
-  /* Disabled button styles */
   button:disabled {
-    background-color: #CCCCCC; /* Gray for disabled */
-    cursor: not-allowed; /* Change cursor for disabled */
+    background-color: #CCCCCC;
+    cursor: not-allowed;
   }
   
-  /* Style for the page number span */
   #page-number {
-    font-size: 18px; /* Larger font size */
-    font-weight: bold; /* Make it bold */
-    margin: 0 10px; /* Add spacing around it */
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 10px; 
   }
   
-  /* Additional container styling for buttons */
+ 
   button + span, button + button {
-    margin-left: 10px; /* Add space between buttons or button and span */
+    margin-left: 10px;
   }
   

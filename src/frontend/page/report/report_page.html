@@ -10,7 +10,6 @@
     <div class="report-page">
         <header>
             <div class="date-filters">
-                <!-- Start Date -->
                 <div class="date-container" id="start-date-container">
                     <h1>Start Date</h1>
                     <label for="start-date" class="date-label">
@@ -59,14 +58,14 @@
     </div>
 
     <script>
-        // Trigger calendar when clicking the start date container
+        
         document.getElementById("start-date-container").addEventListener("click", function () {
-            document.getElementById("start-date").focus(); // Focus input to open calendar
+            document.getElementById("start-date").focus();
         });
 
-        // Trigger calendar when clicking the end date container
+        
         document.getElementById("end-date-container").addEventListener("click", function () {
-            document.getElementById("end-date").focus(); // Focus input to open calendar
+            document.getElementById("end-date").focus();
         });
     </script>
     <script src="report_page.js"></script>

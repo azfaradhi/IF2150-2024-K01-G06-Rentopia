@@ -20,24 +20,6 @@ async function fetchCar(page, seatValue, availValue) {
     }
 }
 
-// async function fetchCarBySeat(page) {
-//     try {
-//         const apiUrlCar = `http://localhost:5000/api/car/alldata?page=${page}&items_per_page=${items_per_page_car}`;
-//         const responseCar = await fetch(apiUrlCar);
-//         if (!responseCar.ok) {
-//             throw new Error(`Error fetching activity: ${response.statusText}`);
-//         }
-//         console.log("masuk");
-//         const dataCar = await responseCar.json();
-//         const filterCar = dataCar.cars.filter(car => car.seat_car === number);
-
-//         displayCars(filterCar,page,dataCar.total_pages);
-//         console.log(dataCar);
-//     } catch (error) {
-//         console.error("Failed to fetch car:", error);
-//     }
-// }
-
 function carPageCommandChoice(){
     const searchButton = document.getElementById("car-search");
     const addButton = document.getElementById("btn-add-car");
@@ -86,21 +68,16 @@ function carPageCommandChoice(){
         }
         })
     }
-    // else{
-    //     console.error("Add customer button not found");
-    // }
 }
 
 function displayCars(cars, page, totalPage) {
     const containerListCars = document.getElementById('car-card-container');
     containerListCars.innerHTML = "";
 
-    // Create rows for the 2x2 layout
     for (let i = 0; i < cars.length; i += 2) {
         const rowElement = document.createElement('div');
-        rowElement.className = 'car-row'; // Add a row class for styling
+        rowElement.className = 'car-row'; 
 
-        // Add up to 2 cars per row
         for (let j = 0; j < 2 && i + j < cars.length; j++) {
             const car = cars[i + j];
             const carElement = document.createElement('div');
@@ -183,10 +160,9 @@ function displayCars(cars, page, totalPage) {
             rowElement.appendChild(carElement);
         }
 
-        containerListCars.appendChild(rowElement); // Add each row to the container
+        containerListCars.appendChild(rowElement); 
     }
 
-    // Update pagination details
     const pageNumberDisplay = document.getElementById("page-number");
     pageNumberDisplay.textContent = `Page: ${page}`;
 
