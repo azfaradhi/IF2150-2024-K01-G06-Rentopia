@@ -1,9 +1,9 @@
 import psycopg2
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 ENV_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
-load_dotenv(ENV_PATH)
+# load_dotenv(ENV_PATH)
 
 # DB_USER = os.getenv('DB_USER')
 # DB_PASS = os.getenv('DB_PASS')
