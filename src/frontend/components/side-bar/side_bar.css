@@ -1,13 +1,14 @@
 #sidebar {
     width: auto;
-    height: 87%;
+    height: 90%;
     background-color: #ffec99;
     color: white;
-    padding: 20px;
-    position: absolute; 
-    display: flex;
-    flex-direction: column;
+    padding: 30px;
+    /* position: absolute;  */
+    /* display: flex; */
+    /* flex-direction: column; */
     border-radius: 20px;
+    margin: 10px;
 }
 
 #sidebar nav a {

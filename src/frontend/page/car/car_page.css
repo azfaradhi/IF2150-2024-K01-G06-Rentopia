@@ -188,7 +188,7 @@
 
 .car-image {
     display:flex;
-    width: 280px;
+    width: 100%;
     height: 150px;
     overflow: hidden;
     border-radius: 20px;
@@ -197,6 +197,7 @@
     background-color: white;
     display: flex;
     justify-content: center;
+    object-fit: cover;
 }
 
 
