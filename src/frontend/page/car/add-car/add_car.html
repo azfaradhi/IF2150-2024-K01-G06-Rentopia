@@ -13,12 +13,8 @@
                 <h1>ID</h1>
                 <input id="car-id" type="text" placeholder="ID">
             </div>
-            <div class="container">
-                <input type="file" id="file-input" accept="image/*">
-                <label for="file-input" class="custom-file-upload">
-                    Choose Image
-                </label>
-                
+            <div>
+                <input id="car-image-input" class="" type="file" accept="image/*" onchange="showPreview(event);">
                 <div class="preview">
                     <img id="car-image-preview" src="" alt="Image Preview">
                 </div>
