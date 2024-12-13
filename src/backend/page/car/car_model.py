@@ -102,7 +102,7 @@ class Car:
                 cur.execute("""
                     SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
                     FROM cars
-                    ORDER BY id_car  -- Adjust ordering if necessary
+                    ORDER BY id_car
                     LIMIT %s OFFSET %s
                 """, (items_per_page, offset))
             elif(filterseat < 0):
@@ -110,7 +110,7 @@ class Car:
                     SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
                     FROM cars
                     WHERE status_car = %s
-                    ORDER BY id_car  -- Adjust ordering if necessary
+                    ORDER BY id_car
                     LIMIT %s OFFSET %s
                 """, (status, items_per_page, offset))
             elif(filteravailability < 0):
@@ -118,7 +118,7 @@ class Car:
                     SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
                     FROM cars
                     WHERE seat_car = %s
-                    ORDER BY id_car  -- Adjust ordering if necessary
+                    ORDER BY id_car
                     LIMIT %s OFFSET %s
                 """, (status, items_per_page, offset))
             else:
@@ -126,7 +126,7 @@ class Car:
                     SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
                     FROM cars
                     WHERE seat_car = %s AND status_car = %s
-                    ORDER BY id_car  -- Adjust ordering if necessary
+                    ORDER BY id_car
                     LIMIT %s OFFSET %s
                 """, (filterseat, status, items_per_page, offset))
             cars = cur.fetchall()

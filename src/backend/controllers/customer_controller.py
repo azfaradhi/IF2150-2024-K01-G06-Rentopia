@@ -7,8 +7,9 @@ from flask import Blueprint, jsonify, request
 customer_bp = Blueprint('customer', __name__)
 
 
-@customer_bp.route('/api/customer/<int:id_cust>', methods=['GET'])
-def get_customer(id_cust):
+@customer_bp.route('/api/customer', methods=['GET'])
+def get_customer():
+    id_cust  = request.args.get('id_cust')
     customer = Customer(id_cust)
     customer.loadCustomer()
 
@@ -33,7 +34,7 @@ def create_customer():
             return jsonify({'error': f'Missing required field: {field}'}), 400
     
     customer = Customer(data['id_cust'])
-    customer.setIDCustomer(int(data['id_cust']))
+    customer.setIDCustomer(data['id_cust'])
     customer.setNameCustomer(data['name_cust'])
     customer.setPhoneCustomer(data['phone_cust'])
     customer.setAddressCustomer(data['address_cust'])
@@ -74,8 +75,9 @@ def get_customer_pagination():
     })
 
 
-@customer_bp.route('/api/customer/delete/<int:id_cust>', methods=['POST'])
-def delete_customer(id_cust):
+@customer_bp.route('/api/customer/delete', methods=['POST'])
+def delete_customer():
+    id_cust  = request.args.get('id_cust')
     customer = Customer(id_cust)
     customer.deleteCustomer()
 
@@ -97,7 +99,7 @@ def update_customer():
             return jsonify({'error': f'Missing required field: {field}'}), 400
     
     customer = Customer(data['id_cust'])
-    customer.setIDCustomer(int(data['id_cust']))
+    customer.setIDCustomer(data['id_cust'])
     customer.setNameCustomer(data['name_cust'])
     customer.setPhoneCustomer(data['phone_cust'])
     customer.setAddressCustomer(data['address_cust'])

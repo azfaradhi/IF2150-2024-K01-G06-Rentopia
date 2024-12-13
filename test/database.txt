@@ -1,0 +1,43 @@
+INSERT INTO customers (
+    id_cust, 
+    name_cust, 
+    phone_cust, 
+    address_cust, 
+    status_cust
+) VALUES
+    ('3201236547890001', 'John Doe', '081234567890', 'Jl. Sudirman No.10, Yogya', 'active'),
+    ('2308753257190003', 'Jane Smith', '081987654321', 'Jl. Thamrin No.20, Bandung', 'inactive'),
+    ('4563217893250002', 'Michael Johnson', '081223344556', 'Jl. Merdeka No.30, Bandung', 'inactive'),
+    ('6783451236780001', 'Sarah Connor', '081998877665', 'Jl. Diponegoro No.15, Surabaya', 'active');
+    ('1324548902180004', 'Jake Conor', '0821317241', 'Jl. Ganesa No.15, Bandung', 'inactive');
+
+
+INSERT INTO cars (
+    id_car, 
+    photo_car, 
+    model_car, 
+    type_car, 
+    seat_car, 
+    price_car, 
+    status_car
+) VALUES
+    ('D 1233 WRH', 'photo_car1.jpg', 'Honda Jazz', 'Hatchback', 6, 300000, 'available'),
+    ('B 2389 ABC', 'photo_car2.jpg', 'Toyota Avanza', 'MPV', 5, 250000, 'available'),
+    ('H 6748 HR', 'photo_car3.jpg', 'Mitsubishi Xpander', 'MPV', 7, 350000, 'available'),
+    ('D 1291 WN', 'photo_car4.jpg', 'Toyota Fortuner', 'SUV', 7, 500000, 'reserved'),
+    ('D 1563 JH', 'photo_car5.jpg', 'Suzuki Ertiga', 'MPV', 7, 280000, 'available');
+
+INSERT INTO activities (
+    id_cust, 
+    id_car, 
+    date_range, 
+    total_price, 
+    status_car, 
+    status_cust, 
+    status_activity
+) VALUES
+    (3201236547890001, 'B 2389 ABC', ARRAY['2024-12-05', '2024-12-10']::DATE[], 500000, 'available', 'active', 'in-progress'),
+    (4563217893250002, 'D 1233 WRH', ARRAY['2024-12-06', '2024-12-07']::DATE[], 300000, 'reserved', 'active', 'completed');
+
+
+    3275627310002

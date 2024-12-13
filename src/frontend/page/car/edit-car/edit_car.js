@@ -24,8 +24,9 @@ async function initEditCar(id){
     try {
         const apiGetStatus = `http://localhost:5000/api/car/show/${id}`;
         const responseStatus = await fetch(apiGetStatus);
+        console.log(id);
 
-        console.log("masuk dong");
+        
         if (!responseStatus.ok){
             throw new Error(`Failed to create activity: ${responseStatus.statusText}`);
         }
@@ -33,12 +34,7 @@ async function initEditCar(id){
         // currentStatus = resultAdd.status_car;
         console.log(resultAdd);
         currentStatus = resultAdd.status_car;
-        console.log("status: ", currentStatus);
-
-        document.getElementById("car-model").value = "";
-        document.getElementById("car-type").value = "";
-        document.getElementById("car-seat").value = "";
-        document.getElementById("car-price").value = "";   
+        console.log("status: ", currentStatus); 
 
     }
     catch (error){

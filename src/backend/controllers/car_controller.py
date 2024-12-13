@@ -57,8 +57,9 @@ def create_car():
 
     return jsonify({'message': 'Car created successfully'})
 
-@car_bp.route('/api/car/show/<string:id_car>', methods=['GET'])
-def show_car(id_car):
+@car_bp.route('/api/car/show', methods=['GET'])
+def show_car():
+    id_car = request.args.get('id_car')
     car = Car(id_car)
     car.loadCar()
 

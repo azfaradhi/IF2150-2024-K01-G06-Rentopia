@@ -3,10 +3,10 @@ console.log("apdet cust");
 let custData = null;
 
 async function initUpdateCustomer(id_cust) {
-    console.log("apdet custttttt");
-    const placeholder = await fetch(`http://127.0.0.1:5000/api/customer/${id_cust}`);
+    // console.log("apdet custttttt");
+    const placeholder = await fetch(`http://127.0.0.1:5000/api/customer?id_cust=${id_cust}`);
     const data = await placeholder.json();
-    console.log("datadsadsiadjsaiodjsaiojdoia");
+    // console.log("datadsadsiadjsaiodjsaiojdoia");
     console.log(data);
 
     const updateButton = document.getElementById("btn-update");
