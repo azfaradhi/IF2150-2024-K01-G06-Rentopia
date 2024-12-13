@@ -50,7 +50,7 @@ async function initAddCar(){
                 }
                 const result = await response.json();
                 console.log("Server Response: ", result.message);
-                alert("Success adding car!");
+                alert(result.message);
                 window.location.hash = '/car';
             } catch (error) {
                 console.error("Error: ", error);
