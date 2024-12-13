@@ -64,7 +64,7 @@ function carPageCommandChoice(){
         else{
             await fetchCar(currentPageCars, seatValue, availValue);
             console.log('Selected Seat:', seatValue, 'Type:', typeof seatValue);
-            console.log('Selected Availability:', availValue, 'Type:', typeof availabilityValue);            
+            console.log('Selected Availability:', availValue, 'Type:', typeof availValue);            
         }
         })
     }
