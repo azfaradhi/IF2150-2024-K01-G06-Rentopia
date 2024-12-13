@@ -12,9 +12,14 @@
             <div>
                 <h1>ID</h1>
                 <input id="car-id" type="text" placeholder="ID">
+                <p>* This section cannot be edited in the future, Please kindly recheck </p>
             </div>
-            <div>
-                <input id="car-image-input-add" type="file" accept="image/*" onchange="showPreview(event);">
+            <div class="containerr">
+                <input type="file" id="file-input" accept="image/*">
+                <label for="file-input" class="custom-file-upload">
+                    Choose Image
+                </label>
+                
                 <div class="preview">
                     <img id="car-image-preview" src="" alt="Image Preview">
                 </div>
@@ -46,6 +51,8 @@
         </div>
     </div>
 
-    <script src="add_car.js" defer></script>
+    <script src="add_car.js" defer>
+
+    </script>
 </body>
 </html>

@@ -68,12 +68,9 @@ async function initEditCar(id){
                 document.getElementById("car-type").value = "";
                 document.getElementById("car-seat").value = "";
                 document.getElementById("car-price").value = "";   
-            
             }
 
             if (valid){
-
-
                 const formData = new FormData();
                 formData.append("id_car", id);
                 formData.append("model_car", model);
