@@ -94,7 +94,7 @@ class Car:
         filteravailability = int(filteravailability)
         if(filteravailability == 0):
             status = 'reserved'
-        else:
+        elif(filteravailability == 1):
             status = 'available'
 
         try:
@@ -120,7 +120,7 @@ class Car:
                     WHERE seat_car = %s
                     ORDER BY id_car  -- Adjust ordering if necessary
                     LIMIT %s OFFSET %s
-                """, (status, items_per_page, offset))
+                """, (filterseat, items_per_page, offset))
             else:
                 cur.execute("""
                     SELECT id_car, photo_car, model_car, type_car, seat_car, price_car, status_car
