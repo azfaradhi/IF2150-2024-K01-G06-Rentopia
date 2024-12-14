@@ -9,7 +9,7 @@
 # **Rentopia**
 
 <p align="center">
-  <img src="logo.png" alt="PurryMail Logo">
+  <img src="logo.png" alt="Rentopia Logo">
 </p>
 
 
@@ -115,6 +115,47 @@ Berikut merupakan daftar modul yang diimplementasikan dalam P/L rentopia, besert
   </tbody>
 
 </table>
+
+
+### Home Page
+<p align="center">
+  <img src="doc/page-history.png" alt="Page History">
+</p>
+
+### Page List of Car
+<p align="center">
+  <img src="doc/page-list-car.png" alt="Page List Car">
+</p>
+
+### Page List of Customer
+<p align="center">
+  <img src="doc/page-list-customer.png" alt="Page List Customer">
+</p>
+
+### Page Add Activity
+<p align="center">
+  <img src="doc/page-add-activity.png" alt="Page Add Activity">
+</p>
+
+### Page Add Car
+<p align="center">
+  <img src="doc/page-add-car.png" alt="Page Add Car">
+</p>
+
+### Page Add Customer
+<p align="center">
+  <img src="doc/page-add-customer.jpg" alt="Page Add Customer">
+</p>
+
+### Page Report
+<p align="center">
+  <img src="doc/page-report.png" alt="Page Report">
+</p>
+
+### Page Notification
+<p align="center">
+  <img src="doc/page-notification.png" alt="Page Notification">
+</p>
 
 
 ## Daftar Tabel Basis Data
