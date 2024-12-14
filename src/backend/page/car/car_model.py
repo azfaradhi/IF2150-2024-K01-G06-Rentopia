@@ -230,7 +230,10 @@ class Car:
                         WHERE id_car = %s
                     """, (self.id_car, ))
             existingCar = cur.fetchone()
-            return existingCar
+            if existingCar:
+                return True
+            else:
+                return False
         except Exception as e:
             conn.rollback()
             print(f"Error: {e}")
