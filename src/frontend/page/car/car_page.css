@@ -58,7 +58,7 @@
 .search-button button {
     align-items: center;
     justify-content: center;
-    background-color: white; 
+    background-color: #463B96; 
     border: none;
     padding: 5px;
     width: 150px;
@@ -71,7 +71,7 @@
 }
 
 .search-button:hover button{
-    background-color:#463B96;
+    background-color:#6054bc;
     color: white;
 }
 
@@ -86,11 +86,11 @@
     background-color: #463B96; 
     border: none;
     padding: 10px;
-    margin: 15px;
+    margin: 25px;
     border-radius: 50%;
     cursor: pointer;
-    width: 50px; 
-    height: 50px; 
+    width: 75px; 
+    height: 75px; 
     position: fixed;
     bottom: 0;
     right: 0;
@@ -281,7 +281,7 @@ button {
     gap: 10px;
 }
 
-p {
+/* p {
     font-size: 12px;
     margin-bottom: -5px;
-}
+} */
