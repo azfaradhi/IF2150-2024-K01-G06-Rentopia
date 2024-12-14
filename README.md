@@ -105,9 +105,9 @@ Berikut merupakan daftar modul yang diimplementasikan dalam P/L rentopia, besert
     </tr>
     <tr>
       <th> 13523115 </th>
-        <td> Controller <br> Model <br> UI </td>
-        <td> Controller <br> Model <br> UI </td>
-        <td> Controller <br> Model <br> UI </td>
+        <td> Controller <br> UI </td>
+        <td> Controller <br> UI </td>
+        <td> Controller <br> UI </td>
         <td> - </td>
         <td> - </td>
         <td> Set Up Database & Aplikasi </td>
