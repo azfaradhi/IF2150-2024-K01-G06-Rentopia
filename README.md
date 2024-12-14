@@ -126,11 +126,9 @@ Berikut merupakan daftar tabel basis data yang digunakan dalam P/L ini. Header t
 | id_cust                  | photo_car  | name_cust             | date_end      |
 | name_cust                | model_car  | phone_cust            | id_activity   |
 | id_car                   | type_car   | address_cust          | -             |
-| model_car                | seat_car   | additional_info_cust  | -             |
-| date_range               | price_car  | status_cust           | -             |
+| model_car                | seat_car   | status_cust           | -             |
+| date_range               | price_car  | -                     | -             |
 | total_price              | status_car | -                     | -             |
 | status_car               | -          | -                     | -             |
 | status_cust              | -          | -                     | -             |
 | status_activity          | -          | -                     | -             |
-| additional_info_activity | -          | -                     | -             |
-
