@@ -5,7 +5,9 @@ class Activity:
     def __init__(self, id_activity):
         self.id_activity = id_activity
         self.__id_cust = None
+        self.__name_cust = None
         self.__id_car = None
+        self.__model_car = None
         self.__date_range = None
         self.__total_price = None
         self.__status_car = None
@@ -26,12 +28,14 @@ class Activity:
 
         if dataActivity:
             self.__id_cust = dataActivity[1]
-            self.__id_car = dataActivity[2]
-            self.__date_range = dataActivity[3]
-            self.__total_price = dataActivity[4]
-            self.__status_car = dataActivity[5]
-            self.__status_cust = dataActivity[6]
-            self.__status_activity = dataActivity[7]
+            self.__name_cust = dataActivity[2]
+            self.__id_car = dataActivity[3]
+            self.__model_car = dataActivity[4]
+            self.__date_range = dataActivity[5]
+            self.__total_price = dataActivity[6]
+            self.__status_car = dataActivity[7]
+            self.__status_cust = dataActivity[8]
+            self.__status_activity = dataActivity[9]
 
     def saveActivity(self):
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
@@ -47,10 +51,13 @@ class Activity:
             existingActivity = cur.fetchone()
 
             if existingActivity:
+                print("ada")    
                 cur.execute("""
                             UPDATE activities
                             SET id_cust = %s, 
+                                name_cust = %s,
                                 id_car = %s, 
+                                model_car = %s,
                                 date_range = %s, 
                                 total_price = %s, 
                                 status_car = %s, 
@@ -59,7 +66,9 @@ class Activity:
                             WHERE id_activity = %s
                         """, (
                                 self.__id_cust,
+                                self.__name_cust,
                                 self.__id_car,
+                                self.__model_car,
                                 self.__date_range,
                                 self.__total_price,
                                 self.__status_car,
@@ -69,11 +78,23 @@ class Activity:
                         ))
             else:
                 cur.execute("""
-                            INSERT INTO activities (id_cust, id_car, date_range, total_price, status_car, status_cust, status_activity)
-                            VALUES (%s, %s, %s, %s, %s, %s, %s)
+                            INSERT INTO activities (id_cust, name_cust, id_car, model_car, date_range, total_price, status_car, status_cust, status_activity)
+                            VALUES (
+                                %s, 
+                                (SELECT name_cust FROM customers WHERE id_cust = %s), 
+                                %s, 
+                                (SELECT model_car FROM cars WHERE id_car = %s), 
+                                %s, 
+                                %s, 
+                                %s, 
+                                %s, 
+                                %s
+                            )
                             RETURNING id_activity
                         """, (
                             self.__id_cust,
+                            self.__id_cust,
+                            self.__id_car,
                             self.__id_car,
                             self.__date_range,
                             self.__total_price,
@@ -123,11 +144,9 @@ class Activity:
         
         try:
             cur.execute("""
-                SELECT a.id_activity, a.id_cust, c.name_cust, a.id_car, ca.model_car, a.date_range, a.status_activity
-                FROM activities a
-                JOIN customers c ON a.id_cust = c.id_cust
-                JOIN cars ca ON a.id_car = ca.id_car
-                ORDER BY a.id_activity
+                SELECT id_activity, id_cust, name_cust, id_car, model_car, date_range, status_activity
+                FROM activities 
+                ORDER BY id_activity DESC
                 LIMIT %s OFFSET %s
             """, (items_per_page, offset))
             
@@ -186,12 +205,10 @@ class Activity:
         
         try:
             cur.execute("""
-                SELECT a.id_activity, a.id_cust, c.name_cust, a.id_car, ca.model_car, a.date_range, a.total_price
-                FROM activities a
-                JOIN customers c ON a.id_cust = c.id_cust
-                JOIN cars ca ON a.id_car = ca.id_car
-                WHERE a.date_range[1] BETWEEN %s AND %s
-                ORDER BY a.date_range[1]
+                SELECT id_activity, id_cust, name_cust, id_car, model_car, date_range, total_price
+                FROM activities
+                WHERE date_range[1] BETWEEN %s AND %s
+                ORDER BY date_range[1]
                 LIMIT %s OFFSET %s
             """, (date_range[0],date_range[1],items_per_page, offset))
             
@@ -225,6 +242,17 @@ class Activity:
     
     def getIDCustomer(self):
         return self.__id_cust
+    def getNameCustomer(self):
+        return self.__name_cust
+    
+    def getModelCar(self):
+        return self.__model_car
+    
+    def setNameCustomer(self, name_cust):
+        self.__name_cust = name_cust
+    
+    def setModelCar(self, model_car):
+        self.__model_car = model_car
     
     def getPrice(self):
         return self.__total_price
