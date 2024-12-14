@@ -1,5 +1,17 @@
 # Rekayasa Perangkat Lunak G06 - K01
 
+![OS](https://img.shields.io/badge/OS-Linux%20%7C%20MacBook%20%7C%20Windows%20%7C%20Windows%20WSL-blue?logo=linux)  
+![Language](https://img.shields.io/badge/Language-Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20CSS-brightgreen?logo=python&logoColor=white)  
+![Build Tool](https://img.shields.io/badge/Tools-Flask%20%7C%20Pyscope2-orange?logo=flask)  
+![Database](https://img.shields.io/badge/Database-PostgreSQL-blue?logo=postgresql)  
+![CLI](https://img.shields.io/badge/CLI-Electron-yellow?logo=electron)  
+
+# **Rentopia**
+
+<div style="text-align: center;">
+  <img src="logo.png" alt="PurryMail Logo">
+</div>
+
 ## Penjelasan Aplikasi Rentopia
 Rentopia adalah P/L berbentuk aplikasi yang bertujuan untuk membantu pengguna mengelola bisnis rental mobil secara lebih efisien dan akurat. P/L ini dirancang untuk memusatkan catatan aktivitas peminjaman, pelanggan, serta unit mobil yang dimiliki, sehingga memudahkan pengelolaan operasional sehari-hari. Rentopia juga dilengkapi dengan fitur notifikasi yang mengingatkan pengguna tentang jadwal pengembalian mobil yang belum dilakukan, serta menyediakan laporan berkala yang dapat disesuaikan dengan kebutuhan pengguna. Dengan demikian, Rentopia membantu pengguna dalam meningkatkan efisiensi operasional dan keakuratan pendataan usaha rental mobil.
 
