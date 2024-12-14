@@ -1,5 +1,13 @@
+h1 {
+    font-size: 3rem;
+}
+
 h2 {
     font-size: 20px;
+}
+
+p {
+    font-size: 12px;
 }
 
 input{
@@ -49,3 +57,4 @@ input::placeholder {
     color: #b37d00;
     font-style: italic; 
 }
+

@@ -119,6 +119,11 @@ function displayCustomer(customers, page, totalPage) {
                 return;
             }
             
+            // Add confirmation dialog
+            const confirmDelete = confirm("Are you sure you want to delete this customer?");
+            if (!confirmDelete) {
+                return;
+            }
 
             try {
                 const response = await fetch(`http://127.0.0.1:5000/api/customer/delete/${custId}`, {
