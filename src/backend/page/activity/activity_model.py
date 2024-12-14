@@ -55,7 +55,7 @@ class Activity:
                                 total_price = %s, 
                                 status_car = %s, 
                                 status_cust = %s,
-                                status_activity = %s,
+                                status_activity = %s
                             WHERE id_activity = %s
                         """, (
                                 self.__id_cust,

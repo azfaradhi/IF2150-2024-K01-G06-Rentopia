@@ -60,6 +60,10 @@ function displayCustomer(customers, page, totalPage) {
     const containerList = document.getElementById('customer-list');
     containerList.innerHTML = "";
 
+    if (customers.length === 0) {
+        alert("No customers found");
+    }
+
     customers.forEach(customer => {
         const custElement = document.createElement('div');
         custElement.className = "info-customers";
