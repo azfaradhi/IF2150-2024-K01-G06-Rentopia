@@ -35,7 +35,7 @@ def create_customer():
     existing_customers = customer.existCustomer() or []  # Default to an empty list if None
 
     if (data['id_cust'] in existing_customers):
-        return jsonify({'message': f'Customer with ID {data['id_cust']} already exists.'})
+        return jsonify({'message': f"Customer with ID {data['id_cust']} already exists."})
     else:
         customer.setIDCustomer(data['id_cust'])
         customer.setNameCustomer(data['name_cust'])
