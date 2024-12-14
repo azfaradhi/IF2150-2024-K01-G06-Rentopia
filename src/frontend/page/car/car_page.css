@@ -55,6 +55,14 @@
     margin-top: 5px;
 }
 
+#car-search {
+    color : black;
+}
+
+#car-search:hover {
+    color: #CCCCCC;
+}
+
 .search-button button {
     align-items: center;
     justify-content: center;

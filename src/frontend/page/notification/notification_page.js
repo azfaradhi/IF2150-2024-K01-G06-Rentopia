@@ -64,6 +64,15 @@ async function showNotification(activity) {
         notifContainer.appendChild(notifBox);
     } else {
         console.warn("Empty notification template detected, not adding it.");
+        const emptyNotifBox = document.createElement('div');
+        emptyNotifBox.classList.add('notif-box');
+        emptyNotifBox.innerHTML = `
+            <div>
+                <b style="font-size: 20px;">NOTIFICATION</b>
+                <p>No activity found.</p>
+            </div>
+        `;
+        notifContainer.appendChild(emptyNotifBox);
     }
 }
 
