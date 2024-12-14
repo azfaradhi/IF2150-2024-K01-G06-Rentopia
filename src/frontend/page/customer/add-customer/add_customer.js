@@ -36,17 +36,18 @@ async function  initAddCustomer(param) {
                         body: JSON.stringify(customerData),
                     });
                     console.log("Collect data customer: ", JSON.stringify(customerData));
-                    console.log("masuk22");
                     if (!response.ok){
-                        throw new Error(`Failed to create car: ${response.statusText}`);
+                        throw new Error(`Failed to create customer: ${response.statusText}`);
                     }
                     const result = await response.json();
                     console.log("Server Response: ", result.message);
+                    const hasil = result.message;
+                    alert(hasil);
                     document.getElementById("cust-nik").value = "";
                     document.getElementById("cust-name").value = "";
                     document.getElementById("cust-phone").value = "";
                     document.getElementById("cust-address").value = "";
-                    alert("Success adding customer!");
+
                     if (param === "home"){
                         window.location.hash = '/';
                     }
