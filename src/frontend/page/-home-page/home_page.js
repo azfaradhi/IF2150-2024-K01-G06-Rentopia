@@ -75,6 +75,10 @@ function displayActivity(activities, page, totalPage) {
     console.log("Current page:", page, "Total pages:", totalPage);
     const tableBody = document.getElementById("activity-table-body");
     tableBody.innerHTML = "";
+    
+    if (activities.length === 0) {
+        alert("No activities found");
+    }
 
     activities.forEach(activity =>{
         const row = document.createElement("tr");
@@ -99,21 +103,20 @@ function displayActivity(activities, page, totalPage) {
         if (markFinished){
             markFinished.addEventListener('click', async () =>{
                 console.log(`Mark finished activity with ID: ${activity.id_activity}`);
-                const carAct = {
+                const finishAct = {
                     id_activity : activity.id_activity,
                     status_activity : "completed",
                     status_car : "available",
                     status_cust : "inactive"
                 }
                 try {
-                    const responseEditAct = await fetch(`http://localhost:5000/api/activity/update/${activity.id_activity}`, {
+                    const responseEditAct = await fetch(`http://127.0.0.1:5000/api/activity/update/${activity.id_activity}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(carAct),
+                        body: JSON.stringify(finishAct),
                     });
-                    console.log("masuk dong");
                     if (!responseEditAct.ok){
                         throw new Error(`Failed to update activity: ${responseEditAct.statusText}`);
                     }
@@ -161,7 +164,6 @@ function displayActivity(activities, page, totalPage) {
                         },
                         body: JSON.stringify(cust_update),
                     });
-                    console.log("masuk dong");
                     if (!responseEditAct.ok){
                         throw new Error(`Failed to update activity: ${responseEditAct.statusText}`);
                     }
