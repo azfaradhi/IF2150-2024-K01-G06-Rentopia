@@ -8,7 +8,6 @@ class Customer:
         self.__name_cust = None
         self.__phone_cust = None
         self.__address_cust = None
-        self.__additional_info_cust = None
         self.__status_cust = None
     
     def loadCustomer(self):
@@ -27,8 +26,7 @@ class Customer:
             self.__name_cust = dataCustomer[1]
             self.__phone_cust = dataCustomer[2]
             self.__address_cust = dataCustomer[3]
-            self.__additional_info_cust = dataCustomer[4]
-            self.__status_cust = dataCustomer[5]
+            self.__status_cust = dataCustomer[4]
         
     def saveCustomer(self):
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
@@ -165,12 +163,6 @@ class Customer:
     def setAddressCustomer(self, address_cust):
         self.__address_cust = address_cust
 
-    def getAdditionalInfoCustomer(self):
-        return self.__additional_info_cust
-
-    def setAdditionalInfoCustomer(self, additional_info_cust):
-        self.__additional_info_cust = additional_info_cust
-
     def getStatusCustomer(self):
         return self.__status_cust
 
@@ -210,7 +202,6 @@ class Customer:
 # print(cust.getNameCustomer())
 # print(cust.getPhoneCustomer())
 # print(cust.getAddressCustomer())
-# print(cust.getAdditionalInfoCustomer())
 # print(cust.getStatusCustomer())
 
 # print("berhasil")

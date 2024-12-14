@@ -60,7 +60,6 @@ class DatabaseSetup:
                 name_cust TEXT NOT NULL,
                 phone_cust TEXT NOT NULL,
                 address_cust TEXT NOT NULL,
-                additional_info_cust TEXT,
                 status_cust TEXT
             );
         """)
@@ -75,7 +74,6 @@ class DatabaseSetup:
                 status_car TEXT,
                 status_cust TEXT,
                 status_activity TEXT,
-                additional_info_activity TEXT,
                 FOREIGN KEY(id_cust) REFERENCES customers(id_cust) ON DELETE SET NULL,
                 FOREIGN KEY(id_car) REFERENCES cars(id_car) ON DELETE SET NULL
             );

@@ -55,7 +55,6 @@ def show_customer(id_cust):
         'name_cust': customer.name_cust,
         'phone_cust': customer.phone_cust,
         'address_cust': customer.address_cust,
-        'additional_info_cust': customer.additional_info_cust,
         'status_cust': customer.status_cust
     })
 
