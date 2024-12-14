@@ -133,7 +133,7 @@ function displayCars(cars, page, totalPage) {
                 }
             });
         
-
+            let confirmDelete = null;
             const deleteButton = carElement.querySelector('.btn-delete');
             deleteButton.addEventListener('click', async () => {
                 const carId = deleteButton.getAttribute('data-car-id');
@@ -143,7 +143,7 @@ function displayCars(cars, page, totalPage) {
                     alert("Cannot delete reserved car!");
                     return;
                 } else {
-                    const confirmDelete = window.confirm("Are you sure you want to delete this car?");
+                    confirmDelete = window.confirm("Are you sure you want to delete this car?");
                 }
                 if (!confirmDelete) {
                     console.log("Car deletion cancelled.");
