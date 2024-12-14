@@ -39,7 +39,6 @@ def get_activity(id_activity):
         'status_car': activity.getStatusCar(),
         'status_cust': activity.getIDCustomer(),
         'status_activity': activity.getStatusActivity(),
-        'additional_info_activity': activity.getAdditionalInfo()
     })
 
 
@@ -60,7 +59,6 @@ def create_activity():
     activity.setStatusCar(data['status_car'])
     activity.setStatusCust(data['status_cust'])
     activity.setStatusActivity(data['status_activity'])
-    activity.setAdditionalInfo(data['additional_info_activity'])
     activity.saveActivity()
 
     car = Car(data['id_car'])
@@ -90,7 +88,6 @@ def show_activity():
         'status_car': activity.getStatusCar(),
         'status_cust': activity.getStatusCust(),
         'status_activity': activity.getStatusActivity(),
-        'additional_info_activity': activity.getAdditionalInfo()
     })
 
 

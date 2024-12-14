@@ -130,7 +130,6 @@ async function initAddActivity() {
                     status_car : "reserved",
                     status_cust : "active",
                     status_activity : "in-progress",
-                    additional_info_activity: "",
                 };
                 console.log(activitiesData);
                 try {

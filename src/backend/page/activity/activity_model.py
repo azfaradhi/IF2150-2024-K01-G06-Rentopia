@@ -11,7 +11,6 @@ class Activity:
         self.__status_car = None
         self.__status_cust = None
         self.__status_activity = None
-        self.__additional_info_activity = None
 
     def loadActivity(self):
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
@@ -33,7 +32,6 @@ class Activity:
             self.__status_car = dataActivity[5]
             self.__status_cust = dataActivity[6]
             self.__status_activity = dataActivity[7]
-            self.__additional_info_activity = dataActivity[8]
 
     def saveActivity(self):
         db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
@@ -58,7 +56,6 @@ class Activity:
                                 status_car = %s, 
                                 status_cust = %s,
                                 status_activity = %s,
-                                additional_info_activity = %s
                             WHERE id_activity = %s
                         """, (
                                 self.__id_cust,
@@ -68,13 +65,12 @@ class Activity:
                                 self.__status_car,
                                 self.__status_cust,
                                 self.__status_activity,
-                                self.__additional_info_activity,
                                 self.id_activity
                         ))
             else:
                 cur.execute("""
-                            INSERT INTO activities (id_cust, id_car, date_range, total_price, status_car, status_cust, status_activity, additional_info_activity)
-                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                            INSERT INTO activities (id_cust, id_car, date_range, total_price, status_car, status_cust, status_activity)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s)
                             RETURNING id_activity
                         """, (
                             self.__id_cust,
@@ -84,7 +80,6 @@ class Activity:
                             self.__status_car,
                             self.__status_cust,
                             self.__status_activity,
-                            self.__additional_info_activity
                         ))
                 self.id_activity = cur.fetchone()[0]
             conn.commit()
@@ -243,9 +238,6 @@ class Activity:
     def getStatusActivity(self):
         return self.__status_activity
     
-    def getAdditionalInfo(self):
-        return self.__additional_info_activity
-    
     def setIDCustomer(self, id_cust):
         self.__id_cust = id_cust
     
@@ -269,9 +261,6 @@ class Activity:
     
     def setStatusActivity(self, status_activity):
         self.__status_activity = status_activity
-
-    def setAdditionalInfo(self, additional_info):
-        self.__additional_info_activity = additional_info
     
     def getDateRange(self):
         return self.__date_range
