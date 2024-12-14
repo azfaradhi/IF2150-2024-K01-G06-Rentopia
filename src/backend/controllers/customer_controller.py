@@ -7,7 +7,7 @@ from flask import Blueprint, jsonify, request
 customer_bp = Blueprint('customer', __name__)
 
 
-@customer_bp.route('/api/customer/<int:id_cust>', methods=['GET'])
+@customer_bp.route('/api/customer/<string:id_cust>', methods=['GET'])
 def get_customer(id_cust):
     customer = Customer(id_cust)
     customer.loadCustomer()
@@ -17,7 +17,6 @@ def get_customer(id_cust):
         'name_cust': customer.getNameCustomer(),
         'phone_cust': customer.getPhoneCustomer(),
         'address_cust': customer.getAddressCustomer(),
-        'additional_info_cust': customer.getAdditionalInfoCustomer(),
         'status_cust': customer.getStatusCustomer()
     })
 
@@ -31,17 +30,20 @@ def create_customer():
     for field in fields: 
         if not data or field not in data or data[field] is None or data[field] == '':
             return jsonify({'error': f'Missing required field: {field}'}), 400
-    
-    customer = Customer(data['id_cust'])
-    customer.setIDCustomer(int(data['id_cust']))
-    customer.setNameCustomer(data['name_cust'])
-    customer.setPhoneCustomer(data['phone_cust'])
-    customer.setAddressCustomer(data['address_cust'])
-    customer.setAdditionalInfoCustomer("")
-    customer.setStatusCustomer("inactive")
-    customer.saveCustomer()
+        
+    customer = Customer(data['id_cust'])  
+    existing_customers = customer.existCustomer() or []  # Default to an empty list if None
 
-    return jsonify({'message': 'Customer created successfully'})
+    if (data['id_cust'] in existing_customers):
+        return jsonify({'message': f'Customer with ID {data['id_cust']} already exists.'})
+    else:
+        customer.setIDCustomer(data['id_cust'])
+        customer.setNameCustomer(data['name_cust'])
+        customer.setPhoneCustomer(data['phone_cust'])
+        customer.setAddressCustomer(data['address_cust'])
+        customer.setStatusCustomer("inactive")
+        customer.saveCustomer()
+        return jsonify({'message': 'Customer created successfully'})
 
 
 @customer_bp.route('/api/customer/show/<int:id_activity>', methods=['GET'])
@@ -74,7 +76,7 @@ def get_customer_pagination():
     })
 
 
-@customer_bp.route('/api/customer/delete/<int:id_cust>', methods=['POST'])
+@customer_bp.route('/api/customer/delete/<string:id_cust>', methods=['POST'])
 def delete_customer(id_cust):
     customer = Customer(id_cust)
     customer.deleteCustomer()
@@ -97,11 +99,9 @@ def update_customer():
             return jsonify({'error': f'Missing required field: {field}'}), 400
     
     customer = Customer(data['id_cust'])
-    customer.setIDCustomer(int(data['id_cust']))
     customer.setNameCustomer(data['name_cust'])
     customer.setPhoneCustomer(data['phone_cust'])
     customer.setAddressCustomer(data['address_cust'])
-    customer.setAdditionalInfoCustomer(customer.getAdditionalInfoCustomer())
     customer.setStatusCustomer(customer.getStatusCustomer())
     customer.saveCustomer()
     
