@@ -25,3 +25,16 @@
     background-color: #ffdc8c;
     border-radius: 10px;
 }
+
+@media (max-width: 1000px) {
+    #sidebar {
+        width: 50%;
+        padding: 15px;
+        font-size: 20px;
+    }
+    #sidebar nav a {
+        padding: 10px 5px;
+        font-size: 20px;
+    }
+}
+

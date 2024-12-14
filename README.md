@@ -24,9 +24,9 @@ Rentopia adalah P/L berbentuk aplikasi yang bertujuan untuk membantu pengguna me
       git clone https://github.com/azfaradhi/IF2150-2024-K01-G06-Rentopia.git
       ```
 ### Set-up Environment
-  2. Set Up PostgreSQL
+  2. Set Up PostgreSQL <br>
      Pastikan Anda telah melakukan setup username dan password database pada perangkat local Anda.
-  3. Set Up Port Database
+  3. Set Up Port Database <br>
      Ubah Database User dan Database Password sesuai yang ada pada local pada src/backend/.env.
       ```bash
       DB_USER = 'your_username'
@@ -53,10 +53,73 @@ Rentopia adalah P/L berbentuk aplikasi yang bertujuan untuk membantu pengguna me
       ```
 
 ## Daftar Modul
+Berikut merupakan daftar modul yang diimplementasikan dalam P/L rentopia, beserta pembagian tugas masing-masing anggota.
+<table> 
+  <thead>
+    <tr>
+      <th> Anggota </th>
+      <th> Modul Activity </th>
+      <th> Modul Customer </th>
+      <th> Modul Car </th>
+      <th> Modul Report </th>
+      <th> Modul Notification </th>
+      <th> Lain - lain </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th> 13523043 </th>
+        <td> Controller </td>
+        <td> Model </td>
+        <td> UI </td>
+        <td> - </td>
+        <td> Model <br> Controller </td>
+        <td> - </td>
+    </tr>
+    <tr>
+      <th> 13523079 </th>
+        <td> Model </td>
+        <td> Controller </td>
+        <td> Controller <br> Model </td>
+        <td> - </td>
+        <td> - </td>
+        <td> - </td>
+    </tr>
+    <tr>
+      <th> 13523095 </th>
+        <td> - </td>
+        <td> UI </td>
+        <td> UI </td>
+        <td> - </td>
+        <td> Controller <br> UI </td>
+        <td> - </td>
+    </tr>
+    <tr>
+      <th> 13523101 </th>
+        <td> - </td>
+        <td> - </td>
+        <td> - </td>
+        <td> UI <br> Controller </td>
+        <td> - </td>
+        <td> Set Up Database & Aplikasi </td>
+    </tr>
+    <tr>
+      <th> 13523115 </th>
+        <td> Controller <br> Model <br> UI </td>
+        <td> Controller <br> Model <br> UI </td>
+        <td> Controller <br> Model <br> UI </td>
+        <td> - </td>
+        <td> - </td>
+        <td> Set Up Database & Aplikasi </td>
+    </tr>
+  </tbody>
+
+</table>
 
 
 ## Daftar Tabel Basis Data
 Berikut merupakan daftar tabel basis data yang digunakan dalam P/L ini. Header tabel menunjukkan nama tabel dan setiap kolom merepresentasikan atribut yang ada pada tabel.
+
 | activities               | cars       | customers             | notifications |
 |----------                |----------  |----------             |----------     |
 | id_activity              | id_car     | id_cust               | id_notif      |

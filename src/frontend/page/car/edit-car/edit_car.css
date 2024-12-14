@@ -140,6 +140,10 @@ input[type="file"]::before {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+#file-input {
+    display: none;
+}
+
 .custom-file-upload {
     display: inline-block;
     padding: 10px 20px;
