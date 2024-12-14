@@ -128,3 +128,7 @@ button + span, button + button {
   cursor: not-allowed;
   pointer-events: none;
 }
+.red-button {
+  background-color: red;
+}
+

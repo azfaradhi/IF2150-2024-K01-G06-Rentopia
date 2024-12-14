@@ -97,7 +97,89 @@ function displayActivity(activities, page, totalPage) {
                 ${activity.status_activity}
             </button>      
         </td>
+        <td>
+            <button id="btn-delete" class="red-button" ><img src="public/trash.svg" alt="" width="20" height="20" style="vertical-align: middle;"></button>  
+        </td>
         `;
+
+        const deleteButton = row.querySelector('#btn-delete');
+        let confirmDelete = null;
+        if (deleteButton){
+            deleteButton.addEventListener('click', async () =>{
+                confirmDelete = window.confirm("Are you sure you want to delete this activity?");
+                if (!confirmDelete){
+                    alert("Activity not deleted");
+                    return;
+                }
+                else{
+
+                    // delete activity
+                    try {
+                        const rensponseDelete = await fetch(`http://127.0.0.1:5000/api/activity/delete/${activity.id_activity}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(activity.id_activity),
+                        })
+                    }
+                    catch (error){
+                        console.log(error);
+                    }
+                    
+
+                    // update car
+
+                    const car_update = {
+                        id_car : activity.id_car,
+                        status_car : "available",
+                    }
+                    try {
+                        const responseEditAct = await fetch(`http://127.0.0.1:5000/api/car/update/status`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(car_update),
+                        });
+                        console.log("masuk dong");
+                        if (!responseEditAct.ok){
+                            throw new Error(`Failed to update activity: ${responseEditAct.statusText}`);
+                        }
+    
+                    }
+                    catch (error){
+                        console.log(error);
+                    }
+
+                    // update customer
+                    const cust_update = {
+                        id_cust : activity.id_cust,
+                        status_cust : "inactive"
+                    }
+                    try {
+                        const responseEditAct = await fetch(`http://127.0.0.1:5000/api/customer/update/status`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(cust_update),
+                        });
+                        if (!responseEditAct.ok){
+                            throw new Error(`Failed to update activity: ${responseEditAct.statusText}`);
+                        }
+                        alert("Success delete activity!");
+                        fetchActivity(currentPage);
+    
+                    }
+                    catch (error){
+                        console.log(error);
+                    }
+
+
+                }
+            })
+        }
 
         const markFinished = row.querySelector('.status-btn');
         if (markFinished){
