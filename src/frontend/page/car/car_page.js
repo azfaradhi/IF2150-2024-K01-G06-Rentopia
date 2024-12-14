@@ -74,6 +74,10 @@ function displayCars(cars, page, totalPage) {
     const containerListCars = document.getElementById('car-card-container');
     containerListCars.innerHTML = "";
 
+    if (cars.length === 0) {
+        alert("No cars found.");
+    }
+
     for (let i = 0; i < cars.length; i += 2) {
         const rowElement = document.createElement('div');
         rowElement.className = 'car-row'; 
