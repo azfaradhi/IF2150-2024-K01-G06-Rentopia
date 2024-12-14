@@ -1,5 +1,18 @@
 # Rekayasa Perangkat Lunak G06 - K01
 
+![OS](https://img.shields.io/badge/OS-Linux%20%7C%20MacBook%20%7C%20Windows%20%7C%20Windows%20WSL-blue?logo=linux)  
+![Language](https://img.shields.io/badge/Language-Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20CSS-brightgreen?logo=python&logoColor=white)  
+![Build Tool](https://img.shields.io/badge/Tools-Flask%20%7C%20Pyscope2-orange?logo=flask)  
+![Database](https://img.shields.io/badge/Database-PostgreSQL-blue?logo=postgresql)  
+![CLI](https://img.shields.io/badge/CLI-Electron-yellow?logo=electron)  
+
+# **Rentopia**
+
+<p align="center">
+  <img src="logo.png" alt="PurryMail Logo">
+</p>
+
+
 ## Penjelasan Aplikasi Rentopia
 Rentopia adalah P/L berbentuk aplikasi yang bertujuan untuk membantu pengguna mengelola bisnis rental mobil secara lebih efisien dan akurat. P/L ini dirancang untuk memusatkan catatan aktivitas peminjaman, pelanggan, serta unit mobil yang dimiliki, sehingga memudahkan pengelolaan operasional sehari-hari. Rentopia juga dilengkapi dengan fitur notifikasi yang mengingatkan pengguna tentang jadwal pengembalian mobil yang belum dilakukan, serta menyediakan laporan berkala yang dapat disesuaikan dengan kebutuhan pengguna. Dengan demikian, Rentopia membantu pengguna dalam meningkatkan efisiensi operasional dan keakuratan pendataan usaha rental mobil.
 
@@ -15,20 +28,27 @@ Rentopia adalah P/L berbentuk aplikasi yang bertujuan untuk membantu pengguna me
      Pastikan Anda telah melakukan setup username dan password database pada perangkat local Anda.
   3. Set Up Port Database
      Ubah Database User dan Database Password sesuai yang ada pada local pada src/backend/.env.
-   ```bash
+      ```bash
       DB_USER = 'your_username'
       DB_PASS = 'your_password'
-   ```
+      ```
+
 ### Menjalankan Database
-   4. Set Up Database & Compile file Python
+   4. Set Up Database, Tools, dan Compile file Python
       ```bash
       cd src/backend
+      
+      pip install -r requirements.txt
+
       python app.py
       ```
 ### Menjalankan Aplikasi
    5. Compile file Java & HTML
       ```bash
       cd src/frontend
+      
+      npm install
+
       npm start
       ```
 

@@ -56,13 +56,14 @@ input[type="text"], input[type="date"] {
     margin: 5px 0;
     border: 1px solid #ffec99;
     background-color: #ffec99;
-    border-radius: 8px;
+    border-radius: 15px;
     font-size: 1rem;
     height:30px;
 }
 
-input[type="text"]{
-    width:80%;
+input::placeholder {
+    color: #b37d00;
+    font-style: italic; 
 }
 
 .cust-text-plus, .car-text-plus {
@@ -76,13 +77,32 @@ input[type="text"]{
     align-items: center;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #ffc131;
-    border: 1px solid #ffec99;
+.button-add-activity {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    display: flex;               
+    justify-content: flex-end;   
+    gap: 10px;                    
+}
+
+#btn-cancel-act, #btn-add-act {
+    padding: 10px;
+    font-size: 16px;
     border-radius: 10px;
-    font-size: 1rem;
+    border: none;
     cursor: pointer;
+    color: white;
+}
+
+#btn-cancel-act {
+    background-color: #ff7a7a; 
+    width: 30%;               
+}
+
+#btn-add-act {
+    background-color: #12b800; 
+    width: 50%;            
 }
 
 #price-container {
@@ -94,25 +114,13 @@ button {
     height: 100px;
 }
 
-#btn-cancel{
-    width:30%;
-    flex: 8; 
-    padding: 10px;
-    margin-right: 4%;
-    font-size: 16px;
-    border-radius: 20px;
-    border: none;
-    background-color: #ff7a7a; 
-    cursor: pointer;
-}
-#btn-add {
-    width: 40%;
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 20px;
-    border: none;
-    background-color: #12b800; 
-    cursor: pointer;
-    margin-top: 15px;
-}
+#btn-calculate {
+    padding: 10px 20px; 
+    background-color: #FFC131;
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+  }

@@ -10,14 +10,16 @@ p {
     font-size: 12px;
 }
 
-input{
+
+.input-cust{
     width: 100%;
     padding: 10px;
-    font-size: 16px;
-    border-radius: 20px;
+    margin: 5px 0;
+    font-size: 1rem;
+    border-radius: 15px;
     border: 1px solid #ffec99;
     background-color: #ffec99;
-    box-sizing: border-box;
+    height:30px;
 }
 
 .add-cust{
@@ -41,6 +43,7 @@ input{
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    color: white;
 }
 
 #btn-cancel {
@@ -50,7 +53,7 @@ input{
 
 #btn-add {
     background-color: #12b800; 
-    width: 20%;            
+    width: 40%;            
 }
 
 input::placeholder {

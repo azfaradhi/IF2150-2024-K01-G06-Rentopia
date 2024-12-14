@@ -98,6 +98,7 @@ def update_customer():
             return jsonify({'error': f'Missing required field: {field}'}), 400
     
     customer = Customer(data['id_cust'])
+    customer.loadCustomer()
     customer.setNameCustomer(data['name_cust'])
     customer.setPhoneCustomer(data['phone_cust'])
     customer.setAddressCustomer(data['address_cust'])

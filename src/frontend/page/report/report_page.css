@@ -5,19 +5,6 @@
     font-family: Arial, sans-serif;
 }
 
-#btn-submit {
-    padding: 8px 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#btn-submit:hover {
-    background-color: #0056b3;
-}
-
 .report-table {
     overflow-x: auto;
     margin-top: 20px;
@@ -100,9 +87,8 @@
 }
 
 #btn-submit:hover {
-    background-color: #fff9e6; 
+    background-color: #dba322; 
     color: #000; 
-    border: solid #ffc131;
 }
 
 #total-price {
@@ -112,10 +98,10 @@
 
 button {
     padding: 10px 20px; 
-    background-color: #FFC131;
+    background-color: #FFC131; 
     color: white;
     border: none; 
-    border-radius: 5px;
+    border-radius: 5px; 
     cursor: pointer; 
     font-size: 16px; 
     transition: background-color 0.3s ease, transform 0.2s ease;
