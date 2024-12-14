@@ -64,7 +64,7 @@ function carPageCommandChoice(){
         else{
             await fetchCar(currentPageCars, seatValue, availValue);
             console.log('Selected Seat:', seatValue, 'Type:', typeof seatValue);
-            console.log('Selected Availability:', availValue, 'Type:', typeof availabilityValue);            
+            console.log('Selected Availability:', availValue, 'Type:', typeof availValue);            
         }
         })
     }
@@ -134,6 +134,13 @@ function displayCars(cars, page, totalPage) {
             deleteButton.addEventListener('click', async () => {
                 const carId = deleteButton.getAttribute('data-car-id');
                 console.log(`Delete car with ID: ${carId}`);
+
+                const confirmDelete = window.confirm("Are you sure you want to delete this car?");
+                if (!confirmDelete) {
+                    console.log("Car deletion cancelled.");
+                    return;
+                }
+                
                 try{
                     const response = await fetch(`http://localhost:5000/api/car/delete/${carId}`, {
                         method: 'POST',

@@ -1,6 +1,23 @@
 
 console.log("addcar is loaded");
 
+const fileInput = document.getElementById('file-input');
+console.log("fileInput: ", fileInput);
+const imagePreview = document.getElementById('car-image-preview');
+console.log("imagePreview: ", imagePreview);
+
+fileInput.addEventListener('change', function(event) {
+    
+    if (event.target.files && event.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+});
+
+
 async function initAddCar(){
     const addButton = document.getElementById("btn-add");
     const cancelButton = document.getElementById("btn-cancel");
@@ -20,7 +37,17 @@ async function initAddCar(){
                 alert("Please fill in all fields and upload an image!");
                 return;
             }
+            if (seat!="4" && seat !="6") {
+                valid = false;
+                alert("Please enter a valid car seat, either 4 seat or 6 seat!");
+                document.getElementById("car-seat").value = "";
+            }
 
+            if (!isNum(price)) {
+                valid = false;
+                alert("Please enter a valid car price!");
+                document.getElementById("car-price").value = "";
+            }
             const formData = new FormData();
             formData.append("id_car", id);
             formData.append("model_car", model);
@@ -40,7 +67,7 @@ async function initAddCar(){
                 }
                 const result = await response.json();
                 console.log("Server Response: ", result.message);
-                alert("Success adding car!");
+                alert(result.message);
                 window.location.hash = '/car';
             } catch (error) {
                 console.error("Error: ", error);
@@ -54,6 +81,10 @@ async function initAddCar(){
             window.location.hash = '/car'
         })
     }
+}
+
+function isNum(value) {
+    return !isNaN(value) && isFinite(parseFloat(value));
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -68,12 +68,20 @@ async function initEditCar(id){
                 document.getElementById("car-type").value = "";
                 document.getElementById("car-seat").value = "";
                 document.getElementById("car-price").value = "";   
-            
             }
 
+            if (seat!="4" && seat !="6") {
+                valid = false;
+                alert("Please enter a valid car seat, either 4 seat or 6 seat!");
+                document.getElementById("car-seat").value = "";
+            }
+
+            if (!isNum(price)) {
+                valid = false;
+                alert("Please enter a valid car price!");
+                document.getElementById("car-price").value = "";
+
             if (valid){
-
-
                 const formData = new FormData();
                 formData.append("id_car", id);
                 formData.append("model_car", model);
@@ -116,4 +124,8 @@ async function initEditCar(id){
             window.location.hash = "/car"
         })
     }
+}
+
+function isNum(value) {
+    return !isNaN(value) && isFinite(parseFloat(value));
 }

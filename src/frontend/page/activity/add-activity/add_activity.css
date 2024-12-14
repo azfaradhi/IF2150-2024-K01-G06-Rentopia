@@ -1,18 +1,30 @@
-h1 {
+/* h1 {
     color: #333;
     margin-bottom: 20px;
     font-size: 3rem;
     margin-left: 20px;
+} */
+
+.act-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-act {
+    width: 100%;
+}
+
+.right-act {
+    width: 100%;
 }
 
 .overall {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;                     
+    gap: 20px;       
+    justify-content: flex-start; 
     margin-left: 20px;
-    margin-right: 40px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;                
+    margin-right: 50px;
+    margin-bottom: 30px;            
 }
 
 .price-container {
@@ -26,7 +38,8 @@ h1 {
 
     font-size: x-large;
 }
-div > div {
+
+/* div > div {
     flex: 1;
     min-width: 250px;
 }
@@ -35,7 +48,7 @@ h2 {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: #444;
-}
+} */
 
 input[type="text"], input[type="date"] {
     width: 100%;
@@ -50,16 +63,6 @@ input[type="text"], input[type="date"] {
 
 input[type="text"]{
     width:80%;
-}
-
-img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    padding: 10px;
-    margin-left: 10px;
-    border-radius: 8px;
-    background-color: #ffec99;
 }
 
 .cust-text-plus, .car-text-plus {

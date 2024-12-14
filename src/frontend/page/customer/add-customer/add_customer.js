@@ -18,8 +18,8 @@ async function  initAddCustomer(param) {
                 document.getElementById("cust-phone").value = "";
                 document.getElementById("cust-address").value = "";
             }
-
             if (valid){
+                console.log("masuk valid")
                 const customerData = {
                     id_cust : nik,
                     name_cust : name,
@@ -35,6 +35,7 @@ async function  initAddCustomer(param) {
                         },
                         body: JSON.stringify(customerData),
                     });
+                    console.log("Collect data customer: ", JSON.stringify(customerData));
                     console.log("masuk22");
                     if (!response.ok){
                         throw new Error(`Failed to create car: ${response.statusText}`);
@@ -55,6 +56,7 @@ async function  initAddCustomer(param) {
                     // window.location.hash = `/customer/${param}`;
                 }
                 catch (error){
+                    alert("")
                     console.error("Detailed error: ", error);
                 }
             }

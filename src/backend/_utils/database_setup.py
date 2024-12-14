@@ -68,7 +68,7 @@ class DatabaseSetup:
         cur.execute("""
             CREATE TABLE IF NOT EXISTS activities(
                 id_activity SERIAL PRIMARY KEY,
-                id_cust INTEGER,
+                id_cust TEXT,
                 id_car TEXT,
                 date_range DATE[],
                 total_price INTEGER NOT NULL,
