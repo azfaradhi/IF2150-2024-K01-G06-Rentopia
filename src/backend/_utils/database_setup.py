@@ -68,14 +68,14 @@ class DatabaseSetup:
             CREATE TABLE IF NOT EXISTS activities(
                 id_activity SERIAL PRIMARY KEY,
                 id_cust TEXT,
+                name_cust TEXT,
                 id_car TEXT,
+                model_car TEXT,
                 date_range DATE[],
                 total_price INTEGER NOT NULL,
                 status_car TEXT,
                 status_cust TEXT,
-                status_activity TEXT,
-                FOREIGN KEY(id_cust) REFERENCES customers(id_cust) ON DELETE SET NULL,
-                FOREIGN KEY(id_car) REFERENCES cars(id_car) ON DELETE SET NULL
+                status_activity TEXT
             );
         """)
         # membuat tabel notifications
