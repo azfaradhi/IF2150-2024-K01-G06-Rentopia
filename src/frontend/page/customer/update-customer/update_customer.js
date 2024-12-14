@@ -1,12 +1,8 @@
-console.log("apdet cust");
-
 let custData = null;
 
 async function initUpdateCustomer(id_cust) {
-    console.log("apdet custttttt");
     const placeholder = await fetch(`http://127.0.0.1:5000/api/customer/${id_cust}`);
     const data = await placeholder.json();
-    console.log(data);
 
     const updateButton = document.getElementById("btn-update");
     const cancelButton = document.getElementById("btn-cancel");
@@ -41,7 +37,6 @@ async function initUpdateCustomer(id_cust) {
                     phone_cust: phone,
                     address_cust: address,
                 }
-                console.log("Collect data customer: ", custData);
                 try {
                     const passingData = await fetch('http://127.0.0.1:5000/api/customer/update', {
                         method: 'POST',
@@ -71,7 +66,6 @@ async function initUpdateCustomer(id_cust) {
 
     if (cancelButton) {
         cancelButton.addEventListener('click', () => {
-            console.log("Cancel");
             window.location.hash = "/customer";
         })
     }

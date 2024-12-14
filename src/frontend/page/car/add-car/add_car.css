@@ -77,25 +77,6 @@ input::placeholder {
 }
 
 
-/* input::placeholder, input[type="file"]::placeholder {
-    color: #b37d00; 
-    font-style: italic;
-} */
-
-/* input[type="file"] {
-    height: 22rem;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    display: inline-block;
-} */
-
-/* 
-input[type="file"]::-webkit-file-upload-button {
-    visibility: hidden; 
-} */
-
-
 .containerr {
     text-align: center;
     background-color: #ffec99;

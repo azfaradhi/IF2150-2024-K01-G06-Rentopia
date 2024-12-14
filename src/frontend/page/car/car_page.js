@@ -10,11 +10,9 @@ async function fetchCar(page, seatValue, availValue) {
         if (!responseCar.ok) {
             throw new Error(`Error fetching activity: ${response.statusText}`);
         }
-        console.log("masuk");
         const dataCar = await responseCar.json();
 
         displayCars(dataCar.cars,page,dataCar.total_pages);
-        console.log(dataCar);
     } catch (error) {
         console.error("Failed to fetch car:", error);
     }
@@ -27,32 +25,26 @@ function carPageCommandChoice(){
     const prevButton = document.getElementById("prev-page");
     if (nextButton){
         nextButton.addEventListener('click', async () => {
-            console.log("Next page clicked");
-            console.log(currentPageCars);
             currentPageCars++;
             await fetchCar(currentPageCars, seatValue, availValue);
-            console.log("current: ", currentPageCars);
-            
         })
     }
     if (prevButton){
         prevButton.addEventListener('click', async () =>{
-            console.log("Prev button clicked");
-            console.log(currentPageCars);
             if (currentPageCars > 1){
                 currentPageCars --;
                 await fetchCar(currentPageCars, seatValue, availValue);
-                console.log("current: ",currentPageCars);
             }
         })
     }
-    if (addButton){
+
+    if (addButton) {
         addButton.addEventListener('click', async () =>{
-            console.log("Add button clicked");
             window.location.hash = '/car/add';
         })
     }
-    if (searchButton){
+
+    if (searchButton) {
         searchButton.addEventListener('click', async () =>{
             
         const seatValue = document.getElementById("car-seat").value;
@@ -63,8 +55,6 @@ function carPageCommandChoice(){
         }
         else{
             await fetchCar(currentPageCars, seatValue, availValue);
-            console.log('Selected Seat:', seatValue, 'Type:', typeof seatValue);
-            console.log('Selected Availability:', availValue, 'Type:', typeof availValue);            
         }
         })
     }
@@ -123,12 +113,9 @@ function displayCars(cars, page, totalPage) {
             const updateButton = carElement.querySelector('.btn-update');
             updateButton.addEventListener('click', () => {
                 const carId = updateButton.getAttribute('data-car-id');
-                console.log(`Edit car with ID: ${carId}`);
                 try{
                     window.location.hash = `/car/edit?id=${carId}`;
-                    console.log("bisa aja tuh");
-                }
-                catch (error){
+                } catch (error) {
                     console.log("error");
                 }
             });
@@ -137,7 +124,6 @@ function displayCars(cars, page, totalPage) {
             const deleteButton = carElement.querySelector('.btn-delete');
             deleteButton.addEventListener('click', async () => {
                 const carId = deleteButton.getAttribute('data-car-id');
-                console.log(`Delete car with ID: ${carId}`);
 
                 if (car.status_car === 'reserved') {
                     alert("Cannot delete reserved car!");
@@ -146,7 +132,6 @@ function displayCars(cars, page, totalPage) {
                     confirmDelete = window.confirm("Are you sure you want to delete this car?");
                 }
                 if (!confirmDelete) {
-                    console.log("Car deletion cancelled.");
                     return;
                 }
                 
@@ -158,7 +143,6 @@ function displayCars(cars, page, totalPage) {
                         },
                         body: JSON.stringify(carId),
                     });
-                    console.log("berhasil");
                     if (!response.ok){
                         throw new Error(`Failed to delete car: ${response.statusText}`);
                     }

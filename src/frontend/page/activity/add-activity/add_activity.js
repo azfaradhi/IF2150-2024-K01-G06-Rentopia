@@ -13,16 +13,16 @@ async function initAddActivity() {
             let valid = true;
             const startDateObj = new Date(startDate);
             const endDateObj = new Date(endDate);
-            if (!idCar || !startDate || !endDate){
+            if (!idCar || !startDate || !endDate) {
                 valid = false;
                 alert("Please fill id car and date");
             }
-            else if (endDateObj - startDateObj <= 0){
+            else if (endDateObj - startDateObj <= 0) {
                 valid = false;
                 alert("Please input valid date!")
             }
-            if (valid){
 
+            if (valid) {
                 const apiUrlIDUser = `http://127.0.0.1:5000/api/customer/${idUser}`;
                 const responseIDCustomer = await fetch(apiUrlIDUser);
                 if (!responseIDCustomer.ok){
@@ -44,11 +44,11 @@ async function initAddActivity() {
                     throw new Error(`Error fetching activity: ${response.statusText}`);
                 }
                 const dataOneCarID = await responseIDCar.json();
-                if (dataOneCarID.price_car === null){
+                if (dataOneCarID.price_car === null) {
                     alert("Car not found!");
                     return;
                 }
-                if (dataOneCarID.status_car === "reserved"){
+                if (dataOneCarID.status_car === "reserved") {
                     alert("Car is being rented");
                     return;
                 }
@@ -62,12 +62,10 @@ async function initAddActivity() {
                 const showPrice = document.getElementById("price-value");
                 showPrice.innerHTML = `${totalPrice}`;
             }
-
-            
         })
     }
-    if (addButtonAct){
-        console.log("A");
+
+    if (addButtonAct) {
         addButtonAct.addEventListener('click', async () => {
             const idUser = document.getElementById("input-cust-id").value;
             const idCar = document.getElementById("input-car-id").value;
@@ -77,11 +75,11 @@ async function initAddActivity() {
             const startDateObj = new Date(startDate);
             const endDateObj = new Date(endDate);
 
-            if (!idCar || !startDate || !endDate){
+            if (!idCar || !startDate || !endDate) {
                 valid = false;
                 alert("Please fill id car and date");
             }
-            else if (endDateObj - startDateObj <= 0){
+            else if (endDateObj - startDateObj <= 0) {
                 valid = false;
                 alert("Please input valid date!")
             }
@@ -131,7 +129,7 @@ async function initAddActivity() {
                     status_cust : "active",
                     status_activity : "in-progress",
                 };
-                console.log(activitiesData);
+
                 try {
                     const responseAddAct = await fetch('http://127.0.0.1:5000/api/activity/create', {
                         method: 'POST',
@@ -140,7 +138,6 @@ async function initAddActivity() {
                         },
                         body: JSON.stringify(activitiesData),
                     });
-                    console.log("masuk dong");
                     if (!responseAddAct.ok){
                         throw new Error(`Failed to create activity: ${responseAddAct.statusText}`);
                     }
@@ -151,23 +148,17 @@ async function initAddActivity() {
                     document.getElementById("end-date").value ="";   
                     alert("Success adding activity!");
                     window.location.hash = "/";
-
-                }
-                catch (error){
+                } catch (error) {
                     console.error("Error: ", error);    
                 }
-                    
-                
-            }
-
-            
+            }  
         })
     }
+
     if (cancelButtonAct){
         cancelButtonAct.addEventListener('click', () =>{
             console.log("Cancel button");
             window.location.hash = "/car";
         })
     }
-
 }

@@ -11,7 +11,6 @@ async function initAddCar(){
     fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file) {
-            console.log("File selected:", file);
             const reader = new FileReader();
             reader.onload = function (e) {
                 imagePreview.src = e.target.result;
@@ -24,10 +23,8 @@ async function initAddCar(){
         }
     });
 
-
     if (addButton) {
         addButton.addEventListener('click', async () => {
-            console.log("Masuk kok disinin");
             const id = document.getElementById("car-id").value;
             const model = document.getElementById("car-model").value;
             const type = document.getElementById("car-type").value;
@@ -59,8 +56,6 @@ async function initAddCar(){
             formData.append("seat_car", seat);
             formData.append("price_car", price);
             formData.append("photo", imageFile);
-            console.log("Disini masuk juga");
-            console.log(formData);
 
             try {
                 const response = await fetch('http://127.0.0.1:5000/api/car/create', {
@@ -71,7 +66,6 @@ async function initAddCar(){
                     throw new Error(`Failed to create car: ${response.statusText}`);
                 }
                 const result = await response.json();
-                console.log("Server Response: ", result.message);
                 alert(result.message);
                 window.location.hash = '/car';
             } catch (error) {
@@ -82,7 +76,6 @@ async function initAddCar(){
 
     if (cancelButton){
         cancelButton.addEventListener('click', () =>{
-            console.log("Cancel button clicked");
             window.location.hash = '/car'
         })
     }
@@ -93,6 +86,5 @@ function isNum(value) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM fully loaded");
     initAddCar();
 });

@@ -2,7 +2,6 @@ let currentPage = 1;
 let itemsPerPage = 5;
 
 async function fetchActivity(page) {
-    console.log("fetchActivity called with page:", page); // Debug log
     try {
         const apiUrl = `http://127.0.0.1:5000/api/activity/alldata?page=${page}&items_per_page=${itemsPerPage}`;
         const response = await fetch(apiUrl);
@@ -10,7 +9,6 @@ async function fetchActivity(page) {
             throw new Error(`Error fetching activity: ${response.statusText}`);
         }
         const data = await response.json();
-        console.log(data);
         displayActivity(data.activities,page,data.total_pages);
     } catch (error) {
         console.error("Failed to fetch activity:", error);
@@ -25,42 +23,32 @@ function homePageCommandChoice(){
     const notifButton = document.getElementById("notif-button");
     if (nextButton){
         nextButton.addEventListener('click', async () => {
-            console.log("Next page clicked");
-            console.log(currentPage);
             currentPage++;
             await fetchActivity(currentPage);
-            console.log("current: ", currentPage);
-            
         })
     }
     if (prevButton){
-        prevButton.addEventListener('click', async () =>{
-            console.log("Prev button clicked");
-            console.log(currentPage);
+        prevButton.addEventListener('click', async () =>{;
             if (currentPage > 1){
                 currentPage --;
                 await fetchActivity(currentPage);
-                console.log("current: ",currentPage);
             }
         })
     }
     
     if (addCustButton){
         addCustButton.addEventListener('click', () => {
-            console.log("Add customer button clicked");
             window.location.hash = '/customer/add?id=home';
         });
     }
     if (addActButton){
         addActButton.addEventListener('click', () =>{
-            console.log("add activity gais");
             window.location.hash = '/activity/add-activity';
         })
     }
 
     if (notifButton){
         notifButton.addEventListener('click', () =>{
-            console.log("notif button clicked");
             window.location.hash = '/notification';
         })
     }
@@ -71,8 +59,6 @@ function homePageCommandChoice(){
 }
 
 function displayActivity(activities, page, totalPage) {
-    console.log("displayActivity called with activities:", activities);
-    console.log("Current page:", page, "Total pages:", totalPage);
     const tableBody = document.getElementById("activity-table-body");
     tableBody.innerHTML = "";
     
@@ -109,6 +95,7 @@ function displayActivity(activities, page, totalPage) {
                     status_car : "available",
                     status_cust : "inactive"
                 }
+
                 try {
                     const responseEditAct = await fetch(`http://127.0.0.1:5000/api/activity/update/${activity.id_activity}`, {
                         method: 'POST',
@@ -117,14 +104,11 @@ function displayActivity(activities, page, totalPage) {
                         },
                         body: JSON.stringify(finishAct),
                     });
-                    if (!responseEditAct.ok){
+
+                    if (!responseEditAct.ok) {
                         throw new Error(`Failed to update activity: ${responseEditAct.statusText}`);
                     }
-                    // alert("Activity marked as completed!");
-                    // fetchActivity(currentPage);
-
-                }
-                catch (error){
+                } catch (error) {
                     console.log(error);
                 }
                 
@@ -140,15 +124,10 @@ function displayActivity(activities, page, totalPage) {
                         },
                         body: JSON.stringify(car_update),
                     });
-                    console.log("masuk dong");
-                    if (!responseEditAct.ok){
+                    if (!responseEditAct.ok) {
                         throw new Error(`Failed to update activity: ${responseEditAct.statusText}`);
                     }
-                    // alert("Activity marked as completed!");
-                    // fetchActivity(currentPage);
-
-                }
-                catch (error){
+                } catch (error) {
                     console.log(error);
                 }
 
@@ -169,17 +148,14 @@ function displayActivity(activities, page, totalPage) {
                     }
                     alert("Activity marked as completed!");
                     fetchActivity(currentPage);
-
-                }
-                catch (error){
+                } catch (error) {
                     console.log(error);
                 }
             })
         }
-
-
         tableBody.appendChild(row);
     });
+
     const pageNumberDisplay = document.getElementById("page-number")
     pageNumberDisplay.textContent = `Page: ${page}`;
 
@@ -203,7 +179,6 @@ async function fetchAllActivities() {
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-        console.log('Received data:', data);
         return data.activities;
     } catch (error) {
         console.error("Error fetching activity:", error);
@@ -227,7 +202,6 @@ async function hasNotifications() {
             break;
         }
     }
-    console.log("Returning isTrue:", isTrue); 
     return isTrue;
 }
 
@@ -237,8 +211,7 @@ async function changeNotifButton(){
     const isTrue = await hasNotifications();
     if (isTrue){
         notifButton.src = "public/homepage/notif_act.svg";
-    }
-    else{
+    } else{
         notifButton.src = "public/homepage/notif.svg";
     }
 }

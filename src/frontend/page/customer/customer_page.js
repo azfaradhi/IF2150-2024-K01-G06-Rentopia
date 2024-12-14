@@ -11,7 +11,6 @@ async function fetchCustomer(page) {
 
         const dataCust = await responseCust.json();
         displayCustomer(dataCust.customers,page,dataCust.total_pages);
-        console.log(dataCust);
     } catch (error) {
         console.error("Failed to fetch customer:", error);
     }
@@ -23,32 +22,24 @@ function customerPageCommandChoice(){
     const prevButton = document.getElementById("prev-page");
     if (nextButton){
         nextButton.addEventListener('click', async () => {
-            console.log("Next page clicked");
-            console.log(currentPageCustomer);
             currentPageCustomer++;
             await fetchCustomer(currentPageCustomer);
-            console.log("current: ", currentPageCustomer);
             
         })
     }
     if (prevButton){
         prevButton.addEventListener('click', async () =>{
-            console.log("Prev button clicked");
-            console.log(currentPageCustomer);
             if (currentPageCustomer > 1){
                 currentPageCustomer --;
                 await fetchCustomer(currentPageCustomer);
-                console.log("current: ",currentPageCustomer);
             }
         })
     }
     if (addButton){
         addButton.addEventListener('click', async () =>{
-            console.log("Add button clicked");
             window.location.hash = '/customer/add/?id=customer';
         })
-    }
-    else{
+    } else {
         console.error("Add customer button not found");
     }
 }
@@ -100,20 +91,16 @@ function displayCustomer(customers, page, totalPage) {
         const updateButton = custElement.querySelector('.btn-update');
         updateButton.addEventListener('click', () => {
             const custId = updateButton.getAttribute('data-cust-id');
-            console.log(`Edit customer with ID: ${custId}`);
             try {
-                console.log("ini masuk");
                 window.location.hash = `/customer/update?id=${custId}`;
             } catch (error) {
-                console.error("HUHUHAHA:", error);
+                console.error("Error:", error);
             }
         });
 
         const deleteButtonCust = custElement.querySelector('.btn-delete');
         deleteButtonCust.addEventListener('click', async () => {
-            const custId = deleteButtonCust.getAttribute('data-cust-id');
-            console.log(`Deleting customer with ID: ${custId}`);
-
+            const custId = deleteButtonCust.getAttribute('data-cust-id')
             if (customer.status_cust === 'active') {
                 alert("Cannot delete active customer!");
                 return;
@@ -137,7 +124,6 @@ function displayCustomer(customers, page, totalPage) {
                 if (!response.ok) {
                     throw new Error(`Failed to delete customer: ${response.statusText}`);
                 }
-                console.log("Customer deleted successfully");
 
                 await fetchCustomer(currentPageCustomer);
                 alert("Customer deleted successfully!");
@@ -165,6 +151,5 @@ function makeCustomerPage(){
     fetchCustomer(currentPageCustomer);
 }
 document.addEventListener('DOMContentLoaded', () => {
-    // makeCustomerPage(); 
     customerPageCommandChoice();
 });

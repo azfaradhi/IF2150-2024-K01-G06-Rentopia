@@ -1,4 +1,3 @@
-console.log("report page");
 let reportCurrentPage = 1;
 let reportItemsPerPage = 4;
 
@@ -36,23 +35,19 @@ function reportPageCommandChoice() {
             const date_awal = document.getElementById("start-date").value;
             const date_akhir = document.getElementById("end-date").value;
             const date_range = `{${date_awal},${date_akhir}}`;
-            console.log(reportCurrentPage);
             reportCurrentPage++;
             await fetchReport(reportCurrentPage, date_range);
-            console.log("current: ", reportCurrentPage); 
         })
     }
 
     if (prevButton) {
         prevButton.addEventListener('click', async () => {
-            console.log(currentPage);
             const date_awal = document.getElementById("start-date").value;
             const date_akhir = document.getElementById("end-date").value;
             const date_range = `{${date_awal},${date_akhir}}`;
             if (reportCurrentPage > 1){
                 reportCurrentPage --;
                 await fetchReport(reportCurrentPage, date_range);
-                console.log("current: ",reportCurrentPage);
             }
         })
     }
@@ -64,7 +59,6 @@ function reportPageCommandChoice() {
             const date_akhir = document.getElementById("end-date").value;
             if (date_awal > date_akhir) {
                 alert("The start date must be earlier than the end date.");
-                console.log("start date is later than end date");
                 return;
             }
             else{
@@ -76,7 +70,6 @@ function reportPageCommandChoice() {
 }
 
 function displayReport(activities, page, totalPage, total_price) {
-    console.log("displaying report");
     const tableBody = document.getElementById("report-table-body");
     
     tableBody.innerHTML = "";

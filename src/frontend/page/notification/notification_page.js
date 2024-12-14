@@ -1,11 +1,9 @@
 async function fetchAllActivities() {
-    console.log('RAFIF OK');
     const apiUrl = 'http://127.0.0.1:5000/api/activity/alldata';
     
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-        console.log('Received data:', data);
         return data.activities;
     } catch (error) {
         console.error("Error fetching activity:", error);
@@ -36,7 +34,6 @@ async function fetchAllNotifications() {
 }
 
 async function showNotification(activity) {
-    console.log('LOVE');
     const notifContainer = document.getElementById('notif-container');
     
     if (!activity.name_cust || !activity.date_range || !activity.id_activity) {

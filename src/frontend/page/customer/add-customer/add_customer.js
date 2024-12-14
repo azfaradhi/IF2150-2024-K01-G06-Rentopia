@@ -3,6 +3,7 @@ console.log("addcust is loaded");
 async function  initAddCustomer(param) {
     const addButton = document.getElementById("btn-add");
     const cancelButton = document.getElementById("btn-cancel");
+
     if (addButton){
         addButton.addEventListener('click', async () =>{
             const nik = document.getElementById("cust-nik").value;
@@ -18,16 +19,14 @@ async function  initAddCustomer(param) {
                 document.getElementById("cust-phone").value = "";
                 document.getElementById("cust-address").value = "";
             }
-            if (valid){
-                console.log("masuk valid")
+            if (valid) {
                 const customerData = {
                     id_cust : nik,
                     name_cust : name,
                     phone_cust: phone,
                     address_cust: address,
                 };
-                console.log("Collect data customer: ", customerData);
-                try{
+                try {
                     const response = await fetch('http://127.0.0.1:5000/api/customer/create', {
                         method: 'POST',
                         headers: {
@@ -40,7 +39,6 @@ async function  initAddCustomer(param) {
                         throw new Error(`Failed to create customer: ${response.statusText}`);
                     }
                     const result = await response.json();
-                    console.log("Server Response: ", result.message);
                     const hasil = result.message;
                     alert(hasil);
                     document.getElementById("cust-nik").value = "";
@@ -54,9 +52,8 @@ async function  initAddCustomer(param) {
                     else if (param === "customer"){
                         window.location.hash = '/customer';
                     }
-                    // window.location.hash = `/customer/${param}`;
                 }
-                catch (error){
+                catch (error) {
                     alert("")
                     console.error("Detailed error: ", error);
                 }
@@ -69,7 +66,6 @@ async function  initAddCustomer(param) {
                 window.location.hash = '/';
             }
             else if (param === "customer"){
-                console.log("masukapa");
                 window.location.hash = '/customer';
             }
         })
