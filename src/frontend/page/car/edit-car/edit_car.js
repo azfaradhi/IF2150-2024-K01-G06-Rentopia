@@ -19,6 +19,7 @@ async function fetchCarById(id) {
 
 async function initEditCar(id){
 
+
     let currentStatus = null
     let resultAdd = null
     try {
@@ -44,13 +45,35 @@ async function initEditCar(id){
     catch (error){
         console.error("Error: ", error);    
     }
+
+
     document.getElementById("car-id").value = id;
     document.getElementById("car-model").value = resultAdd.model_car;
     document.getElementById("car-type").value = resultAdd.type_car;
     document.getElementById("car-seat").value = resultAdd.seat_car;
     document.getElementById("car-price").value = resultAdd.price_car;
+    document.getElementById("car-image-preview").src = `../../img/${resultAdd.photo_car}`;
+    
     const addButton = document.getElementById("btn-add");
     const cancelButton = document.getElementById("btn-cancel");
+    const fileInput = document.getElementById('file-input');
+    const imagePreview = document.getElementById('car-image-preview');
+    
+    fileInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            console.log("File selected:", file);
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.src = "";
+            imagePreview.style.display = "none";
+        }
+    });
 
     if (addButton){
         addButton.addEventListener('click', async () =>{
