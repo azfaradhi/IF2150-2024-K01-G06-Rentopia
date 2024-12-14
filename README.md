@@ -131,3 +131,11 @@ Berikut merupakan daftar tabel basis data yang digunakan dalam P/L ini. Header t
 | status_cust              | status_car | -                     |-   |
 | status_activity          | -          | -                     |-   |
 | additional_info_activity | -          | -                     |-   |
+
+
+## Anggota Kelompok
+1. 13523043 - Najwa Kahani Fatima
+2. 13523079 - Nayla Zahira
+3. 13523095 - Rafif Farras
+4. 13523101 - Barru Adi Utomo
+5. 13523115 - Azfa Radhiyya Hakim
