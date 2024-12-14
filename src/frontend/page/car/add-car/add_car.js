@@ -1,6 +1,23 @@
 
 console.log("addcar is loaded");
 
+const fileInput = document.getElementById('file-input');
+console.log("fileInput: ", fileInput);
+const imagePreview = document.getElementById('car-image-preview');
+console.log("imagePreview: ", imagePreview);
+
+fileInput.addEventListener('change', function(event) {
+    
+    if (event.target.files && event.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+});
+
+
 async function initAddCar(){
     const addButton = document.getElementById("btn-add");
     const cancelButton = document.getElementById("btn-cancel");
