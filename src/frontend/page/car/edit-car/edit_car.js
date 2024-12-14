@@ -58,7 +58,7 @@ async function initEditCar(id){
     const cancelButton = document.getElementById("btn-cancel");
     const fileInput = document.getElementById('file-input');
     const imagePreview = document.getElementById('car-image-preview');
-    
+
     fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file) {
@@ -81,7 +81,7 @@ async function initEditCar(id){
             const type = document.getElementById("car-type").value;
             const seat = document.getElementById("car-seat").value;
             const price = document.getElementById("car-price").value;
-            const imageFile = document.getElementById("car-image-input").files[0];
+            const imageFile = document.getElementById("file-input").files[0];
             console.log("boleh de");
             let valid = true;
             if (!model || !type || !seat || !price){
