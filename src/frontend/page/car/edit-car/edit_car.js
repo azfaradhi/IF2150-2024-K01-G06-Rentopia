@@ -80,6 +80,7 @@ async function initEditCar(id){
                 valid = false;
                 alert("Please enter a valid car price!");
                 document.getElementById("car-price").value = "";
+            }
 
             if (valid){
                 const formData = new FormData();

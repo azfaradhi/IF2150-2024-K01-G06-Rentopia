@@ -31,7 +31,7 @@ async function initAddCar(){
             const type = document.getElementById("car-type").value;
             const seat = document.getElementById("car-seat").value;
             const price = document.getElementById("car-price").value;
-            const imageFile = document.getElementById("car-image-input-add").files[0];
+            const imageFile = document.getElementById("file-input").files[0];
 
             if (!id || !model || !type || !seat || !price || !imageFile) {
                 alert("Please fill in all fields and upload an image!");
@@ -41,12 +41,14 @@ async function initAddCar(){
                 valid = false;
                 alert("Please enter a valid car seat, either 4 seat or 6 seat!");
                 document.getElementById("car-seat").value = "";
+                return;
             }
 
             if (!isNum(price)) {
                 valid = false;
                 alert("Please enter a valid car price!");
                 document.getElementById("car-price").value = "";
+                return;
             }
             const formData = new FormData();
             formData.append("id_car", id);
@@ -56,6 +58,7 @@ async function initAddCar(){
             formData.append("price_car", price);
             formData.append("photo", imageFile);
             console.log("Disini masuk juga");
+            console.log(formData);
 
             try {
                 const response = await fetch('http://127.0.0.1:5000/api/car/create', {

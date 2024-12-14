@@ -128,6 +128,7 @@ function displayCars(cars, page, totalPage) {
                     console.log("error");
                 }
             });
+        
 
             const deleteButton = carElement.querySelector('.btn-delete');
             deleteButton.addEventListener('click', async () => {

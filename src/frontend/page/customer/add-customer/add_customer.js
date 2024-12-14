@@ -1,6 +1,6 @@
 console.log("addcust is loaded");
 
-async function  initAddCustomer() {
+async function  initAddCustomer(param) {
     const addButton = document.getElementById("btn-add");
     const cancelButton = document.getElementById("btn-cancel");
     if (addButton){
@@ -46,8 +46,14 @@ async function  initAddCustomer() {
                     document.getElementById("cust-name").value = "";
                     document.getElementById("cust-phone").value = "";
                     document.getElementById("cust-address").value = "";
-                    alert(result.message);
-                    window.location.hash = '/customer'
+                    alert("Success adding customer!");
+                    if (param === "home"){
+                        window.location.hash = '/';
+                    }
+                    else if (param === "customer"){
+                        window.location.hash = '/customer';
+                    }
+                    // window.location.hash = `/customer/${param}`;
                 }
                 catch (error){
                     alert("")
@@ -58,7 +64,13 @@ async function  initAddCustomer() {
     }
     if (cancelButton){
         cancelButton.addEventListener('click', async () =>{
-            window.location.hash = '/customer'; 
+            if (param === "home"){
+                window.location.hash = '/';
+            }
+            else if (param === "customer"){
+                console.log("masukapa");
+                window.location.hash = '/customer';
+            }
         })
     }
 }
