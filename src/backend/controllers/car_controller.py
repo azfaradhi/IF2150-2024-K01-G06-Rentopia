@@ -46,8 +46,8 @@ def create_car():
         return jsonify({'error': 'Missing data fields'}), 400
 
     car = Car(id_car)
-    existingCar = car.existCar() or []
-    if(id_car not in car.existingCar):
+    existingCar = car.existCar()
+    if not existingCar:
         car.id_car = id_car
         car.setPhotoCar(file.filename)  
         car.setModelCar(model_car)
