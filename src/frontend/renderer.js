@@ -97,16 +97,19 @@ function router() {
             break;
         case route.startsWith('/customer/add'):
             const parampage = getQueryParams();
-            case parampage["id"] === "home":
+            if (parampage["id"] === "home"){
                 loadPage('./page/customer/add-customer/add_customer.html', () =>{
                     console.log("parampage = ",parampage["id"]);
                     initAddCustomer(parampage["id"]);
                 })
-            case parampage["id"] === "customer":
-                loadPage('./page/customer.html', () =>{
+                break;
+            }
+            else if (parampage["id"] === "customer"){
+                loadPage('./page/customer/add-customer/add_customer.html', () =>{
                     initAddCustomer(parampage["id"]);
                 })
-            break;
+                break;
+            }
         case route.startsWith('/customer/update'):
             const custUpdateParam = getQueryParams();
             loadPage('./page/customer/update-customer/update_customer.html', () =>{
