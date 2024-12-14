@@ -49,14 +49,12 @@ class Customer:
                         SET name_cust = %s,
                             phone_cust = %s,
                             address_cust = %s,
-                            additional_info_cust = %s,
                             status_cust = %s
                         WHERE id_cust = %s
                         """, 
                         (self.__name_cust,
                          self.__phone_cust,
                         self.__address_cust,
-                        self.__additional_info_cust,
                         self.__status_cust,
                         self.id_cust))
                 conn.commit()
@@ -67,15 +65,13 @@ class Customer:
                             name_cust,
                             phone_cust,
                             address_cust,
-                            additional_info_cust,
                             status_cust)
-                        VALUES (%s, %s, %s, %s, %s, %s)
+                        VALUES (%s, %s, %s, %s, %s)
                         """, 
                         (self.id_cust,
                          self.__name_cust,
                          self.__phone_cust,
                         self.__address_cust,
-                        self.__additional_info_cust,
                         self.__status_cust))
                 conn.commit()
         except Exception as e:
@@ -180,6 +176,25 @@ class Customer:
 
     def setStatusCustomer(self, status_cust):
         self.__status_cust = status_cust
+        
+    def existCustomer(self):
+        db_setup = DatabaseSetup(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+        conn = db_setup.get_connection()
+        cur = conn.cursor()
+        try:
+            cur.execute("""
+                        SELECT id_cust
+                        FROM customers
+                        WHERE id_cust = %s
+                    """, (self.id_cust, ))
+            existingCustomer = cur.fetchone()
+            return existingCustomer
+        except Exception as e:
+            conn.rollback()
+            print(f"Error: {e}")
+        finally:
+            cur.close()
+            conn.close()
         
 # driver
 # customer = Customer(id_cust=20)
