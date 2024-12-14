@@ -5,23 +5,25 @@ const fileInput = document.getElementById('file-input');
 console.log("fileInput: ", fileInput);
 const imagePreview = document.getElementById('car-image-preview');
 console.log("imagePreview: ", imagePreview);
-
-fileInput.addEventListener('change', function(event) {
-    
-    if (event.target.files && event.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            imagePreview.src = e.target.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-});
+const fileNameDisplay = document.getElementById('file-name');
 
 
 async function initAddCar(){
     const addButton = document.getElementById("btn-add");
     const cancelButton = document.getElementById("btn-cancel");
 
+    fileInput.addEventListener('change', function(event) {
+        console.log("File input change event triggered.");
+        console.log("Selected file: ", event.target.files[0]);
+        const file = event.target.files[0];
+        if (file) {
+            fileNameDisplay.textContent = file.name;
+            fileNameDisplay.style.color = 'black';
+        } else {
+            fileNameDisplay.textContent = 'Belum ada file dipilih';
+            fileNameDisplay.style.color = '#888';
+        }
+    });
 
     if (addButton) {
         addButton.addEventListener('click', async () => {

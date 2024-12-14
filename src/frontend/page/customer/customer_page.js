@@ -113,8 +113,15 @@ function displayCustomer(customers, page, totalPage) {
         deleteButtonCust.addEventListener('click', async () => {
             const custId = deleteButtonCust.getAttribute('data-cust-id');
             console.log(`Deleting customer with ID: ${custId}`);
+
+            if (customer.status_cust === 'active') {
+                alert("Cannot delete active customer!");
+                return;
+            }
+            
+
             try {
-                const response = await fetch(`http://localhost:5000/api/customer/delete/${custId}`, {
+                const response = await fetch(`http://127.0.0.1:5000/api/customer/delete/${custId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

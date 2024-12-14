@@ -133,7 +133,7 @@ function displayActivity(activities, page, totalPage) {
                     status_car : "available",
                 }
                 try {
-                    const responseEditAct = await fetch(`http://localhost:5000/api/car/update/status`, {
+                    const responseEditAct = await fetch(`http://127.0.0.1:5000/api/car/update/status`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ function displayActivity(activities, page, totalPage) {
                     status_cust : "inactive"
                 }
                 try {
-                    const responseEditAct = await fetch(`http://localhost:5000/api/customer/update/status`, {
+                    const responseEditAct = await fetch(`http://127.0.0.1:5000/api/customer/update/status`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

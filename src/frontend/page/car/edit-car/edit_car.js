@@ -22,7 +22,7 @@ async function initEditCar(id){
     let currentStatus = null
     let resultAdd = null
     try {
-        const apiGetStatus = `http://localhost:5000/api/car/show/${id}`;
+        const apiGetStatus = `http://127.0.0.1:5000/api/car/show/${id}`;
         const responseStatus = await fetch(apiGetStatus);
 
         console.log("masuk dong");

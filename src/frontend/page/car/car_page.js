@@ -139,14 +139,19 @@ function displayCars(cars, page, totalPage) {
                 const carId = deleteButton.getAttribute('data-car-id');
                 console.log(`Delete car with ID: ${carId}`);
 
-                const confirmDelete = window.confirm("Are you sure you want to delete this car?");
+                if (car.status_car === 'reserved') {
+                    alert("Cannot delete reserved car!");
+                    return;
+                } else {
+                    const confirmDelete = window.confirm("Are you sure you want to delete this car?");
+                }
                 if (!confirmDelete) {
                     console.log("Car deletion cancelled.");
                     return;
                 }
                 
                 try{
-                    const response = await fetch(`http://localhost:5000/api/car/delete/${carId}`, {
+                    const response = await fetch(`http://127.0.0.1:5000/api/car/delete/${carId}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

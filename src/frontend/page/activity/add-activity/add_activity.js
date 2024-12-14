@@ -23,7 +23,7 @@ async function initAddActivity() {
             }
             if (valid){
 
-                const apiUrlIDUser = `http://localhost:5000/api/customer/${idUser}`;
+                const apiUrlIDUser = `http://127.0.0.1:5000/api/customer/${idUser}`;
                 const responseIDCustomer = await fetch(apiUrlIDUser);
                 if (!responseIDCustomer.ok){
                     throw new Error(`Error fetching activity: ${response.statusText}`);
@@ -38,7 +38,7 @@ async function initAddActivity() {
                     return;
                 }
 
-                const apiUrlIDCar = `http://localhost:5000/api/car/show/${idCar}`;
+                const apiUrlIDCar = `http://127.0.0.1:5000/api/car/show/${idCar}`;
                 const responseIDCar = await fetch(apiUrlIDCar);
                 if (!responseIDCar.ok){
                     throw new Error(`Error fetching activity: ${response.statusText}`);
@@ -87,7 +87,7 @@ async function initAddActivity() {
             }
             if (valid){
 
-                const apiUrlIDUser = `http://localhost:5000/api/customer/${idUser}`;
+                const apiUrlIDUser = `http://127.0.0.1:5000/api/customer/${idUser}`;
                 const responseIDCustomer = await fetch(apiUrlIDUser);
                 if (!responseIDCustomer.ok){
                     throw new Error(`Error fetching activity: ${response.statusText}`);
@@ -102,7 +102,7 @@ async function initAddActivity() {
                     return;
                 }
 
-                const apiUrlIDCar = `http://localhost:5000/api/car/show/${idCar}`;
+                const apiUrlIDCar = `http://127.0.0.1:5000/api/car/show/${idCar}`;
                 const responseIDCar = await fetch(apiUrlIDCar);
                 if (!responseIDCar.ok){
                     throw new Error(`Error fetching activity: ${response.statusText}`);
@@ -133,7 +133,7 @@ async function initAddActivity() {
                 };
                 console.log(activitiesData);
                 try {
-                    const responseAddAct = await fetch('http://localhost:5000/api/activity/create', {
+                    const responseAddAct = await fetch('http://127.0.0.1:5000/api/activity/create', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
