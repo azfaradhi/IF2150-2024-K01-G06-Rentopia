@@ -95,10 +95,17 @@ function router() {
                 customerPageCommandChoice();
             });
             break;
-        case route === '/customer/add':
-            loadPage('./page/customer/add-customer/add_customer.html', () =>{
-                initAddCustomer();
-            })
+        case route.startsWith('/customer/add'):
+            const parampage = getQueryParams();
+            case parampage["id"] === "home":
+                loadPage('./page/customer/add-customer/add_customer.html', () =>{
+                    console.log("parampage = ",parampage["id"]);
+                    initAddCustomer(parampage["id"]);
+                })
+            case parampage["id"] === "customer":
+                loadPage('./page/customer.html', () =>{
+                    initAddCustomer(parampage["id"]);
+                })
             break;
         case route.startsWith('/customer/update'):
             const custUpdateParam = getQueryParams();
@@ -108,6 +115,7 @@ function router() {
             })
             break;
         case route === '/report':
+            console.log("masuk report");    
             loadPage('./page/report/report_page.html', () => {
                 reportPageCommandChoice();
                 makeReportPage();

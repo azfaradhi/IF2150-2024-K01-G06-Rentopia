@@ -106,3 +106,24 @@ def update_customer():
     customer.saveCustomer()
     
     return jsonify({'message': 'Customer updated successfully'})
+
+
+@customer_bp.route('/api/customer/update/status', methods=['POST'])
+def update_customer_status():
+    data = request.json
+
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    fields = ['id_cust','status_cust']
+    
+    for field in fields: 
+        if field not in data or data[field] is None or data[field] == '':
+            return jsonify({'error': f'Missing required field: {field}'}), 400
+    
+    customer = Customer(data['id_cust'])
+    customer.loadCustomer()
+    customer.setStatusCustomer(data['status_cust'])
+    customer.saveCustomer()
+    
+    return jsonify({'message': 'Customer updated successfully'})

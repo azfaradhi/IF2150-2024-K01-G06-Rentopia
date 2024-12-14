@@ -45,7 +45,7 @@ function customerPageCommandChoice(){
     if (addButton){
         addButton.addEventListener('click', async () =>{
             console.log("Add button clicked");
-            window.location.hash = '/customer/add';
+            window.location.hash = '/customer/add/?id=customer';
         })
     }
     else{

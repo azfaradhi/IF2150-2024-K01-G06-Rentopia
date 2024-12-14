@@ -56,7 +56,7 @@ class DatabaseSetup:
         # Buat tabel customers
         cur.execute("""
             CREATE TABLE IF NOT EXISTS customers (
-                id_cust INTEGER PRIMARY KEY,
+                id_cust TEXT PRIMARY KEY,
                 name_cust TEXT NOT NULL,
                 phone_cust TEXT NOT NULL,
                 address_cust TEXT NOT NULL,
@@ -92,15 +92,15 @@ class DatabaseSetup:
 
         self.connection.commit()
 
-def setup_database():
-    setup = DatabaseSetup(
-        DB_HOST,
-        DB_NAME,
-        DB_USER,
-        DB_PASS,
-        DB_PORT
-    )
-    setup.create_tables()
+    def setup_database(self):
+        self.setup = DatabaseSetup(
+            DB_HOST,
+            DB_NAME,
+            DB_USER,
+            DB_PASS,
+            DB_PORT
+        )
+        self.setup.create_tables()
 
-if __name__ == '__main__':
-    setup_database()
+# if __name__ == '__main__':
+#     setup_database()

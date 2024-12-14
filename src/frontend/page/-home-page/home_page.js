@@ -48,7 +48,7 @@ function homePageCommandChoice(){
     if (addCustButton){
         addCustButton.addEventListener('click', () => {
             console.log("Add customer button clicked");
-            window.location.hash = '/customer/add';
+            window.location.hash = '/customer/add?id=home';
         });
     }
     if (addActButton){
@@ -115,7 +115,55 @@ function displayActivity(activities, page, totalPage) {
                     });
                     console.log("masuk dong");
                     if (!responseEditAct.ok){
-                        throw new Error(`Failed to create activity: ${responseEditAct.statusText}`);
+                        throw new Error(`Failed to update activity: ${responseEditAct.statusText}`);
+                    }
+                    // alert("Activity marked as completed!");
+                    // fetchActivity(currentPage);
+
+                }
+                catch (error){
+                    console.log(error);
+                }
+                
+                const car_update = {
+                    id_car : activity.id_car,
+                    status_car : "available",
+                }
+                try {
+                    const responseEditAct = await fetch(`http://localhost:5000/api/car/update/status`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(car_update),
+                    });
+                    console.log("masuk dong");
+                    if (!responseEditAct.ok){
+                        throw new Error(`Failed to update activity: ${responseEditAct.statusText}`);
+                    }
+                    // alert("Activity marked as completed!");
+                    // fetchActivity(currentPage);
+
+                }
+                catch (error){
+                    console.log(error);
+                }
+
+                const cust_update = {
+                    id_cust : activity.id_cust,
+                    status_cust : "inactive"
+                }
+                try {
+                    const responseEditAct = await fetch(`http://localhost:5000/api/customer/update/status`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(cust_update),
+                    });
+                    console.log("masuk dong");
+                    if (!responseEditAct.ok){
+                        throw new Error(`Failed to update activity: ${responseEditAct.statusText}`);
                     }
                     alert("Activity marked as completed!");
                     fetchActivity(currentPage);

@@ -103,7 +103,7 @@ def update_car():
         else:
             return jsonify({'error': 'Invalid photo file'}), 400
     else:
-        filename = None  # Keep existing photo if no new photo is uploaded
+        filename = None
 
     data = request.form.to_dict()
     if not data:
@@ -128,6 +128,23 @@ def update_car():
 
     return jsonify({'message': 'Car updated successfully'})
 
+@car_bp.route('/api/car/update/status', methods=['POST'])
+def update_car_status():
+    data = request.json
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    required_fields = ['id_car','status_car']
+    for field in required_fields:
+        if field not in data or not data[field]:
+            return jsonify({'error': f'Missing required field: {field}'}), 400
+
+    car = Car(data['id_car'])
+    car.loadCar()
+    car.setStatusCar(data['status_car'])
+    car.saveCar()
+
+    return jsonify({'message': 'Car updated successfully'})
 
 @car_bp.route('/api/car/delete/<string:id_car>', methods =['POST'])
 def delete_cars(id_car):
