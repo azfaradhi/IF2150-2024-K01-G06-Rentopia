@@ -36,9 +36,9 @@ Rentopia adalah P/L berbentuk aplikasi yang bertujuan untuk membantu pengguna me
 ### Menjalankan Database
    4. Set Up Database, Tools, dan Compile file Python
       ```bash
-      cd src/backend
-      
       pip install -r requirements.txt
+      
+      cd src/backend
 
       python app.py
       ```
