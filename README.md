@@ -124,6 +124,21 @@ Berikut merupakan daftar tabel basis data yang digunakan dalam P/L ini. Header t
 |--------------------------|------------|-----------------------|---------------|
 | id_activity              | id_car     | id_cust               | id_notif      |
 | id_cust                  | photo_car  | name_cust             | date_end      |
+| id_car                   | model_car  | phone_cust            | id_activity   |
+| date_rang                | type_car   | address_cust          |-  |
+| total_price              | seat_car   | additional_info_cust  |-   |
+| status_car               | price_car  | status cust           |-   |
+| status_cust              | status_car | -                     |-   |
+| status_activity          | -          | -                     |-   |
+| additional_info_activity | -          | -                     |-   |
+
+
+## Anggota Kelompok
+1. 13523043 - Najwa Kahani Fatima
+2. 13523079 - Nayla Zahira
+3. 13523095 - Rafif Farras
+4. 13523101 - Barru Adi Utomo
+5. 13523115 - Azfa Radhiyya Hakim
 | name_cust                | model_car  | phone_cust            | id_activity   |
 | id_car                   | type_car   | address_cust          | -             |
 | model_car                | seat_car   | status_cust           | -             |
