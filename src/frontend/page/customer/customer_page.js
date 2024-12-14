@@ -68,7 +68,7 @@ function displayCustomer(customers, page, totalPage) {
         const custElement = document.createElement('div');
         custElement.className = "info-customers";
         custElement.innerHTML = `
-            <div class="info-left">
+            <div class="info-left-cust">
                 <p>ID ${customer.id_cust}</p>
                 <h1>${customer.name_cust}</h1>
                 <div class="contact">
