@@ -63,23 +63,54 @@ Berikut merupakan daftar modul yang diimplementasikan dalam P/L rentopia, besert
       <th> Modul Car </th>
       <th> Modul Report </th>
       <th> Modul Notification </th>
+      <th> Lain - lain </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th> 13523043 </th>
+        <td> Controller </td>
+        <td> Model </td>
+        <td> UI </td>
+        <td> - </td>
+        <td> Model <br> Controller </td>
+        <td> - </td>
     </tr>
     <tr>
       <th> 13523079 </th>
+        <td> Model </td>
+        <td> Controller </td>
+        <td> Controller <br> Model </td>
+        <td> - </td>
+        <td> - </td>
+        <td> - </td>
     </tr>
     <tr>
       <th> 13523095 </th>
+        <td> - </td>
+        <td> UI </td>
+        <td> UI </td>
+        <td> - </td>
+        <td> Controller <br> UI </td>
+        <td> - </td>
     </tr>
     <tr>
       <th> 13523101 </th>
+        <td> - </td>
+        <td> - </td>
+        <td> - </td>
+        <td> UI <br> Controller </td>
+        <td> - </td>
+        <td> Set Up Database & Aplikasi </td>
     </tr>
     <tr>
       <th> 13523115 </th>
+        <td> Controller <br> Model <br> UI </td>
+        <td> Controller <br> Model <br> UI </td>
+        <td> Controller <br> Model <br> UI </td>
+        <td> - </td>
+        <td> - </td>
+        <td> Set Up Database & Aplikasi </td>
     </tr>
   </tbody>
 
