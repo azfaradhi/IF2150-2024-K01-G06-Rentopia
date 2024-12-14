@@ -97,17 +97,17 @@ Berikut merupakan daftar modul yang diimplementasikan dalam P/L rentopia, besert
     <tr>
       <th> 13523101 </th>
         <td> - </td>
-        <td> - </td>
-        <td> - </td>
+        <td> UI </td>
+        <td> UI </td>
         <td> UI <br> Controller </td>
         <td> - </td>
         <td> Set Up Database & Aplikasi </td>
     </tr>
     <tr>
       <th> 13523115 </th>
-        <td> Controller <br> Model <br> UI </td>
-        <td> Controller <br> Model <br> UI </td>
-        <td> Controller <br> Model <br> UI </td>
+        <td> Controller <br> UI </td>
+        <td> Controller <br> UI </td>
+        <td> Controller <br> UI </td>
         <td> - </td>
         <td> - </td>
         <td> Set Up Database & Aplikasi </td>
@@ -121,13 +121,21 @@ Berikut merupakan daftar modul yang diimplementasikan dalam P/L rentopia, besert
 Berikut merupakan daftar tabel basis data yang digunakan dalam P/L ini. Header tabel menunjukkan nama tabel dan setiap kolom merepresentasikan atribut yang ada pada tabel.
 
 | activities               | cars       | customers             | notifications |
-|----------                |----------  |----------             |----------     |
+|--------------------------|------------|-----------------------|---------------|
 | id_activity              | id_car     | id_cust               | id_notif      |
 | id_cust                  | photo_car  | name_cust             | date_end      |
-| id_car                   | model_car  | phone_cust            | id_activity   |
-| date_rang                | type_car   | address_cust          |-  |
-| total_price              | seat_car   | additional_info_cust  |-   |
-| status_car               | price_car  | status cust           |-   |
-| status_cust              | status_car | -                     |-   |
-| status_activity          | -          | -                     |-   |
-| additional_info_activity | -          | -                     |-   |
+| name_cust                | model_car  | phone_cust            | id_activity   |
+| id_car                   | type_car   | address_cust          | -             |
+| model_car                | seat_car   | status_cust           | -             |
+| date_range               | price_car  | -                     | -             |
+| total_price              | status_car | -                     | -             |
+| status_car               | -          | -                     | -             |
+| status_cust              | -          | -                     | -             |
+| status_activity          | -          | -                     | -             |
+
+## Anggota Kelompok
+1. 13523043 - Najwa Kahani Fatima
+2. 13523079 - Nayla Zahira
+3. 13523095 - Rafif Farras
+4. 13523101 - Barru Adi Utomo
+5. 13523115 - Azfa Radhiyya Hakim

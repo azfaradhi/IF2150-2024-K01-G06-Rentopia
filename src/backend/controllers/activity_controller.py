@@ -173,3 +173,10 @@ def update_activity(id_act):
     activity.saveActivity()
 
     return jsonify({'message': 'Car updated successfully'})
+
+@activity_bp.route('/api/activity/delete/<int:id_act>', methods=['DELETE'])
+def delete_activity(id_act):
+    activity = Activity(id_act)
+    activity.deleteActivity()
+
+    return jsonify({'message': 'Activity deleted successfully'})
